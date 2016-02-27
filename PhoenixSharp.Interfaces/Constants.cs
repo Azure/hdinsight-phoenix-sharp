@@ -17,7 +17,7 @@ namespace PhoenixSharp.Interfaces
 {
     public class Constants
     {
-        public const string PhoenixEndpoint = "hbasephoenix0/";
+        public const string PhoenixEndpoint = "hbasephoenix1/";
         public const string WireMessagePrefix = "org.apache.calcite.avatica.proto.Requests$";
     }
 }

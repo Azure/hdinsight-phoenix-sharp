@@ -17,10 +17,11 @@ namespace PhoenixSharp.Interfaces
 {
     using System.Threading.Tasks;
     using Apache.Phoenix;
+    using pbc = global::Google.Protobuf.Collections;
 
     public interface IPhoenixClient
     {
-        Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string sql, string connectionId, uint statementId, ulong maxRowCount, RequestOptions options);
+        Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options);
         Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, RequestOptions options);
         Task<ConnectionSyncResponse> ConnectionSyncRequestAsync(string connectionId, ConnectionProperties props, RequestOptions options);
         Task<CreateStatementResponse> CreateStatementRequestAsync(string connectionId, RequestOptions options);
@@ -28,5 +29,7 @@ namespace PhoenixSharp.Interfaces
         Task<CloseConnectionResponse> CloseConnectionRequestAsync(string connectionId, RequestOptions options);
         Task<CommitResponse> CommitRequestAsync(string connectionId, RequestOptions options);
         Task<RollbackResponse> RollbackRequestAsync(string connectionId, RequestOptions options);
+        Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options);
+        Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options);
     }
 }

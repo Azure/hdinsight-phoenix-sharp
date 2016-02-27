@@ -25,6 +25,8 @@ namespace PhoenixSharp
     using System.IO;
     using Google.Protobuf;
     using System;
+    using pbc = global::Google.Protobuf.Collections;
+    using System.Collections.Generic;
 
     public class PhoenixClient : IPhoenixClient
     {
@@ -50,7 +52,7 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string sql, string connectionId, uint statementId, ulong maxRowCount, RequestOptions options = null)
+        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options = null)
         {
             PrepareAndExecuteRequest req = new PrepareAndExecuteRequest
             {
@@ -362,6 +364,89 @@ namespace PhoenixSharp
                 {
                     WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
                     RollbackResponse res = RollbackResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options = null)
+        {
+            PrepareRequest req = new PrepareRequest
+            {
+                ConnectionId = connectionId,
+                Sql = sql,
+                MaxRowCount = maxRowCount
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "PrepareRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "PrepareRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    PrepareResponse res = PrepareResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options = null)
+        {
+            ExecuteRequest req = new ExecuteRequest
+            {
+                StatementHandle = statementHandle,
+                ParameterValues = parameterValues,
+                MaxRowCount = maxRowCount,
+                HasParameterValues = hasParameterValues
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "ExecuteRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "ExecuteRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              statementHandle.ConnectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ExecuteResponse res = ExecuteResponse.Parser.ParseFrom(output.WrappedMessage);
                     return res;
                 }
             }

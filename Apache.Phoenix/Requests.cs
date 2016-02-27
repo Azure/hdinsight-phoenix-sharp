@@ -2221,9 +2221,12 @@ namespace Apache.Phoenix {
     public const int ParameterValuesFieldNumber = 2;
     private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_parameterValues_codec
         = pb::FieldCodec.ForMessage(18, global::Apache.Phoenix.TypedValue.Parser);
-    private readonly pbc::RepeatedField<global::Apache.Phoenix.TypedValue> parameterValues_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    private pbc::RepeatedField<global::Apache.Phoenix.TypedValue> parameterValues_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
     public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ParameterValues {
       get { return parameterValues_; }
+      set {
+        parameterValues_ = value;
+      }
     }
 
     public const int MaxRowCountFieldNumber = 3;
