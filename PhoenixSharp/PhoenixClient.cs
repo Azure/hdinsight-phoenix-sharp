@@ -452,6 +452,211 @@ namespace PhoenixSharp
             }
         }
 
+        public async Task<ResultSetResponse> TablesRequestAsync(string catalog, string schemaPattern, string tableNamePattern, pbc::RepeatedField<string> typeList, bool hasTypeList, string connectionId, RequestOptions options = null)
+        {
+            TablesRequest req = new TablesRequest
+            {
+                Catalog = catalog,
+                SchemaPattern = schemaPattern,
+                TableNamePattern = tableNamePattern,
+                TypeList = typeList,
+                HasTypeList = hasTypeList,
+                ConnectionId = connectionId
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "TablesRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "TablesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ResultSetResponse res = ResultSetResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<ResultSetResponse> CatalogsRequestAsync(string connectionId, RequestOptions options = null)
+        {
+            CatalogsRequest req = new CatalogsRequest
+            {
+                ConnectionId = connectionId
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "CatalogsRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "CatalogsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ResultSetResponse res = ResultSetResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options = null)
+        {
+            TableTypesRequest req = new TableTypesRequest
+            {
+                ConnectionId = connectionId
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "TableTypesRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "TableTypesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ResultSetResponse res = ResultSetResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options = null)
+        {
+            SchemasRequest req = new SchemasRequest
+            {
+                Catalog = catalog,
+                SchemaPattern = schemaPattern,
+                ConnectionId = connectionId
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "SchemasRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "SchemasRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ResultSetResponse res = ResultSetResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options = null)
+        {
+            FetchRequest req = new FetchRequest
+            {
+                ConnectionId = connectionId,
+                StatementId = statementId,
+                Offset = offset,
+                FetchMaxRowCount = fetchMaxRowCount
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "FetchRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            var optionToUse = options ?? _globalRequestOptions;
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "FetchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    FetchResponse res = FetchResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
         private async Task<Response> PostRequestAsync(byte[] request, RequestOptions options)
         {
             return await ExecuteMethodAsync("POST", request, options);

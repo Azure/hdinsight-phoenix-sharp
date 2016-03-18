@@ -38,13 +38,46 @@ namespace PhoenixSharp.UnitTests
         }
 
         [TestMethod]
+        public async Task TableOperationTest()
+        {
+            var client = new PhoenixClient(_credentials);
+            string connId = GenerateRandomConnId();
+            // Opening connection
+            OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
+            // Syncing connection
+            ConnectionProperties connProperties = new ConnectionProperties
+            {
+                HasAutoCommit = true,
+                AutoCommit = true,
+                HasReadOnly = true,
+                ReadOnly = false,
+                TransactionIsolation = 0,
+                Catalog = "",
+                Schema = "",
+                IsDirty = true
+            };
+            ConnectionSyncResponse connSyncResponse = await client.ConnectionSyncRequestAsync(connId, connProperties);
+            
+            // List system tables
+            pbc.RepeatedField<string> list = new pbc.RepeatedField<string>();
+            list.Add("SYSTEM TABLE");
+            ResultSetResponse tablesResponse = await client.TablesRequestAsync("", "", "", list, true, connId);
+            Assert.AreEqual(4, tablesResponse.FirstFrame.Rows.Count);
+
+            ResultSetResponse catalogsResponse = await client.CatalogsRequestAsync(connId);
+            ResultSetResponse tableTypeResponse = await client.TableTypesRequestAsync(connId);
+            Assert.AreEqual(6, tableTypeResponse.FirstFrame.Rows.Count);
+
+            // Closing connection
+            CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+        }
+
+        [TestMethod]
         public async Task SimpleTest()
         {
             var client = new PhoenixClient(_credentials);
-            const string hex_characters = "0123456789abcdef";
-            var random = new Random();
-            // Generating a random connection ID
-            string connId = new string(Enumerable.Repeat(hex_characters, 8).Select(s=>s[random.Next(s.Length)]).ToArray());
+            string connId = GenerateRandomConnId();
+            string tableName = "Persons" + connId;
             // Opening connection
             OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
             // Syncing connection
@@ -64,7 +97,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 1
             CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
             // Running query 1
-            string sql1 = "CREATE TABLE Persons (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
             ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
             // Closing statement 1
             CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
@@ -72,7 +105,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 2
             CreateStatementResponse createStatementResponse2 = await client.CreateStatementRequestAsync(connId);
             // Running query 2
-            string sql2 = "UPSERT INTO Persons VALUES ('duo','xu')";
+            string sql2 = "UPSERT INTO " + tableName + " VALUES ('duo','xu')";
             ExecuteResponse execResponse2 = await client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse2.StatementId);
             // Closing statement 2
             CloseStatementResponse closeStatementResponse2 = await client.CloseStatementRequestAsync(connId, createStatementResponse2.StatementId);
@@ -80,7 +113,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 3
             CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
             // Running query 3
-            string sql3 = "select count(*) from Persons";
+            string sql3 = "select count(*) from " + tableName;
             ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
             long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
             Assert.AreEqual(1, count);
@@ -90,7 +123,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 4
             CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
             // Running query 4
-            string sql4 = "DROP TABLE Persons";
+            string sql4 = "DROP TABLE " + tableName;
             ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
             // Closing statement 4
             CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
@@ -103,10 +136,8 @@ namespace PhoenixSharp.UnitTests
         public async Task ManyRowInsertTest()
         {
             var client = new PhoenixClient(_credentials);
-            const string hex_characters = "0123456789abcdef";
-            var random = new Random();
-            // Generating a random connection ID
-            string connId = new string(Enumerable.Repeat(hex_characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+            string connId = GenerateRandomConnId();
+            string tableName = "Persons" + connId;
             // Opening connection
             OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
             // Syncing connection
@@ -126,7 +157,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 1
             CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
             // Running query 1
-            string sql1 = "CREATE TABLE Persons (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
             ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
             // Closing statement 1
             CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
@@ -135,7 +166,7 @@ namespace PhoenixSharp.UnitTests
             await client.CommitRequestAsync(connId);
 
             // Creating statement 2
-            string sql2 = "UPSERT INTO Persons VALUES (?,?)";
+            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
             PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
             StatementHandle statementHandle = prepareResponse.Statement;
             for (int i=0; i < 10; i++)
@@ -162,7 +193,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 3
             CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
             // Running query 3
-            string sql3 = "select count(*) from Persons";
+            string sql3 = "select count(*) from " + tableName;
             ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
             long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
             Assert.AreEqual(10, count);
@@ -172,7 +203,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 4
             CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
             // Running query 4
-            string sql4 = "DROP TABLE Persons";
+            string sql4 = "DROP TABLE " + tableName;
             ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
             // Closing statement 4
             CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
@@ -188,10 +219,8 @@ namespace PhoenixSharp.UnitTests
         public async Task QueryManyRowTest()
         {
             var client = new PhoenixClient(_credentials);
-            const string hex_characters = "0123456789abcdef";
-            var random = new Random();
-            // Generating a random connection ID
-            string connId = new string(Enumerable.Repeat(hex_characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+            string connId = GenerateRandomConnId();
+            string tableName = "Persons" + connId;
             // Opening connection
             OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
             // Syncing connection
@@ -211,7 +240,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 1
             CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
             // Running query 1
-            string sql1 = "CREATE TABLE Persons (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
             ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
             // Closing statement 1
             CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
@@ -220,7 +249,7 @@ namespace PhoenixSharp.UnitTests
             await client.CommitRequestAsync(connId);
 
             // Creating statement 2
-            string sql2 = "UPSERT INTO Persons VALUES (?,?)";
+            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
             PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
             StatementHandle statementHandle = prepareResponse.Statement;
             for (int i = 0; i < 10; i++)
@@ -247,7 +276,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 3
             CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
             // Running query 3
-            string sql3 = "select * from Persons";
+            string sql3 = "select * from " + tableName;
             ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
             pbc::RepeatedField<Row> rows = execResponse3.Results[0].FirstFrame.Rows;
             for (int i = 0; i < rows.Count; i++)
@@ -261,7 +290,7 @@ namespace PhoenixSharp.UnitTests
             // Creating statement 4
             CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
             // Running query 4
-            string sql4 = "DROP TABLE Persons";
+            string sql4 = "DROP TABLE " + tableName;
             ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
             // Closing statement 4
             CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
@@ -271,6 +300,102 @@ namespace PhoenixSharp.UnitTests
 
             // Closing connection
             CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+        }
+
+        [TestMethod]
+        public async Task CommitRollbackTest()
+        {
+            var client = new PhoenixClient(_credentials);
+            string connId = GenerateRandomConnId();
+            string tableName = "Persons" + connId;
+            // Opening connection 1
+            await client.OpenConnectionRequestAsync(connId);
+            // Syncing connection 1
+            ConnectionProperties connProperties = new ConnectionProperties
+            {
+                HasAutoCommit = true,
+                AutoCommit = false,
+                HasReadOnly = true,
+                ReadOnly = false,
+                TransactionIsolation = 0,
+                Catalog = "",
+                Schema = "",
+                IsDirty = true
+            };
+            await client.ConnectionSyncRequestAsync(connId, connProperties);
+
+            // Creating statement 1
+            CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
+            // Running query 1
+            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+            ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
+            // Closing statement 1
+            await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
+
+            // Commit statement 1
+            await client.CommitRequestAsync(connId);
+
+            // Creating statement 2
+            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
+            PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
+            StatementHandle statementHandle = prepareResponse.Statement;
+            for (int i = 0; i < 10; i++)
+            {
+                pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
+                TypedValue v1 = new TypedValue
+                {
+                    StringValue = "d" + i,
+                    Type = Rep.STRING
+                };
+                TypedValue v2 = new TypedValue
+                {
+                    StringValue = "x" + i,
+                    Type = Rep.STRING
+                };
+                list.Add(v1);
+                list.Add(v2);
+                ExecuteResponse executeResponse = await client.ExecuteRequestAsync(statementHandle, list, 100, true);
+            }
+
+            // Rollback
+            await client.RollbackRequestAsync(connId);
+
+            // Commit statement 2
+            await client.CommitRequestAsync(connId);
+
+            // Creating statement 3
+            CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
+            // Running query 3
+            string sql3 = "select count(*) from " + tableName;
+            ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
+            long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+            Assert.AreEqual(0, count3);
+            // Closing statement 3
+            await client.CloseStatementRequestAsync(connId, createStatementResponse3.StatementId);
+
+            // Creating statement 4
+            CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
+            // Running query 4
+            string sql4 = "DROP TABLE " + tableName;
+            ExecuteResponse execResponse5 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
+            // Closing statement 4
+            await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
+
+            // Commit statement 4
+            await client.CommitRequestAsync(connId);
+
+            // Closing connection
+            await client.CloseConnectionRequestAsync(connId);
+
+
+        }
+
+        private string GenerateRandomConnId()
+        {
+            const string hex_characters = "0123456789abcdef";
+            var random = new Random();
+            // Generating a random connection ID
+            return new string(Enumerable.Repeat(hex_characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 

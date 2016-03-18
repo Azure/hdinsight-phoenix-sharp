@@ -31,5 +31,11 @@ namespace PhoenixSharp.Interfaces
         Task<RollbackResponse> RollbackRequestAsync(string connectionId, RequestOptions options);
         Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options);
         Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options);
+        Task<ResultSetResponse> TablesRequestAsync(string catalog, string schemaPattern, string tableNamePattern, pbc::RepeatedField<string> typeList, bool hasTypeList, string connectionId, RequestOptions options);
+        Task<ResultSetResponse> CatalogsRequestAsync(string connectionId, RequestOptions options);
+        Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options);
+        Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options);
+        Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options);
+
     }
 }

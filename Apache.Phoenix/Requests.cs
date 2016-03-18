@@ -507,9 +507,12 @@ namespace Apache.Phoenix {
     public const int TypeListFieldNumber = 4;
     private static readonly pb::FieldCodec<string> _repeated_typeList_codec
         = pb::FieldCodec.ForString(34);
-    private readonly pbc::RepeatedField<string> typeList_ = new pbc::RepeatedField<string>();
+    private pbc::RepeatedField<string> typeList_ = new pbc::RepeatedField<string>();
     public pbc::RepeatedField<string> TypeList {
       get { return typeList_; }
+      set {
+        typeList_ = value;
+      }
     }
 
     public const int HasTypeListFieldNumber = 6;
