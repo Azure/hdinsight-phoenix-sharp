@@ -55,6 +55,7 @@
     <Compile Include="Utilities\ContextSpecification.cs" />
     <Compile Include="Utilities\DisposableContextSpecification.cs" />
     <Compile Include="Utilities\TestBase.cs" />
+    <Compile Include="VNetTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

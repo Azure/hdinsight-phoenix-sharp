@@ -15,33 +15,26 @@
 
 namespace PhoenixSharp
 {
-    using PhoenixSharp.Interfaces;
-    using PhoenixSharp.Internal;
-    using PhoenixSharp.Requester;
-    using PhoenixSharp.Internal.Extensions;
+    using Interfaces;
+    using Requester;
     using System.Threading.Tasks;
     using Apache.Phoenix;
     using System.Net;
     using System.IO;
     using Google.Protobuf;
-    using System;
-    using pbc = global::Google.Protobuf.Collections;
-    using System.Collections.Generic;
+    using pbc = Google.Protobuf.Collections;
 
     public class PhoenixClient : IPhoenixClient
     {
         private readonly IWebRequester _requester;
-        private readonly RequestOptions _globalRequestOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PhoenixClient"/> class. If the client is used
+        /// within a VNET or on an on-premise cluster, no cluster credentials required. Pass null in 
+        /// this case.
+        /// </summary>
         public PhoenixClient(ClusterCredentials credentials)
-            : this(credentials, RequestOptions.GetDefaultOptions())
         {
-        }
-
-        public PhoenixClient(ClusterCredentials credentials, RequestOptions globalRequestOptions = null)
-        {
-            _globalRequestOptions = globalRequestOptions ?? RequestOptions.GetDefaultOptions();
-            _globalRequestOptions.Validate();
             if (credentials != null) // gateway mode
             {
                 _requester = new GatewayWebRequester(credentials);
@@ -52,7 +45,11 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used as a short-hand for create a Statement and fetching the first batch 
+        /// of results in a single call without any parameter substitution.
+        /// </summary>
+        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options)
         {
             PrepareAndExecuteRequest req = new PrepareAndExecuteRequest
             {
@@ -68,9 +65,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -94,7 +89,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to open a new Connection in the Phoenix query server.
+        /// </summary>
+        public async Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, RequestOptions options)
         {
             OpenConnectionRequest req = new OpenConnectionRequest
             {
@@ -107,9 +105,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -133,7 +129,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ConnectionSyncResponse> ConnectionSyncRequestAsync(string connectionId, ConnectionProperties props, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to ensure that the client and server have a consistent view of the database properties.
+        /// </summary>
+        public async Task<ConnectionSyncResponse> ConnectionSyncRequestAsync(string connectionId, ConnectionProperties props, RequestOptions options)
         {
             ConnectionSyncRequest req = new ConnectionSyncRequest
             {
@@ -147,9 +146,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -173,7 +170,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<CreateStatementResponse> CreateStatementRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to create a new Statement in the Phoenix query server.
+        /// </summary>
+        public async Task<CreateStatementResponse> CreateStatementRequestAsync(string connectionId, RequestOptions options)
         {
             CreateStatementRequest req = new CreateStatementRequest
             {
@@ -186,9 +186,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -212,7 +210,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<CloseStatementResponse> CloseStatementRequestAsync(string connectionId, uint statementId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to close the Statement object in the Phoenix query server identified by the given IDs.
+        /// </summary>
+        public async Task<CloseStatementResponse> CloseStatementRequestAsync(string connectionId, uint statementId, RequestOptions options)
         {
             CloseStatementRequest req = new CloseStatementRequest
             {
@@ -226,9 +227,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -252,7 +251,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<CloseConnectionResponse> CloseConnectionRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to close the Connection object in the Phoenix query server identified by the given IDs.
+        /// </summary>
+        public async Task<CloseConnectionResponse> CloseConnectionRequestAsync(string connectionId, RequestOptions options)
         {
             CloseConnectionRequest req = new CloseConnectionRequest
             {
@@ -265,9 +267,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -291,7 +291,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<CommitResponse> CommitRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to issue a commit on the Connection in the Phoenix query server identified by the given ID.
+        /// </summary>
+        public async Task<CommitResponse> CommitRequestAsync(string connectionId, RequestOptions options)
         {
             CommitRequest req = new CommitRequest
             {
@@ -304,9 +307,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -330,7 +331,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<RollbackResponse> RollbackRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to issue a rollback on the Connection in the Phoenix query server identified by the given ID.
+        /// </summary>
+        public async Task<RollbackResponse> RollbackRequestAsync(string connectionId, RequestOptions options)
         {
             RollbackRequest req = new RollbackRequest
             {
@@ -343,9 +347,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -369,7 +371,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to create create a new Statement with the given query in the Phoenix query server.
+        /// </summary>
+        public async Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options)
         {
             PrepareRequest req = new PrepareRequest
             {
@@ -384,9 +389,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -410,7 +413,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to execute a PreparedStatement, optionally with values to bind to the parameters in the Statement.
+        /// </summary>
+        public async Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options)
         {
             ExecuteRequest req = new ExecuteRequest
             {
@@ -426,9 +432,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -452,7 +456,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ResultSetResponse> TablesRequestAsync(string catalog, string schemaPattern, string tableNamePattern, pbc::RepeatedField<string> typeList, bool hasTypeList, string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to fetch the tables available in this database filtered by the provided criteria.
+        /// </summary>
+        public async Task<ResultSetResponse> TablesRequestAsync(string catalog, string schemaPattern, string tableNamePattern, pbc::RepeatedField<string> typeList, bool hasTypeList, string connectionId, RequestOptions options)
         {
             TablesRequest req = new TablesRequest
             {
@@ -470,9 +477,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -496,7 +501,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ResultSetResponse> CatalogsRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to fetch the available catalog names in the database.
+        /// </summary>
+        public async Task<ResultSetResponse> CatalogsRequestAsync(string connectionId, RequestOptions options)
         {
             CatalogsRequest req = new CatalogsRequest
             {
@@ -509,9 +517,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -535,7 +541,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to fetch the table types available in this database.
+        /// </summary>
+        public async Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options)
         {
             TableTypesRequest req = new TableTypesRequest
             {
@@ -548,9 +557,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -574,7 +581,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to fetch the table types available in this database.
+        /// </summary>
+        public async Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options)
         {
             SchemasRequest req = new SchemasRequest
             {
@@ -589,9 +599,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -615,7 +623,10 @@ namespace PhoenixSharp
             }
         }
 
-        public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options = null)
+        /// <summary>
+        /// This request is used to fetch a batch of rows from a Statement previously created.
+        /// </summary>
+        public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options)
         {
             FetchRequest req = new FetchRequest
             {
@@ -631,9 +642,7 @@ namespace PhoenixSharp
                 WrappedMessage = req.ToByteString()
             };
 
-            var optionToUse = options ?? _globalRequestOptions;
-
-            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), optionToUse))
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {

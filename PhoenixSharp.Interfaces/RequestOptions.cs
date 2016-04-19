@@ -36,7 +36,7 @@ namespace PhoenixSharp.Interfaces
 
         }
 
-        public static RequestOptions GetDefaultOptions()
+        public static RequestOptions GetGatewayDefaultOptions()
         {
             return new RequestOptions()
             {
@@ -52,5 +52,20 @@ namespace PhoenixSharp.Interfaces
             };
         }
 
+        public static RequestOptions GetVNetDefaultOptions()
+        {
+            return new RequestOptions()
+            {
+                RetryPolicy = RetryPolicy.DefaultExponential,
+                KeepAlive = true,
+                TimeoutMillis = 30000,
+                ReceiveBufferSize = 1024 * 1024 * 1,
+                SerializationBufferSize = 1024 * 1024 * 1,
+                UseNagle = false,
+                AlternativeEndpoint = null,
+                Port = 8765,
+                AlternativeHost = null
+            };
+        }
     }
 }

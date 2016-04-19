@@ -16,16 +16,15 @@
 namespace PhoenixSharp.UnitTests
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhoenixSharp;
     using Apache.Phoenix;
-    using PhoenixSharp.UnitTests.Utilities;
-    using pbc = global::Google.Protobuf.Collections;
+    using Utilities;
+    using pbc = Google.Protobuf.Collections;
     using System.Diagnostics;
+    using Interfaces;
 
     [TestClass]
     public class PhoenixClientTests : DisposableContextSpecification
@@ -38,356 +37,408 @@ namespace PhoenixSharp.UnitTests
         }
 
         [TestMethod]
-        public async Task TableOperationTest()
+        public void TableOperationTest()
         {
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
-            // Opening connection
-            OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
-            // Syncing connection
-            ConnectionProperties connProperties = new ConnectionProperties
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+            OpenConnectionResponse openConnResponse = null;
+            try
             {
-                HasAutoCommit = true,
-                AutoCommit = true,
-                HasReadOnly = true,
-                ReadOnly = false,
-                TransactionIsolation = 0,
-                Catalog = "",
-                Schema = "",
-                IsDirty = true
-            };
-            ConnectionSyncResponse connSyncResponse = await client.ConnectionSyncRequestAsync(connId, connProperties);
-            
-            // List system tables
-            pbc.RepeatedField<string> list = new pbc.RepeatedField<string>();
-            list.Add("SYSTEM TABLE");
-            ResultSetResponse tablesResponse = await client.TablesRequestAsync("", "", "", list, true, connId);
-            Assert.AreEqual(4, tablesResponse.FirstFrame.Rows.Count);
+                // Opening connection
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection
+                ConnectionProperties connProperties = new ConnectionProperties
+                {
+                    HasAutoCommit = true,
+                    AutoCommit = true,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
+                };
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
 
-            ResultSetResponse catalogsResponse = await client.CatalogsRequestAsync(connId);
-            ResultSetResponse tableTypeResponse = await client.TableTypesRequestAsync(connId);
-            Assert.AreEqual(6, tableTypeResponse.FirstFrame.Rows.Count);
-
-            // Closing connection
-            CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+                // List system tables
+                pbc.RepeatedField<string> list = new pbc.RepeatedField<string>();
+                list.Add("SYSTEM TABLE");
+                ResultSetResponse tablesResponse = client.TablesRequestAsync("", "", "", list, true, connId, options).Result;
+                Assert.AreEqual(4, tablesResponse.FirstFrame.Rows.Count);
+                
+                // List all table types
+                ResultSetResponse tableTypeResponse = client.TableTypesRequestAsync(connId, options).Result;
+                Assert.AreEqual(6, tableTypeResponse.FirstFrame.Rows.Count);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
         }
 
         [TestMethod]
-        public async Task SimpleTest()
+        public void SimpleTest()
         {
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
             string tableName = "Persons" + connId;
-            // Opening connection
-            OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
-            // Syncing connection
-            ConnectionProperties connProperties = new ConnectionProperties
+            OpenConnectionResponse openConnResponse = null;
+            CreateStatementResponse createStatementResponse = null;
+            try
             {
-                HasAutoCommit = true,
-                AutoCommit = true,
-                HasReadOnly = true,
-                ReadOnly = false,
-                TransactionIsolation = 0,
-                Catalog = "",
-                Schema = "",
-                IsDirty = true
-            };
-            ConnectionSyncResponse connSyncResponse = await client.ConnectionSyncRequestAsync(connId, connProperties);
+                // Opening connection
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection
+                ConnectionProperties connProperties = new ConnectionProperties
+                {
+                    HasAutoCommit = true,
+                    AutoCommit = true,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
+                };
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
 
-            // Creating statement 1
-            CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
-            // Running query 1
-            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-            ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
-            // Closing statement 1
-            CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
 
-            // Creating statement 2
-            CreateStatementResponse createStatementResponse2 = await client.CreateStatementRequestAsync(connId);
-            // Running query 2
-            string sql2 = "UPSERT INTO " + tableName + " VALUES ('duo','xu')";
-            ExecuteResponse execResponse2 = await client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse2.StatementId);
-            // Closing statement 2
-            CloseStatementResponse closeStatementResponse2 = await client.CloseStatementRequestAsync(connId, createStatementResponse2.StatementId);
+                createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
+                // Running query 1
+                string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
 
-            // Creating statement 3
-            CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
-            // Running query 3
-            string sql3 = "select count(*) from " + tableName;
-            ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
-            long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
-            Assert.AreEqual(1, count);
-            // Closing statement 3
-            CloseStatementResponse closeStatementResponse3 = await client.CloseStatementRequestAsync(connId, createStatementResponse3.StatementId);
+                // Running query 2
+                string sql2 = "UPSERT INTO " + tableName + " VALUES ('duo','xu')";
+                client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse.StatementId, options).Wait();
 
-            // Creating statement 4
-            CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
-            // Running query 4
-            string sql4 = "DROP TABLE " + tableName;
-            ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
-            // Closing statement 4
-            CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
-            
-            // Closing connection
-            CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+                // Running query 3
+                string sql3 = "select count(*) from " + tableName;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                Assert.AreEqual(1, count);
+
+                // Running query 4
+                string sql4 = "DROP TABLE " + tableName;
+                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                if (createStatementResponse != null)
+                {
+                    client.CloseStatementRequestAsync(connId, createStatementResponse.StatementId, options).Wait();
+                    createStatementResponse = null;
+                }
+
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
         }
 
         [TestMethod]
-        public async Task ManyRowInsertTest()
+        public void ManyRowInsertTest()
         {
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
             string tableName = "Persons" + connId;
-            // Opening connection
-            OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
-            // Syncing connection
-            ConnectionProperties connProperties = new ConnectionProperties
+
+            OpenConnectionResponse openConnResponse = null;
+            CreateStatementResponse createStatementResponse = null;
+            try
             {
-                HasAutoCommit = true,
-                AutoCommit = false,
-                HasReadOnly = true,
-                ReadOnly = false,
-                TransactionIsolation = 0,
-                Catalog = "",
-                Schema = "",
-                IsDirty = true
-            };
-            ConnectionSyncResponse connSyncResponse = await client.ConnectionSyncRequestAsync(connId, connProperties);
-
-            // Creating statement 1
-            CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
-            // Running query 1
-            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-            ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
-            // Closing statement 1
-            CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
-
-            // Commit statement 1
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 2
-            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
-            PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
-            StatementHandle statementHandle = prepareResponse.Statement;
-            for (int i=0; i < 10; i++)
-            {
-                pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
-                TypedValue v1 = new TypedValue
+                // Opening connection
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection
+                ConnectionProperties connProperties = new ConnectionProperties
                 {
-                    StringValue = "d"+i,
-                    Type = Rep.STRING
+                    HasAutoCommit = true,
+                    AutoCommit = false,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
                 };
-                TypedValue v2 = new TypedValue
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
+
+                createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
+                // Running query 1
+                string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Result;
+
+                // Commit statement 1
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Creating statement 2
+                string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
+                PrepareResponse prepareResponse = client.PrepareRequestAsync(connId, sql2, 100, options).Result;
+                StatementHandle statementHandle = prepareResponse.Statement;
+                for (int i = 0; i < 10; i++)
                 {
-                    StringValue = "x"+i,
-                    Type = Rep.STRING
-                };
-                list.Add(v1);
-                list.Add(v2);
-                ExecuteResponse executeResponse = await client.ExecuteRequestAsync(statementHandle, list, 100, true);
+                    pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
+                    TypedValue v1 = new TypedValue
+                    {
+                        StringValue = "d" + i,
+                        Type = Rep.STRING
+                    };
+                    TypedValue v2 = new TypedValue
+                    {
+                        StringValue = "x" + i,
+                        Type = Rep.STRING
+                    };
+                    list.Add(v1);
+                    list.Add(v2);
+                    ExecuteResponse executeResponse = client.ExecuteRequestAsync(statementHandle, list, 100, true, options).Result;
+                }
+
+                // Commit statement 2
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Running query 3
+                string sql3 = "select count(*) from " + tableName;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                Assert.AreEqual(10, count);
+
+                // Running query 4
+                string sql4 = "DROP TABLE " + tableName;
+                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+               
+                // Commit statement 4
+                client.CommitRequestAsync(connId, options).Wait();
             }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                if (createStatementResponse != null)
+                {
+                    client.CloseStatementRequestAsync(connId, createStatementResponse.StatementId, options).Wait();
+                    createStatementResponse = null;
+                }
 
-            // Commit statement 2
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 3
-            CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
-            // Running query 3
-            string sql3 = "select count(*) from " + tableName;
-            ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
-            long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
-            Assert.AreEqual(10, count);
-            // Closing statement 3
-            CloseStatementResponse closeStatementResponse3 = await client.CloseStatementRequestAsync(connId, createStatementResponse3.StatementId);
-
-            // Creating statement 4
-            CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
-            // Running query 4
-            string sql4 = "DROP TABLE " + tableName;
-            ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
-            // Closing statement 4
-            CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
-
-            // Commit statement 4
-            await client.CommitRequestAsync(connId);
-
-            // Closing connection
-            CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
         }
 
         [TestMethod]
-        public async Task QueryManyRowTest()
+        public void QueryManyRowTest()
         {
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
             string tableName = "Persons" + connId;
-            // Opening connection
-            OpenConnectionResponse openConnResponse = await client.OpenConnectionRequestAsync(connId);
-            // Syncing connection
-            ConnectionProperties connProperties = new ConnectionProperties
+
+            OpenConnectionResponse openConnResponse = null;
+            CreateStatementResponse createStatementResponse = null;
+            try
             {
-                HasAutoCommit = true,
-                AutoCommit = false,
-                HasReadOnly = true,
-                ReadOnly = false,
-                TransactionIsolation = 0,
-                Catalog = "",
-                Schema = "",
-                IsDirty = true
-            };
-            ConnectionSyncResponse connSyncResponse = await client.ConnectionSyncRequestAsync(connId, connProperties);
-
-            // Creating statement 1
-            CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
-            // Running query 1
-            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-            ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
-            // Closing statement 1
-            CloseStatementResponse closeStatementResponse1 = await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
-
-            // Commit statement 1
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 2
-            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
-            PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
-            StatementHandle statementHandle = prepareResponse.Statement;
-            for (int i = 0; i < 10; i++)
-            {
-                pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
-                TypedValue v1 = new TypedValue
+                // Opening connection
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection
+                ConnectionProperties connProperties = new ConnectionProperties
                 {
-                    StringValue = "d" + i,
-                    Type = Rep.STRING
+                    HasAutoCommit = true,
+                    AutoCommit = false,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
                 };
-                TypedValue v2 = new TypedValue
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
+
+                createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
+                // Running query 1
+                string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+
+                // Commit statement 1
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Creating statement 2
+                string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
+                PrepareResponse prepareResponse = client.PrepareRequestAsync(connId, sql2, 100, options).Result;
+                StatementHandle statementHandle = prepareResponse.Statement;
+                for (int i = 0; i < 10; i++)
                 {
-                    StringValue = "x" + i,
-                    Type = Rep.STRING
-                };
-                list.Add(v1);
-                list.Add(v2);
-                ExecuteResponse executeResponse = await client.ExecuteRequestAsync(statementHandle, list, 100, true);
+                    pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
+                    TypedValue v1 = new TypedValue
+                    {
+                        StringValue = "d" + i,
+                        Type = Rep.STRING
+                    };
+                    TypedValue v2 = new TypedValue
+                    {
+                        StringValue = "x" + i,
+                        Type = Rep.STRING
+                    };
+                    list.Add(v1);
+                    list.Add(v2);
+                    ExecuteResponse executeResponse = client.ExecuteRequestAsync(statementHandle, list, 100, true, options).Result;
+                }
+
+                // Commit statement 2
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Running query 3
+                string sql3 = "select * from " + tableName;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                pbc::RepeatedField<Row> rows = execResponse3.Results[0].FirstFrame.Rows;
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    Row row = rows[i];
+                    Debug.WriteLine(row.Value[0].Value[0].StringValue + " " + row.Value[1].Value[0].StringValue);
+                }
+
+                // Running query 4
+                string sql4 = "DROP TABLE " + tableName;
+                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+
+                // Commit statement 4
+                client.CommitRequestAsync(connId, options).Wait();
             }
-
-            // Commit statement 2
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 3
-            CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
-            // Running query 3
-            string sql3 = "select * from " + tableName;
-            ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
-            pbc::RepeatedField<Row> rows = execResponse3.Results[0].FirstFrame.Rows;
-            for (int i = 0; i < rows.Count; i++)
+            catch (Exception ex)
             {
-                Row row = rows[i];
-                Debug.WriteLine(row.Value[0].Value[0].StringValue + " " + row.Value[1].Value[0].StringValue);
+                Assert.Fail(ex.Message);
             }
-            // Closing statement 3
-            CloseStatementResponse closeStatementResponse3 = await client.CloseStatementRequestAsync(connId, createStatementResponse3.StatementId);
+            finally
+            {
+                if (createStatementResponse != null)
+                {
+                    client.CloseStatementRequestAsync(connId, createStatementResponse.StatementId, options).Wait();
+                    createStatementResponse = null;
+                }
 
-            // Creating statement 4
-            CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
-            // Running query 4
-            string sql4 = "DROP TABLE " + tableName;
-            ExecuteResponse execResponse4 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
-            // Closing statement 4
-            CloseStatementResponse closeStatementResponse4 = await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
-
-            // Commit statement 4
-            await client.CommitRequestAsync(connId);
-
-            // Closing connection
-            CloseConnectionResponse closeConnResponse = await client.CloseConnectionRequestAsync(connId);
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
         }
 
         [TestMethod]
-        public async Task CommitRollbackTest()
+        public void CommitRollbackTest()
         {
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
             string tableName = "Persons" + connId;
-            // Opening connection 1
-            await client.OpenConnectionRequestAsync(connId);
-            // Syncing connection 1
-            ConnectionProperties connProperties = new ConnectionProperties
+
+            OpenConnectionResponse openConnResponse = null;
+            CreateStatementResponse createStatementResponse = null;
+            try
             {
-                HasAutoCommit = true,
-                AutoCommit = false,
-                HasReadOnly = true,
-                ReadOnly = false,
-                TransactionIsolation = 0,
-                Catalog = "",
-                Schema = "",
-                IsDirty = true
-            };
-            await client.ConnectionSyncRequestAsync(connId, connProperties);
-
-            // Creating statement 1
-            CreateStatementResponse createStatementResponse1 = await client.CreateStatementRequestAsync(connId);
-            // Running query 1
-            string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-            ExecuteResponse execResponse1 = await client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse1.StatementId);
-            // Closing statement 1
-            await client.CloseStatementRequestAsync(connId, createStatementResponse1.StatementId);
-
-            // Commit statement 1
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 2
-            string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
-            PrepareResponse prepareResponse = await client.PrepareRequestAsync(connId, sql2, 100);
-            StatementHandle statementHandle = prepareResponse.Statement;
-            for (int i = 0; i < 10; i++)
-            {
-                pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
-                TypedValue v1 = new TypedValue
+                // Opening connection 1
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection 1
+                ConnectionProperties connProperties = new ConnectionProperties
                 {
-                    StringValue = "d" + i,
-                    Type = Rep.STRING
+                    HasAutoCommit = true,
+                    AutoCommit = false,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
                 };
-                TypedValue v2 = new TypedValue
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
+
+                createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
+                // Running query 1
+                string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+
+                // Commit statement 1
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Creating statement 2
+                string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
+                PrepareResponse prepareResponse = client.PrepareRequestAsync(connId, sql2, 100, options).Result;
+                StatementHandle statementHandle = prepareResponse.Statement;
+                for (int i = 0; i < 10; i++)
                 {
-                    StringValue = "x" + i,
-                    Type = Rep.STRING
-                };
-                list.Add(v1);
-                list.Add(v2);
-                ExecuteResponse executeResponse = await client.ExecuteRequestAsync(statementHandle, list, 100, true);
+                    pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
+                    TypedValue v1 = new TypedValue
+                    {
+                        StringValue = "d" + i,
+                        Type = Rep.STRING
+                    };
+                    TypedValue v2 = new TypedValue
+                    {
+                        StringValue = "x" + i,
+                        Type = Rep.STRING
+                    };
+                    list.Add(v1);
+                    list.Add(v2);
+                    ExecuteResponse executeResponse = client.ExecuteRequestAsync(statementHandle, list, 100, true, options).Result;
+                }
+
+                // Rollback
+                client.RollbackRequestAsync(connId, options).Wait();
+
+                // Commit statement 2
+                client.CommitRequestAsync(connId, options).Wait();
+
+                // Running query 3
+                string sql3 = "select count(*) from " + tableName;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                Assert.AreEqual(0, count3);
+
+                // Running query 4
+                string sql4 = "DROP TABLE " + tableName;
+                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+
+                // Commit statement 4
+                client.CommitRequestAsync(connId, options).Wait();
             }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                if (createStatementResponse != null)
+                {
+                    client.CloseStatementRequestAsync(connId, createStatementResponse.StatementId, options).Wait();
+                    createStatementResponse = null;
+                }
 
-            // Rollback
-            await client.RollbackRequestAsync(connId);
-
-            // Commit statement 2
-            await client.CommitRequestAsync(connId);
-
-            // Creating statement 3
-            CreateStatementResponse createStatementResponse3 = await client.CreateStatementRequestAsync(connId);
-            // Running query 3
-            string sql3 = "select count(*) from " + tableName;
-            ExecuteResponse execResponse3 = await client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse3.StatementId);
-            long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
-            Assert.AreEqual(0, count3);
-            // Closing statement 3
-            await client.CloseStatementRequestAsync(connId, createStatementResponse3.StatementId);
-
-            // Creating statement 4
-            CreateStatementResponse createStatementResponse4 = await client.CreateStatementRequestAsync(connId);
-            // Running query 4
-            string sql4 = "DROP TABLE " + tableName;
-            ExecuteResponse execResponse5 = await client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse4.StatementId);
-            // Closing statement 4
-            await client.CloseStatementRequestAsync(connId, createStatementResponse4.StatementId);
-
-            // Commit statement 4
-            await client.CommitRequestAsync(connId);
-
-            // Closing connection
-            await client.CloseConnectionRequestAsync(connId);
-
-
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
         }
 
         private string GenerateRandomConnId()
