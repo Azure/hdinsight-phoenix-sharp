@@ -17,21 +17,20 @@ namespace PhoenixSharp.UnitTests
 {
     using System;
     using System.Linq;
-    using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhoenixSharp;
     using Apache.Phoenix;
-    using Utilities;
     using pbc = Google.Protobuf.Collections;
     using System.Diagnostics;
     using Interfaces;
 
     [TestClass]
-    public class PhoenixClientTests : DisposableContextSpecification
+    public class PhoenixClientTests
     {
         private ClusterCredentials _credentials;
 
-        protected override void Context()
+        [TestInitialize]
+        public void TestInitialize()
         {
             _credentials = ClusterCredentialsFactory.CreateFromFile(@".\credentials.txt");
         }
@@ -42,6 +41,10 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, PQS requests will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
             OpenConnectionResponse openConnResponse = null;
             try
             {
@@ -91,6 +94,10 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, url format will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
             string tableName = "Persons" + connId;
             OpenConnectionResponse openConnResponse = null;
             CreateStatementResponse createStatementResponse = null;
@@ -158,6 +165,10 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, url format will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
             string tableName = "Persons" + connId;
 
             OpenConnectionResponse openConnResponse = null;
@@ -252,6 +263,10 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, url format will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
             string tableName = "Persons" + connId;
 
             OpenConnectionResponse openConnResponse = null;
@@ -350,6 +365,10 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(_credentials);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, url format will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
             string tableName = "Persons" + connId;
 
             OpenConnectionResponse openConnResponse = null;

@@ -103,7 +103,7 @@ namespace PhoenixSharp.Requester
 
         private void InitCache()
         {
-            _credentialCache.Add(_credentials.ClusterUri, "Basic", new NetworkCredential(_credentials.UserName, _credentials.ClusterPassword));
+            _credentialCache.Add(_credentials.ClusterUri, "Basic", new NetworkCredential(_credentials.UserName, _credentials.Password));
         }
     }
 }

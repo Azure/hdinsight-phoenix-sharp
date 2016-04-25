@@ -33,10 +33,7 @@ namespace PhoenixSharp.Interfaces
 
         public void Dispose()
         {
-            if (PostRequestAction != null)
-            {
-                PostRequestAction(this);
-            }
+            PostRequestAction?.Invoke(this);
             WebResponse.Dispose();
         }
     }

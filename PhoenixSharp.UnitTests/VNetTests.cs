@@ -20,12 +20,11 @@ namespace PhoenixSharp.UnitTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhoenixSharp;
     using Apache.Phoenix;
-    using Utilities;
     using pbc = Google.Protobuf.Collections;
     using Interfaces;
 
     [TestClass]
-    public class VNetTests : DisposableContextSpecification
+    public class VNetTests
     {
         [TestMethod]
         public void TableOperationTest()
@@ -33,7 +32,7 @@ namespace PhoenixSharp.UnitTests
             var client = new PhoenixClient(null);
             string connId = GenerateRandomConnId();
             RequestOptions options = RequestOptions.GetVNetDefaultOptions();
-            // TODO: add Ambari client to get hosts
+            // In VNET mode, PQS requests will be http://<PQS workernode ip>:8765
             options.AlternativeHost = "10.17.0.13";
             OpenConnectionResponse openConnResponse = null;
             try

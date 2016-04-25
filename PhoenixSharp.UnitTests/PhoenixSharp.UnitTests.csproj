@@ -52,9 +52,6 @@
     <Compile Include="ClusterCredentialsFactory.cs" />
     <Compile Include="PhoenixClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\ContextSpecification.cs" />
-    <Compile Include="Utilities\DisposableContextSpecification.cs" />
-    <Compile Include="Utilities\TestBase.cs" />
     <Compile Include="VNetTests.cs" />
   </ItemGroup>
   <ItemGroup>

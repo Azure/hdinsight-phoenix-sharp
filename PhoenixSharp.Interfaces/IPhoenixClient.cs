@@ -17,7 +17,7 @@ namespace PhoenixSharp.Interfaces
 {
     using System.Threading.Tasks;
     using Apache.Phoenix;
-    using pbc = global::Google.Protobuf.Collections;
+    using pbc = Google.Protobuf.Collections;
 
     public interface IPhoenixClient
     {

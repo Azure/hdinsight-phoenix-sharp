@@ -46,7 +46,7 @@ namespace PhoenixSharp.Interfaces
                 ReceiveBufferSize = 1024 * 1024 * 1,
                 SerializationBufferSize = 1024 * 1024 * 1,
                 UseNagle = false,
-                AlternativeEndpoint = Constants.PhoenixEndpoint,
+                AlternativeEndpoint = null,
                 Port = 443,
                 AlternativeHost = null
             };

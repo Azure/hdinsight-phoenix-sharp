@@ -20,7 +20,7 @@ namespace PhoenixSharp.Requester
     using System.IO;
     using System.Net;
     using System.Threading.Tasks;
-    using PhoenixSharp.Interfaces;
+    using Interfaces;
 
     /// <summary>
     /// 

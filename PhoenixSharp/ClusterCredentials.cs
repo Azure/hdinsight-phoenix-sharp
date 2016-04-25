@@ -19,13 +19,10 @@ namespace PhoenixSharp
     using System.Security;
     using System.Threading;
     using System.Diagnostics.CodeAnalysis;
-    using PhoenixSharp.Internal.Extensions;
+    using Internal.Extensions;
 
-    public sealed class ClusterCredentials : IDisposable
+    public sealed class ClusterCredentials
     {
-        private SecureString _clusterPassword;
-        private int _disposed;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ClusterCredentials"/> class.
         /// </summary>
@@ -36,74 +33,7 @@ namespace PhoenixSharp
         {
             ClusterUri = clusterUri;
             UserName = userName;
-            _clusterPassword = password.ToSecureString();
-            _clusterPassword.MakeReadOnly();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClusterCredentials"/> class.
-        /// </summary>
-        /// <param name="clusterUri">The cluster URI.</param>
-        /// <param name="userName">The username.</param>
-        /// <param name="password">The password.</param>
-        public ClusterCredentials(Uri clusterUri, string userName, SecureString password)
-        {
-            ClusterUri = clusterUri;
-            UserName = userName;
-            _clusterPassword = password.Copy();
-            _clusterPassword.MakeReadOnly();
-        }
-
-        /// <inheritdoc/>
-        [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
-        public void Dispose()
-        {
-            if (Interlocked.Exchange(ref _disposed, 1) != 0)
-            {
-                // already disposed or disposing
-                return;
-            }
-
-            Dispose(true);
-
-            // Use SupressFinalize in case a subclass of this type implements a finalizer.
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"> 
-        /// Use <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources. 
-        /// </param>
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_clusterPassword != null)
-                {
-                    _clusterPassword.Dispose();
-                    _clusterPassword = null;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the cluster password.
-        /// </summary>
-        /// <value>
-        /// The cluster password.
-        /// </value>
-        public SecureString ClusterPassword
-        {
-            get
-            {
-                if (_disposed != 0)
-                {
-                    throw new ObjectDisposedException(GetType().Name);
-                }
-                return _clusterPassword.Copy();
-            }
+            Password = password;
         }
 
         /// <summary>
@@ -121,5 +51,13 @@ namespace PhoenixSharp
         /// The name of the user.
         /// </value>
         public string UserName { get; private set; }
+
+        /// <summary>
+        /// Gets the password of the user.
+        /// </summary>
+        /// <value>
+        /// The password of the user.
+        /// </value>
+        public string Password { get; private set; }
     }
 }
