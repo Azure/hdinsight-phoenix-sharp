@@ -93,13 +93,25 @@ namespace PhoenixSharp.Requester
                 }
             }
 
-            var response = (await httpWebRequest.GetResponseAsync()) as HttpWebResponse;
-            return new Response()
+            try
             {
-                WebResponse = response,
-                RequestLatency = watch.Elapsed
-            };
-        }
+                var response = (await httpWebRequest.GetResponseAsync()) as HttpWebResponse;
+                return new Response()
+                {
+                    WebResponse = response,
+                    RequestLatency = watch.Elapsed
+                };
+            }
+            catch (WebException we)
+            {
+                var resp = we.Response as HttpWebResponse;
+                return new Response()
+                {
+                    WebResponse = resp,
+                    RequestLatency = watch.Elapsed
+                };
+            }
+}
 
         private void InitCache()
         {
