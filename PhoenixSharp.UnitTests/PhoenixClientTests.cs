@@ -301,7 +301,8 @@ namespace PhoenixSharp.UnitTests
                 string sql2 = "UPSERT INTO " + tableName + " VALUES (?,?)";
                 PrepareResponse prepareResponse = client.PrepareRequestAsync(connId, sql2, 100, options).Result;
                 StatementHandle statementHandle = prepareResponse.Statement;
-                for (int i = 0; i < 10; i++)
+                // Insert 300 rows
+                for (int i = 0; i < 300; i++)
                 {
                     pbc::RepeatedField<TypedValue> list = new pbc.RepeatedField<TypedValue>();
                     TypedValue v1 = new TypedValue
@@ -324,13 +325,23 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select * from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, ulong.MaxValue, createStatementResponse.StatementId, options).Result;
                 pbc::RepeatedField<Row> rows = execResponse3.Results[0].FirstFrame.Rows;
                 for (int i = 0; i < rows.Count; i++)
                 {
                     Row row = rows[i];
                     Debug.WriteLine(row.Value[0].Value[0].StringValue + " " + row.Value[1].Value[0].StringValue);
                 }
+                // 100 is hard coded in server side as default firstframe size
+                // In order to get remaining rows, FetchRequestAsync is used
+                Assert.AreEqual(100, rows.Count);
+
+                // Fetch remaining rows, offset is not used, simply set to 0
+                // if FetchResponse.Frame.Done = true, that means all the rows fetched
+                FetchResponse fetchResponse = client.FetchRequestAsync(connId, createStatementResponse.StatementId, 0, uint.MaxValue, options).Result;
+                Assert.AreEqual(200, fetchResponse.Frame.Rows.Count);
+                Assert.AreEqual(true, fetchResponse.Frame.Done);
+
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
