@@ -624,6 +624,50 @@ namespace PhoenixSharp
         }
 
         /// <summary>
+        /// This request is used to fetch the columns in this database.
+        /// </summary>
+        public async Task<ResultSetResponse> ColumnsRequestAsync(string catalog, string schemaPattern, string tableNamePattern, string columnNamePattern, string connectionId, RequestOptions options)
+        {
+            ColumnsRequest req = new ColumnsRequest
+            {
+                Catalog = catalog,
+                SchemaPattern = schemaPattern,
+                TableNamePattern = tableNamePattern,
+                ColumnNamePattern = columnNamePattern,
+                ConnectionId = connectionId
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "ColumnsRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "ColumnsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ResultSetResponse res = ResultSetResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+        /// <summary>
         /// This request is used to fetch a batch of rows from a Statement previously created.
         /// </summary>
         public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options)
