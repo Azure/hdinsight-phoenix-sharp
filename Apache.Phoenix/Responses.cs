@@ -54,9 +54,12 @@ namespace Apache.Phoenix {
             "E1N5bmNSZXN1bHRzUmVzcG9uc2USGQoRbWlzc2luZ19zdGF0ZW1lbnQYASAB", 
             "KAgSFAoMbW9yZV9yZXN1bHRzGAIgASgIEh4KCG1ldGFkYXRhGAMgASgLMgwu", 
             "UnBjTWV0YWRhdGEiJQoLUnBjTWV0YWRhdGESFgoOc2VydmVyX2FkZHJlc3MY", 
-            "ASABKAkiEAoOQ29tbWl0UmVzcG9uc2UiEgoQUm9sbGJhY2tSZXNwb25zZUIz", 
-            "CiBvcmcuYXBhY2hlLmNhbGNpdGUuYXZhdGljYS5wcm90b6oCDkFwYWNoZS5Q", 
-            "aG9lbml4YgZwcm90bzM="));
+            "ASABKAkiEAoOQ29tbWl0UmVzcG9uc2UiEgoQUm9sbGJhY2tSZXNwb25zZSKV", 
+            "AQoURXhlY3V0ZUJhdGNoUmVzcG9uc2USFQoNY29ubmVjdGlvbl9pZBgBIAEo", 
+            "CRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFQoNdXBkYXRlX2NvdW50cxgDIAMo", 
+            "DRIZChFtaXNzaW5nX3N0YXRlbWVudBgEIAEoCBIeCghtZXRhZGF0YRgFIAEo", 
+            "CzIMLlJwY01ldGFkYXRhQjMKIG9yZy5hcGFjaGUuY2FsY2l0ZS5hdmF0aWNh", 
+            "LnByb3RvqgIOQXBhY2hlLlBob2VuaXhiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbr::FileDescriptor[] { global::Apache.Phoenix.Common.Descriptor, },
           new pbr::GeneratedCodeInfo(null, new pbr::GeneratedCodeInfo[] {
@@ -75,7 +78,8 @@ namespace Apache.Phoenix {
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.SyncResultsResponse), new[]{ "MissingStatement", "MoreResults", "Metadata" }, null, null, null),
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RpcMetadata), new[]{ "ServerAddress" }, null, null, null),
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CommitResponse), null, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RollbackResponse), null, null, null, null)
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RollbackResponse), null, null, null, null),
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ExecuteBatchResponse), new[]{ "ConnectionId", "StatementId", "UpdateCounts", "MissingStatement", "Metadata" }, null, null, null)
           }));
     }
     #endregion
@@ -2428,6 +2432,211 @@ namespace Apache.Phoenix {
           default:
             input.SkipLastField();
             break;
+        }
+      }
+    }
+
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ExecuteBatchResponse : pb::IMessage<ExecuteBatchResponse> {
+    private static readonly pb::MessageParser<ExecuteBatchResponse> _parser = new pb::MessageParser<ExecuteBatchResponse>(() => new ExecuteBatchResponse());
+    public static pb::MessageParser<ExecuteBatchResponse> Parser { get { return _parser; } }
+
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Apache.Phoenix.Responses.Descriptor.MessageTypes[16]; }
+    }
+
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    public ExecuteBatchResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    public ExecuteBatchResponse(ExecuteBatchResponse other) : this() {
+      connectionId_ = other.connectionId_;
+      statementId_ = other.statementId_;
+      updateCounts_ = other.updateCounts_.Clone();
+      missingStatement_ = other.missingStatement_;
+      Metadata = other.metadata_ != null ? other.Metadata.Clone() : null;
+    }
+
+    public ExecuteBatchResponse Clone() {
+      return new ExecuteBatchResponse(this);
+    }
+
+    public const int ConnectionIdFieldNumber = 1;
+    private string connectionId_ = "";
+    public string ConnectionId {
+      get { return connectionId_; }
+      set {
+        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    public const int StatementIdFieldNumber = 2;
+    private uint statementId_;
+    public uint StatementId {
+      get { return statementId_; }
+      set {
+        statementId_ = value;
+      }
+    }
+
+    public const int UpdateCountsFieldNumber = 3;
+    private static readonly pb::FieldCodec<uint> _repeated_updateCounts_codec
+        = pb::FieldCodec.ForUInt32(26);
+    private readonly pbc::RepeatedField<uint> updateCounts_ = new pbc::RepeatedField<uint>();
+    public pbc::RepeatedField<uint> UpdateCounts {
+      get { return updateCounts_; }
+    }
+
+    public const int MissingStatementFieldNumber = 4;
+    private bool missingStatement_;
+    public bool MissingStatement {
+      get { return missingStatement_; }
+      set {
+        missingStatement_ = value;
+      }
+    }
+
+    public const int MetadataFieldNumber = 5;
+    private global::Apache.Phoenix.RpcMetadata metadata_;
+    public global::Apache.Phoenix.RpcMetadata Metadata {
+      get { return metadata_; }
+      set {
+        metadata_ = value;
+      }
+    }
+
+    public override bool Equals(object other) {
+      return Equals(other as ExecuteBatchResponse);
+    }
+
+    public bool Equals(ExecuteBatchResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ConnectionId != other.ConnectionId) return false;
+      if (StatementId != other.StatementId) return false;
+      if(!updateCounts_.Equals(other.updateCounts_)) return false;
+      if (MissingStatement != other.MissingStatement) return false;
+      if (!object.Equals(Metadata, other.Metadata)) return false;
+      return true;
+    }
+
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
+      if (StatementId != 0) hash ^= StatementId.GetHashCode();
+      hash ^= updateCounts_.GetHashCode();
+      if (MissingStatement != false) hash ^= MissingStatement.GetHashCode();
+      if (metadata_ != null) hash ^= Metadata.GetHashCode();
+      return hash;
+    }
+
+    public override string ToString() {
+      return pb::JsonFormatter.Default.Format(this);
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ConnectionId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(ConnectionId);
+      }
+      if (StatementId != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(StatementId);
+      }
+      updateCounts_.WriteTo(output, _repeated_updateCounts_codec);
+      if (MissingStatement != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(MissingStatement);
+      }
+      if (metadata_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Metadata);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (ConnectionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConnectionId);
+      }
+      if (StatementId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StatementId);
+      }
+      size += updateCounts_.CalculateSize(_repeated_updateCounts_codec);
+      if (MissingStatement != false) {
+        size += 1 + 1;
+      }
+      if (metadata_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Metadata);
+      }
+      return size;
+    }
+
+    public void MergeFrom(ExecuteBatchResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ConnectionId.Length != 0) {
+        ConnectionId = other.ConnectionId;
+      }
+      if (other.StatementId != 0) {
+        StatementId = other.StatementId;
+      }
+      updateCounts_.Add(other.updateCounts_);
+      if (other.MissingStatement != false) {
+        MissingStatement = other.MissingStatement;
+      }
+      if (other.metadata_ != null) {
+        if (metadata_ == null) {
+          metadata_ = new global::Apache.Phoenix.RpcMetadata();
+        }
+        Metadata.MergeFrom(other.Metadata);
+      }
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            ConnectionId = input.ReadString();
+            break;
+          }
+          case 16: {
+            StatementId = input.ReadUInt32();
+            break;
+          }
+          case 26:
+          case 24: {
+            updateCounts_.AddEntriesFrom(input, _repeated_updateCounts_codec);
+            break;
+          }
+          case 32: {
+            MissingStatement = input.ReadBool();
+            break;
+          }
+          case 42: {
+            if (metadata_ == null) {
+              metadata_ = new global::Apache.Phoenix.RpcMetadata();
+            }
+            input.ReadMessage(metadata_);
+            break;
+          }
         }
       }
     }

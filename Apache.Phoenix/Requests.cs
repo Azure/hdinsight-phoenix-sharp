@@ -57,8 +57,14 @@ namespace Apache.Phoenix {
             "bnRfaWQYAiABKA0SGgoFc3RhdGUYAyABKAsyCy5RdWVyeVN0YXRlEg4KBm9m", 
             "ZnNldBgEIAEoBCImCg1Db21taXRSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQY", 
             "ASABKAkiKAoPUm9sbGJhY2tSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASAB", 
-            "KAlCMwogb3JnLmFwYWNoZS5jYWxjaXRlLmF2YXRpY2EucHJvdG+qAg5BcGFj", 
-            "aGUuUGhvZW5peGIGcHJvdG8z"));
+            "KAkiYgodUHJlcGFyZUFuZEV4ZWN1dGVCYXRjaFJlcXVlc3QSFQoNY29ubmVj", 
+            "dGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFAoMc3FsX2Nv", 
+            "bW1hbmRzGAMgAygJIjQKC1VwZGF0ZUJhdGNoEiUKEHBhcmFtZXRlcl92YWx1", 
+            "ZXMYASADKAsyCy5UeXBlZFZhbHVlImEKE0V4ZWN1dGVCYXRjaFJlcXVlc3QS", 
+            "FQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0S", 
+            "HQoHdXBkYXRlcxgDIAMoCzIMLlVwZGF0ZUJhdGNoQjMKIG9yZy5hcGFjaGUu", 
+            "Y2FsY2l0ZS5hdmF0aWNhLnByb3RvqgIOQXBhY2hlLlBob2VuaXhiBnByb3Rv", 
+            "Mw=="));
       descriptor = pbr::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbr::FileDescriptor[] { global::Apache.Phoenix.Common.Descriptor, },
           new pbr::GeneratedCodeInfo(null, new pbr::GeneratedCodeInfo[] {
@@ -80,7 +86,10 @@ namespace Apache.Phoenix {
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ExecuteRequest), new[]{ "StatementHandle", "ParameterValues", "MaxRowCount", "HasParameterValues" }, null, null, null),
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.SyncResultsRequest), new[]{ "ConnectionId", "StatementId", "State", "Offset" }, null, null, null),
             new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CommitRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RollbackRequest), new[]{ "ConnectionId" }, null, null, null)
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RollbackRequest), new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteBatchRequest), new[]{ "ConnectionId", "StatementId", "SqlCommands" }, null, null, null),
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.UpdateBatch), new[]{ "ParameterValues" }, null, null, null),
+            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ExecuteBatchRequest), new[]{ "ConnectionId", "StatementId", "Updates" }, null, null, null)
           }));
     }
     #endregion
@@ -2745,6 +2754,401 @@ namespace Apache.Phoenix {
             break;
           case 10: {
             ConnectionId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class PrepareAndExecuteBatchRequest : pb::IMessage<PrepareAndExecuteBatchRequest> {
+    private static readonly pb::MessageParser<PrepareAndExecuteBatchRequest> _parser = new pb::MessageParser<PrepareAndExecuteBatchRequest>(() => new PrepareAndExecuteBatchRequest());
+    public static pb::MessageParser<PrepareAndExecuteBatchRequest> Parser { get { return _parser; } }
+
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[19]; }
+    }
+
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    public PrepareAndExecuteBatchRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    public PrepareAndExecuteBatchRequest(PrepareAndExecuteBatchRequest other) : this() {
+      connectionId_ = other.connectionId_;
+      statementId_ = other.statementId_;
+      sqlCommands_ = other.sqlCommands_.Clone();
+    }
+
+    public PrepareAndExecuteBatchRequest Clone() {
+      return new PrepareAndExecuteBatchRequest(this);
+    }
+
+    public const int ConnectionIdFieldNumber = 1;
+    private string connectionId_ = "";
+    public string ConnectionId {
+      get { return connectionId_; }
+      set {
+        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    public const int StatementIdFieldNumber = 2;
+    private uint statementId_;
+    public uint StatementId {
+      get { return statementId_; }
+      set {
+        statementId_ = value;
+      }
+    }
+
+    public const int SqlCommandsFieldNumber = 3;
+    private static readonly pb::FieldCodec<string> _repeated_sqlCommands_codec
+        = pb::FieldCodec.ForString(26);
+    private pbc::RepeatedField<string> sqlCommands_ = new pbc::RepeatedField<string>();
+    public pbc::RepeatedField<string> SqlCommands {
+      get { return sqlCommands_; }
+      set {
+        sqlCommands_ = value;
+      }
+    }
+
+    public override bool Equals(object other) {
+      return Equals(other as PrepareAndExecuteBatchRequest);
+    }
+
+    public bool Equals(PrepareAndExecuteBatchRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ConnectionId != other.ConnectionId) return false;
+      if (StatementId != other.StatementId) return false;
+      if(!sqlCommands_.Equals(other.sqlCommands_)) return false;
+      return true;
+    }
+
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
+      if (StatementId != 0) hash ^= StatementId.GetHashCode();
+      hash ^= sqlCommands_.GetHashCode();
+      return hash;
+    }
+
+    public override string ToString() {
+      return pb::JsonFormatter.Default.Format(this);
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ConnectionId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(ConnectionId);
+      }
+      if (StatementId != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(StatementId);
+      }
+      sqlCommands_.WriteTo(output, _repeated_sqlCommands_codec);
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (ConnectionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConnectionId);
+      }
+      if (StatementId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StatementId);
+      }
+      size += sqlCommands_.CalculateSize(_repeated_sqlCommands_codec);
+      return size;
+    }
+
+    public void MergeFrom(PrepareAndExecuteBatchRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ConnectionId.Length != 0) {
+        ConnectionId = other.ConnectionId;
+      }
+      if (other.StatementId != 0) {
+        StatementId = other.StatementId;
+      }
+      sqlCommands_.Add(other.sqlCommands_);
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            ConnectionId = input.ReadString();
+            break;
+          }
+          case 16: {
+            StatementId = input.ReadUInt32();
+            break;
+          }
+          case 26: {
+            sqlCommands_.AddEntriesFrom(input, _repeated_sqlCommands_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class UpdateBatch : pb::IMessage<UpdateBatch> {
+    private static readonly pb::MessageParser<UpdateBatch> _parser = new pb::MessageParser<UpdateBatch>(() => new UpdateBatch());
+    public static pb::MessageParser<UpdateBatch> Parser { get { return _parser; } }
+
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[20]; }
+    }
+
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    public UpdateBatch() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    public UpdateBatch(UpdateBatch other) : this() {
+      parameterValues_ = other.parameterValues_.Clone();
+    }
+
+    public UpdateBatch Clone() {
+      return new UpdateBatch(this);
+    }
+
+    public const int ParameterValuesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_parameterValues_codec
+        = pb::FieldCodec.ForMessage(10, global::Apache.Phoenix.TypedValue.Parser);
+    private pbc::RepeatedField<global::Apache.Phoenix.TypedValue> parameterValues_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ParameterValues {
+      get { return parameterValues_; }
+      set {
+        parameterValues_ = value;
+      }
+    }
+
+    public override bool Equals(object other) {
+      return Equals(other as UpdateBatch);
+    }
+
+    public bool Equals(UpdateBatch other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!parameterValues_.Equals(other.parameterValues_)) return false;
+      return true;
+    }
+
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= parameterValues_.GetHashCode();
+      return hash;
+    }
+
+    public override string ToString() {
+      return pb::JsonFormatter.Default.Format(this);
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      parameterValues_.WriteTo(output, _repeated_parameterValues_codec);
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      size += parameterValues_.CalculateSize(_repeated_parameterValues_codec);
+      return size;
+    }
+
+    public void MergeFrom(UpdateBatch other) {
+      if (other == null) {
+        return;
+      }
+      parameterValues_.Add(other.parameterValues_);
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            parameterValues_.AddEntriesFrom(input, _repeated_parameterValues_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ExecuteBatchRequest : pb::IMessage<ExecuteBatchRequest> {
+    private static readonly pb::MessageParser<ExecuteBatchRequest> _parser = new pb::MessageParser<ExecuteBatchRequest>(() => new ExecuteBatchRequest());
+    public static pb::MessageParser<ExecuteBatchRequest> Parser { get { return _parser; } }
+
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[21]; }
+    }
+
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    public ExecuteBatchRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    public ExecuteBatchRequest(ExecuteBatchRequest other) : this() {
+      connectionId_ = other.connectionId_;
+      statementId_ = other.statementId_;
+      updates_ = other.updates_.Clone();
+    }
+
+    public ExecuteBatchRequest Clone() {
+      return new ExecuteBatchRequest(this);
+    }
+
+    public const int ConnectionIdFieldNumber = 1;
+    private string connectionId_ = "";
+    public string ConnectionId {
+      get { return connectionId_; }
+      set {
+        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    public const int StatementIdFieldNumber = 2;
+    private uint statementId_;
+    public uint StatementId {
+      get { return statementId_; }
+      set {
+        statementId_ = value;
+      }
+    }
+
+    public const int UpdatesFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Apache.Phoenix.UpdateBatch> _repeated_updates_codec
+        = pb::FieldCodec.ForMessage(26, global::Apache.Phoenix.UpdateBatch.Parser);
+    private pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch> updates_ = new pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch>();
+    public pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch> Updates {
+      get { return updates_; }
+      set {
+        updates_ = value;
+      }
+    }
+
+    public override bool Equals(object other) {
+      return Equals(other as ExecuteBatchRequest);
+    }
+
+    public bool Equals(ExecuteBatchRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ConnectionId != other.ConnectionId) return false;
+      if (StatementId != other.StatementId) return false;
+      if(!updates_.Equals(other.updates_)) return false;
+      return true;
+    }
+
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
+      if (StatementId != 0) hash ^= StatementId.GetHashCode();
+      hash ^= updates_.GetHashCode();
+      return hash;
+    }
+
+    public override string ToString() {
+      return pb::JsonFormatter.Default.Format(this);
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ConnectionId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(ConnectionId);
+      }
+      if (StatementId != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(StatementId);
+      }
+      updates_.WriteTo(output, _repeated_updates_codec);
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (ConnectionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConnectionId);
+      }
+      if (StatementId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StatementId);
+      }
+      size += updates_.CalculateSize(_repeated_updates_codec);
+      return size;
+    }
+
+    public void MergeFrom(ExecuteBatchRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ConnectionId.Length != 0) {
+        ConnectionId = other.ConnectionId;
+      }
+      if (other.StatementId != 0) {
+        StatementId = other.StatementId;
+      }
+      updates_.Add(other.updates_);
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            ConnectionId = input.ReadString();
+            break;
+          }
+          case 16: {
+            StatementId = input.ReadUInt32();
+            break;
+          }
+          case 26: {
+            updates_.AddEntriesFrom(input, _repeated_updates_codec);
             break;
           }
         }

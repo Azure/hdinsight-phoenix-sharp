@@ -36,6 +36,7 @@ namespace PhoenixSharp.Interfaces
         Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options);
         Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options);
         Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options);
-
+        Task<ExecuteBatchResponse> PrepareAndExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<string> sqlCommands, RequestOptions options);
+        Task<ExecuteBatchResponse> ExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<UpdateBatch> updates, RequestOptions options);
     }
 }

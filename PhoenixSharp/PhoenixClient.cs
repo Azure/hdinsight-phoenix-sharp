@@ -666,6 +666,93 @@ namespace PhoenixSharp
             }
         }
 
+
+        /// <summary>
+        /// This request is used as short-hand to create a Statement and execute a batch of updates against that Statement.
+        /// </summary>
+        public async Task<ExecuteBatchResponse> PrepareAndExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<string> sqlCommands, RequestOptions options)
+        {
+            PrepareAndExecuteBatchRequest req = new PrepareAndExecuteBatchRequest
+            {
+                ConnectionId = connectionId,
+                StatementId = statementId,
+                SqlCommands = sqlCommands
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "PrepareAndExecuteBatchRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "PrepareAndExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ExecuteBatchResponse res = ExecuteBatchResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// This request is used to execute a batch of updates against a PreparedStatement.
+        /// </summary>
+        public async Task<ExecuteBatchResponse> ExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<UpdateBatch> updates, RequestOptions options)
+        {
+            ExecuteBatchRequest req = new ExecuteBatchRequest
+            {
+                ConnectionId = connectionId,
+                StatementId = statementId,
+                Updates = updates
+            };
+
+            WireMessage msg = new WireMessage
+            {
+                Name = Constants.WireMessagePrefix + "ExecuteBatchRequest",
+                WrappedMessage = req.ToByteString()
+            };
+
+            using (Response webResponse = await PostRequestAsync(msg.ToByteArray(), options))
+            {
+                if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
+                    {
+                        string message = output.ReadToEnd();
+                        throw new WebException(
+                           string.Format(
+                              "ExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                              connectionId,
+                              webResponse.WebResponse.StatusCode,
+                              message));
+                    }
+                }
+                else
+                {
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ExecuteBatchResponse res = ExecuteBatchResponse.Parser.ParseFrom(output.WrappedMessage);
+                    return res;
+                }
+            }
+        }
+
+
         private async Task<Response> PostRequestAsync(byte[] request, RequestOptions options)
         {
             return await ExecuteMethodAsync("POST", request, options);

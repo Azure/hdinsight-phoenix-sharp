@@ -126,7 +126,7 @@ namespace PhoenixSharp.UnitTests
                 client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
 
                 // Running query 2
-                string sql2 = "UPSERT INTO " + tableName + " VALUES ('duo','xu')";
+                string sql2 = "UPSERT INTO " + tableName + " VALUES ('d1','x1')";
                 client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse.StatementId, options).Wait();
 
                 // Running query 3
@@ -450,6 +450,118 @@ namespace PhoenixSharp.UnitTests
 
                 // Commit statement 4
                 client.CommitRequestAsync(connId, options).Wait();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                if (createStatementResponse != null)
+                {
+                    client.CloseStatementRequestAsync(connId, createStatementResponse.StatementId, options).Wait();
+                    createStatementResponse = null;
+                }
+
+                if (openConnResponse != null)
+                {
+                    client.CloseConnectionRequestAsync(connId, options).Wait();
+                    openConnResponse = null;
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ManyRowBatchInsertTest()
+        {
+            var client = new PhoenixClient(_credentials);
+            string connId = GenerateRandomConnId();
+            RequestOptions options = RequestOptions.GetGatewayDefaultOptions();
+
+            // In gateway mode, url format will be https://<cluster dns name>.azurehdinsight.net/hbasephoenix<N>/
+            // Requests sent to hbasephoenix0/ will be forwarded to PQS on workernode0
+            options.AlternativeEndpoint = "hbasephoenix0/";
+            string tableName = "Persons" + connId;
+
+            OpenConnectionResponse openConnResponse = null;
+            CreateStatementResponse createStatementResponse = null;
+            try
+            {
+                // Opening connection
+                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                // Syncing connection
+                ConnectionProperties connProperties = new ConnectionProperties
+                {
+                    HasAutoCommit = true,
+                    AutoCommit = true,
+                    HasReadOnly = true,
+                    ReadOnly = false,
+                    TransactionIsolation = 0,
+                    Catalog = "",
+                    Schema = "",
+                    IsDirty = true
+                };
+                client.ConnectionSyncRequestAsync(connId, connProperties, options).Wait();
+
+                // Creating statement
+                createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
+                
+                // Running query 1
+                string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
+                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Result;
+
+                // Running query 2
+                // Batching two sqls in a single HTTP request
+                pbc::RepeatedField<string> list = new pbc.RepeatedField<string>();
+                list.Add("UPSERT INTO " + tableName + " VALUES('d1','x1')");
+                list.Add("UPSERT INTO " + tableName + " VALUES('d2','x2')");
+                ExecuteBatchResponse execResponse2 = client.PrepareAndExecuteBatchRequestAsync(connId, createStatementResponse.StatementId, list, options).Result;
+
+                // Running query 3
+                string sql3 = "select count(*) from " + tableName;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
+                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                Assert.AreEqual(2, count3);
+
+                // Running query 4
+                // Batching two sqls in a single HTTP request
+                // Creating statement 2
+                string sql4 = "UPSERT INTO " + tableName + " VALUES (?,?)";
+                PrepareResponse prepareResponse = client.PrepareRequestAsync(connId, sql4, 100, options).Result;
+                StatementHandle statementHandle = prepareResponse.Statement;
+                pbc::RepeatedField<UpdateBatch> updates = new pbc.RepeatedField<UpdateBatch>();
+                for (int i = 3; i < 10; i++)
+                {
+                    pbc::RepeatedField<TypedValue> parameterValues = new pbc.RepeatedField<TypedValue>();
+                    TypedValue v1 = new TypedValue
+                    {
+                        StringValue = "d" + i,
+                        Type = Rep.STRING
+                    };
+                    TypedValue v2 = new TypedValue
+                    {
+                        StringValue = "x" + i,
+                        Type = Rep.STRING
+                    };
+                    parameterValues.Add(v1);
+                    parameterValues.Add(v2);
+                    UpdateBatch batch = new UpdateBatch
+                    {
+                        ParameterValues = parameterValues
+                    };
+                    updates.Add(batch);
+                }
+                ExecuteBatchResponse execResponse4 = client.ExecuteBatchRequestAsync(connId, statementHandle.Id, updates, options).Result;
+
+                // Running query 5
+                string sql5 = "select count(*) from " + tableName;
+                ExecuteResponse execResponse5 = client.PrepareAndExecuteRequestAsync(connId, sql5, 100, createStatementResponse.StatementId, options).Result;
+                long count5 = execResponse5.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                Assert.AreEqual(9, count5);
+
+                // Running query 5
+                string sql6 = "DROP TABLE " + tableName;
+                client.PrepareAndExecuteRequestAsync(connId, sql6, 100, createStatementResponse.StatementId, options).Wait();
             }
             catch (Exception ex)
             {
