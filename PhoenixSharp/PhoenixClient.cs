@@ -69,16 +69,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "PrepareAndExecuteRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "PrepareAndExecuteRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -109,16 +107,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "OpenConnectionRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "OpenConnectionRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -150,16 +146,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "ConnectionSyncRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "ConnectionSyncRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -190,16 +184,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "CreateStatementRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "CreateStatementRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -231,16 +223,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "CloseStatementRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "CloseStatementRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -271,16 +261,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "CloseConnectionRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "CloseConnectionRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -311,16 +299,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "CommitRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "CommitRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -351,16 +337,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "RollbackRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "RollbackRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -393,16 +377,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "PrepareRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "PrepareRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -436,16 +418,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "ExecuteRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              statementHandle.ConnectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "ExecuteRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            statementHandle.ConnectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -481,16 +461,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "TablesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "TablesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -521,16 +499,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "CatalogsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "CatalogsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -561,16 +537,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "TableTypesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "TableTypesRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -603,16 +577,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "SchemasRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "SchemasRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -647,16 +619,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "ColumnsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "ColumnsRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -690,16 +660,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "FetchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "FetchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -733,16 +701,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "PrepareAndExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "PrepareAndExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
@@ -776,16 +742,14 @@ namespace PhoenixSharp
             {
                 if (webResponse.WebResponse.StatusCode != HttpStatusCode.OK)
                 {
-                    using (var output = new StreamReader(webResponse.WebResponse.GetResponseStream()))
-                    {
-                        string message = output.ReadToEnd();
-                        throw new WebException(
-                           string.Format(
-                              "ExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
-                              connectionId,
-                              webResponse.WebResponse.StatusCode,
-                              message));
-                    }
+                    WireMessage output = WireMessage.Parser.ParseFrom(webResponse.WebResponse.GetResponseStream());
+                    ErrorResponse res = ErrorResponse.Parser.ParseFrom(output.WrappedMessage);
+                    throw new WebException(
+                        string.Format(
+                            "ExecuteBatchRequestAsync failed! connectionId: {0}, Response code was: {1}, Response body was: {2}",
+                            connectionId,
+                            webResponse.WebResponse.StatusCode,
+                            res.ToString()));
                 }
                 else
                 {
