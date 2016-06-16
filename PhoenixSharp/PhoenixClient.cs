@@ -90,11 +90,12 @@ namespace PhoenixSharp
         /// <summary>
         /// This request is used to open a new Connection in the Phoenix query server.
         /// </summary>
-        public async Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, RequestOptions options)
+        public async Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, pbc::MapField<string, string> info, RequestOptions options)
         {
             OpenConnectionRequest req = new OpenConnectionRequest
             {
-                ConnectionId = connectionId
+                ConnectionId = connectionId,
+                Info = info
             };
 
             WireMessage msg = new WireMessage

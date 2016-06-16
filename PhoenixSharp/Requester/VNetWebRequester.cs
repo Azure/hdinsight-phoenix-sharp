@@ -55,7 +55,7 @@ namespace PhoenixSharp.Requester
                 options.AlternativeHost,
                 options.Port,
                 options.AlternativeEndpoint);
-            Debug.WriteLine("Issuing request {0} to endpoint {1}", Trace.CorrelationManager.ActivityId, builder.Uri);
+            Debug.WriteLine("Issuing request to endpoint {0}", builder.Uri);
             HttpWebRequest httpWebRequest = WebRequest.CreateHttp(builder.Uri);
             httpWebRequest.ServicePoint.ReceiveBufferSize = options.ReceiveBufferSize;
             httpWebRequest.ServicePoint.UseNagleAlgorithm = options.UseNagle;

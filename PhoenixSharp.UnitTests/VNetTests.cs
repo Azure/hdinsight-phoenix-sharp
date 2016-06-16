@@ -38,7 +38,8 @@ namespace PhoenixSharp.UnitTests
             try
             {
                 // Opening connection
-                openConnResponse = client.OpenConnectionRequestAsync(connId, options).Result;
+                pbc::MapField<string, string> info = new pbc::MapField<string, string>();
+                openConnResponse = client.OpenConnectionRequestAsync(connId, info, options).Result;
                 // Syncing connection
                 ConnectionProperties connProperties = new ConnectionProperties
                 {

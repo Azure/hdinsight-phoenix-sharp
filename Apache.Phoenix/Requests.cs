@@ -1875,9 +1875,12 @@ namespace Apache.Phoenix {
     public const int InfoFieldNumber = 2;
     private static readonly pbc::MapField<string, string>.Codec _map_info_codec
         = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 18);
-    private readonly pbc::MapField<string, string> info_ = new pbc::MapField<string, string>();
+    private pbc::MapField<string, string> info_ = new pbc::MapField<string, string>();
     public pbc::MapField<string, string> Info {
       get { return info_; }
+      set {
+            info_ = value;
+      }
     }
 
     public override bool Equals(object other) {

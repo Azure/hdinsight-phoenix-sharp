@@ -22,7 +22,7 @@ namespace PhoenixSharp.Interfaces
     public interface IPhoenixClient
     {
         Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options);
-        Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, RequestOptions options);
+        Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, pbc::MapField<string, string> info, RequestOptions options);
         Task<ConnectionSyncResponse> ConnectionSyncRequestAsync(string connectionId, ConnectionProperties props, RequestOptions options);
         Task<CreateStatementResponse> CreateStatementRequestAsync(string connectionId, RequestOptions options);
         Task<CloseStatementResponse> CloseStatementRequestAsync(string connectionId, uint statementId, RequestOptions options);
