@@ -15,4 +15,6 @@ Here is the [nuget package](https://www.nuget.org/packages/Microsoft.Phoenix.Cli
 More examples about how to use the SDK will be published on Azure websites soon. 
 
 ### Usage
-hdinsight-phoenix-sharp/PhoenixSharp.UnitTests/PhoenixClientTests.cs would be a good example to learn how to use the APIs.
+* hdinsight-phoenix-sharp/PhoenixSharp.UnitTests/PhoenixClientTests.cs would be a good example to learn how to use the APIs.
+
+* [Twitter streaming example](https://github.com/duoxu/tweet-sentiment-phoenix) - I recently updated the twitter streaming example from [HDInsight tutorial](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-analyze-twitter-sentiment/) with the PQS .NET APIs. Please check it out.
