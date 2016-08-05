@@ -63,7 +63,7 @@ namespace PhoenixSharp.Requester
                 options.AlternativeEndpoint);
             Debug.WriteLine("Issuing request to endpoint {0}", builder.Uri);
             HttpWebRequest httpWebRequest = WebRequest.CreateHttp(builder.Uri);
-            httpWebRequest.ServicePoint.ReceiveBufferSize = options.ReceiveBufferSize;
+            //httpWebRequest.ServicePoint.ReceiveBufferSize = options.ReceiveBufferSize;
             httpWebRequest.ServicePoint.UseNagleAlgorithm = options.UseNagle;
             httpWebRequest.Timeout = options.TimeoutMillis;
             httpWebRequest.KeepAlive = options.KeepAlive;
@@ -73,7 +73,7 @@ namespace PhoenixSharp.Requester
             httpWebRequest.Accept = _contentType;
             httpWebRequest.ContentType = _contentType;
             // ignore certificates
-            httpWebRequest.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
+            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
 
             if (options.AdditionalHeaders != null)
             {

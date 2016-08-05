@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoenixSharp.Interfaces", "PhoenixSharp.Interfaces\PhoenixSharp.Interfaces.csproj", "{7EC374E2-048E-4AB5-8994-97C5F2DDF057}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoenixSharp", "PhoenixSharp\PhoenixSharp.csproj", "{5012BFFB-AACF-41E6-A4A0-E82A5086A2E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoenixSharp.UnitTests", "PhoenixSharp.UnitTests\PhoenixSharp.UnitTests.csproj", "{7C808823-B6AF-4992-AC4A-E8513F213009}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apache.Phoenix", "Apache.Phoenix\Apache.Phoenix.csproj", "{8B32B5CC-94F1-464F-9CF9-A455361BAFA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoenixSharp.UnitTests", "PhoenixSharp.UnitTests\PhoenixSharp.UnitTests.csproj", "{65F62218-0D86-4BA0-B1F1-E1303153E26D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{5012BFFB-AACF-41E6-A4A0-E82A5086A2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5012BFFB-AACF-41E6-A4A0-E82A5086A2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5012BFFB-AACF-41E6-A4A0-E82A5086A2E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C808823-B6AF-4992-AC4A-E8513F213009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C808823-B6AF-4992-AC4A-E8513F213009}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C808823-B6AF-4992-AC4A-E8513F213009}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C808823-B6AF-4992-AC4A-E8513F213009}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B32B5CC-94F1-464F-9CF9-A455361BAFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B32B5CC-94F1-464F-9CF9-A455361BAFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B32B5CC-94F1-464F-9CF9-A455361BAFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B32B5CC-94F1-464F-9CF9-A455361BAFA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F62218-0D86-4BA0-B1F1-E1303153E26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F62218-0D86-4BA0-B1F1-E1303153E26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F62218-0D86-4BA0-B1F1-E1303153E26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F62218-0D86-4BA0-B1F1-E1303153E26D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,12 +20,12 @@ namespace PhoenixSharp.Interfaces
 
     public class RequestOptions
     {
-        public RetryPolicy RetryPolicy { get; set; }
+        //public RetryPolicy RetryPolicy { get; set; }
         public string AlternativeEndpoint { get; set; }
         public bool KeepAlive { get; set; }
         public int TimeoutMillis { get; set; }
-        public int SerializationBufferSize { get; set; }
-        public int ReceiveBufferSize { get; set; }
+        //public int SerializationBufferSize { get; set; }
+        //public int ReceiveBufferSize { get; set; }
         public bool UseNagle { get; set; }
         public int Port { get; set; }
         public Dictionary<string, string> AdditionalHeaders { get; set; }
@@ -40,11 +40,11 @@ namespace PhoenixSharp.Interfaces
         {
             return new RequestOptions()
             {
-                RetryPolicy = RetryPolicy.DefaultExponential,
+                //RetryPolicy = RetryPolicy.DefaultExponential,
                 KeepAlive = true,
                 TimeoutMillis = 30000,
-                ReceiveBufferSize = 1024 * 1024 * 1,
-                SerializationBufferSize = 1024 * 1024 * 1,
+                //ReceiveBufferSize = 1024 * 1024 * 1,
+                //SerializationBufferSize = 1024 * 1024 * 1,
                 UseNagle = false,
                 AlternativeEndpoint = null,
                 Port = 443,
@@ -56,11 +56,11 @@ namespace PhoenixSharp.Interfaces
         {
             return new RequestOptions()
             {
-                RetryPolicy = RetryPolicy.DefaultExponential,
+                //RetryPolicy = RetryPolicy.DefaultExponential,
                 KeepAlive = true,
                 TimeoutMillis = 30000,
-                ReceiveBufferSize = 1024 * 1024 * 1,
-                SerializationBufferSize = 1024 * 1024 * 1,
+                //ReceiveBufferSize = 1024 * 1024 * 1,
+                //SerializationBufferSize = 1024 * 1024 * 1,
                 UseNagle = false,
                 AlternativeEndpoint = null,
                 Port = 8765,

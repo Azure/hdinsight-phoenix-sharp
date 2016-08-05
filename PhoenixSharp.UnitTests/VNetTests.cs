@@ -17,16 +17,16 @@ namespace PhoenixSharp.UnitTests
 {
     using System;
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhoenixSharp;
     using Apache.Phoenix;
     using pbc = Google.Protobuf.Collections;
     using Interfaces;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class VNetTests
     {
-        [TestMethod]
+        [Test]
         public void TableOperationTest()
         {
             var client = new PhoenixClient(null);

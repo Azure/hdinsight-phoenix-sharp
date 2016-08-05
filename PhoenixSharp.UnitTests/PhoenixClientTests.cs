@@ -17,24 +17,25 @@ namespace PhoenixSharp.UnitTests
 {
     using System;
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhoenixSharp;
     using Apache.Phoenix;
     using pbc = Google.Protobuf.Collections;
     using System.Diagnostics;
     using Interfaces;
-    [TestClass]
+    using NUnit.Framework;
+
+    [TestFixture]
     public class PhoenixClientTests
     {
         private ClusterCredentials _credentials;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
-            _credentials = ClusterCredentialsFactory.CreateFromFile(@".\credentials.txt");
+            _credentials = ClusterCredentialsFactory.CreateFromFile(@"credentials.txt");
         }
 
-        [TestMethod]
+        [Test]
         public void TableOperationTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -69,7 +70,7 @@ namespace PhoenixSharp.UnitTests
                 list.Add("SYSTEM TABLE");
                 ResultSetResponse tablesResponse = client.TablesRequestAsync("", "", "", list, true, connId, options).Result;
                 Assert.AreEqual(4, tablesResponse.FirstFrame.Rows.Count);
-                
+
                 // List all table types
                 ResultSetResponse tableTypeResponse = client.TableTypesRequestAsync(connId, options).Result;
                 Assert.AreEqual(6, tableTypeResponse.FirstFrame.Rows.Count);
@@ -88,7 +89,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -160,7 +161,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ManyRowInsertTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -235,7 +236,7 @@ namespace PhoenixSharp.UnitTests
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
                 client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
-               
+
                 // Commit statement 4
                 client.CommitRequestAsync(connId, options).Wait();
             }
@@ -259,7 +260,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void QueryManyRowTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -373,7 +374,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CommitRollbackTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -475,7 +476,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ManyRowBatchInsertTest()
         {
             var client = new PhoenixClient(_credentials);
@@ -510,7 +511,7 @@ namespace PhoenixSharp.UnitTests
 
                 // Creating statement
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
-                
+
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
                 ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Result;
@@ -588,7 +589,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RowInsertWithArbitraryTimestamp()
         {
             // https://phoenix.apache.org/faq.html#Can_phoenix_work_on_tables_with_arbitrary_timestamp_as_flexible_as_HBase_API
