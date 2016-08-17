@@ -212,12 +212,12 @@ namespace PhoenixSharp.UnitTests
                     TypedValue v1 = new TypedValue
                     {
                         StringValue = "d" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     TypedValue v2 = new TypedValue
                     {
                         StringValue = "x" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     list.Add(v1);
                     list.Add(v2);
@@ -312,12 +312,12 @@ namespace PhoenixSharp.UnitTests
                     TypedValue v1 = new TypedValue
                     {
                         StringValue = "d" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     TypedValue v2 = new TypedValue
                     {
                         StringValue = "x" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     list.Add(v1);
                     list.Add(v2);
@@ -425,12 +425,12 @@ namespace PhoenixSharp.UnitTests
                     TypedValue v1 = new TypedValue
                     {
                         StringValue = "d" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     TypedValue v2 = new TypedValue
                     {
                         StringValue = "x" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     list.Add(v1);
                     list.Add(v2);
@@ -542,12 +542,12 @@ namespace PhoenixSharp.UnitTests
                     TypedValue v1 = new TypedValue
                     {
                         StringValue = "d" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     TypedValue v2 = new TypedValue
                     {
                         StringValue = "x" + i,
-                        Type = Rep.STRING
+                        Type = Rep.String
                     };
                     parameterValues.Add(v1);
                     parameterValues.Add(v2);

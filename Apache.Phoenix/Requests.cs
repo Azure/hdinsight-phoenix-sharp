@@ -9,133 +9,145 @@ using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
 namespace Apache.Phoenix {
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  public static partial class Requests {
+  /// <summary>Holder for reflection information generated from requests.proto</summary>
+  public static partial class RequestsReflection {
 
     #region Descriptor
+    /// <summary>File descriptor for requests.proto</summary>
     public static pbr::FileDescriptor Descriptor {
       get { return descriptor; }
     }
     private static pbr::FileDescriptor descriptor;
 
-    static Requests() {
+    static RequestsReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5yZXF1ZXN0cy5wcm90bxoMY29tbW9uLnByb3RvIigKD0NhdGFsb2dzUmVx", 
-            "dWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJIjAKF0RhdGFiYXNlUHJvcGVy", 
-            "dHlSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkiUAoOU2NoZW1hc1Jl", 
-            "cXVlc3QSDwoHY2F0YWxvZxgBIAEoCRIWCg5zY2hlbWFfcGF0dGVybhgCIAEo", 
-            "CRIVCg1jb25uZWN0aW9uX2lkGAMgASgJIpUBCg1UYWJsZXNSZXF1ZXN0Eg8K", 
-            "B2NhdGFsb2cYASABKAkSFgoOc2NoZW1hX3BhdHRlcm4YAiABKAkSGgoSdGFi", 
-            "bGVfbmFtZV9wYXR0ZXJuGAMgASgJEhEKCXR5cGVfbGlzdBgEIAMoCRIVCg1o", 
-            "YXNfdHlwZV9saXN0GAYgASgIEhUKDWNvbm5lY3Rpb25faWQYByABKAkiKgoR", 
-            "VGFibGVUeXBlc1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCSKJAQoO", 
-            "Q29sdW1uc1JlcXVlc3QSDwoHY2F0YWxvZxgBIAEoCRIWCg5zY2hlbWFfcGF0", 
-            "dGVybhgCIAEoCRIaChJ0YWJsZV9uYW1lX3BhdHRlcm4YAyABKAkSGwoTY29s", 
-            "dW1uX25hbWVfcGF0dGVybhgEIAEoCRIVCg1jb25uZWN0aW9uX2lkGAUgASgJ", 
-            "IigKD1R5cGVJbmZvUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJImsK", 
-            "GFByZXBhcmVBbmRFeGVjdXRlUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEg", 
-            "ASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMgASgEEhQKDHN0", 
-            "YXRlbWVudF9pZBgEIAEoDSJLCg5QcmVwYXJlUmVxdWVzdBIVCg1jb25uZWN0", 
-            "aW9uX2lkGAEgASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMg", 
-            "ASgEImgKDEZldGNoUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJEhQK", 
-            "DHN0YXRlbWVudF9pZBgCIAEoDRIOCgZvZmZzZXQYAyABKAQSGwoTZmV0Y2hf", 
-            "bWF4X3Jvd19jb3VudBgEIAEoDSIvChZDcmVhdGVTdGF0ZW1lbnRSZXF1ZXN0", 
-            "EhUKDWNvbm5lY3Rpb25faWQYASABKAkiRAoVQ2xvc2VTdGF0ZW1lbnRSZXF1", 
-            "ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkSFAoMc3RhdGVtZW50X2lkGAIg", 
-            "ASgNIosBChVPcGVuQ29ubmVjdGlvblJlcXVlc3QSFQoNY29ubmVjdGlvbl9p", 
-            "ZBgBIAEoCRIuCgRpbmZvGAIgAygLMiAuT3BlbkNvbm5lY3Rpb25SZXF1ZXN0", 
-            "LkluZm9FbnRyeRorCglJbmZvRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVl", 
-            "GAIgASgJOgI4ASIvChZDbG9zZUNvbm5lY3Rpb25SZXF1ZXN0EhUKDWNvbm5l", 
-            "Y3Rpb25faWQYASABKAkiWQoVQ29ubmVjdGlvblN5bmNSZXF1ZXN0EhUKDWNv", 
-            "bm5lY3Rpb25faWQYASABKAkSKQoKY29ubl9wcm9wcxgCIAEoCzIVLkNvbm5l", 
-            "Y3Rpb25Qcm9wZXJ0aWVzIpcBCg5FeGVjdXRlUmVxdWVzdBIpCg9zdGF0ZW1l", 
-            "bnRIYW5kbGUYASABKAsyEC5TdGF0ZW1lbnRIYW5kbGUSJQoQcGFyYW1ldGVy", 
-            "X3ZhbHVlcxgCIAMoCzILLlR5cGVkVmFsdWUSFQoNbWF4X3Jvd19jb3VudBgD", 
-            "IAEoBBIcChRoYXNfcGFyYW1ldGVyX3ZhbHVlcxgEIAEoCCJtChJTeW5jUmVz", 
-            "dWx0c1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1l", 
-            "bnRfaWQYAiABKA0SGgoFc3RhdGUYAyABKAsyCy5RdWVyeVN0YXRlEg4KBm9m", 
-            "ZnNldBgEIAEoBCImCg1Db21taXRSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQY", 
-            "ASABKAkiKAoPUm9sbGJhY2tSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASAB", 
-            "KAkiYgodUHJlcGFyZUFuZEV4ZWN1dGVCYXRjaFJlcXVlc3QSFQoNY29ubmVj", 
-            "dGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFAoMc3FsX2Nv", 
-            "bW1hbmRzGAMgAygJIjQKC1VwZGF0ZUJhdGNoEiUKEHBhcmFtZXRlcl92YWx1", 
-            "ZXMYASADKAsyCy5UeXBlZFZhbHVlImEKE0V4ZWN1dGVCYXRjaFJlcXVlc3QS", 
-            "FQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0S", 
-            "HQoHdXBkYXRlcxgDIAMoCzIMLlVwZGF0ZUJhdGNoQjMKIG9yZy5hcGFjaGUu", 
-            "Y2FsY2l0ZS5hdmF0aWNhLnByb3RvqgIOQXBhY2hlLlBob2VuaXhiBnByb3Rv", 
-            "Mw=="));
-      descriptor = pbr::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
-          new pbr::FileDescriptor[] { global::Apache.Phoenix.Common.Descriptor, },
-          new pbr::GeneratedCodeInfo(null, new pbr::GeneratedCodeInfo[] {
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CatalogsRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.DatabasePropertyRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.SchemasRequest), new[]{ "Catalog", "SchemaPattern", "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.TablesRequest), new[]{ "Catalog", "SchemaPattern", "TableNamePattern", "TypeList", "HasTypeList", "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.TableTypesRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ColumnsRequest), new[]{ "Catalog", "SchemaPattern", "TableNamePattern", "ColumnNamePattern", "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.TypeInfoRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteRequest), new[]{ "ConnectionId", "Sql", "MaxRowCount", "StatementId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.PrepareRequest), new[]{ "ConnectionId", "Sql", "MaxRowCount" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.FetchRequest), new[]{ "ConnectionId", "StatementId", "Offset", "FetchMaxRowCount" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CreateStatementRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CloseStatementRequest), new[]{ "ConnectionId", "StatementId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.OpenConnectionRequest), new[]{ "ConnectionId", "Info" }, null, null, new pbr::GeneratedCodeInfo[] { null, }),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CloseConnectionRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ConnectionSyncRequest), new[]{ "ConnectionId", "ConnProps" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ExecuteRequest), new[]{ "StatementHandle", "ParameterValues", "MaxRowCount", "HasParameterValues" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.SyncResultsRequest), new[]{ "ConnectionId", "StatementId", "State", "Offset" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.CommitRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.RollbackRequest), new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteBatchRequest), new[]{ "ConnectionId", "StatementId", "SqlCommands" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.UpdateBatch), new[]{ "ParameterValues" }, null, null, null),
-            new pbr::GeneratedCodeInfo(typeof(global::Apache.Phoenix.ExecuteBatchRequest), new[]{ "ConnectionId", "StatementId", "Updates" }, null, null, null)
+            "Cg5yZXF1ZXN0cy5wcm90bxoMY29tbW9uLnByb3RvIigKD0NhdGFsb2dzUmVx",
+            "dWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJIjAKF0RhdGFiYXNlUHJvcGVy",
+            "dHlSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkiUAoOU2NoZW1hc1Jl",
+            "cXVlc3QSDwoHY2F0YWxvZxgBIAEoCRIWCg5zY2hlbWFfcGF0dGVybhgCIAEo",
+            "CRIVCg1jb25uZWN0aW9uX2lkGAMgASgJIpUBCg1UYWJsZXNSZXF1ZXN0Eg8K",
+            "B2NhdGFsb2cYASABKAkSFgoOc2NoZW1hX3BhdHRlcm4YAiABKAkSGgoSdGFi",
+            "bGVfbmFtZV9wYXR0ZXJuGAMgASgJEhEKCXR5cGVfbGlzdBgEIAMoCRIVCg1o",
+            "YXNfdHlwZV9saXN0GAYgASgIEhUKDWNvbm5lY3Rpb25faWQYByABKAkiKgoR",
+            "VGFibGVUeXBlc1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCSKJAQoO",
+            "Q29sdW1uc1JlcXVlc3QSDwoHY2F0YWxvZxgBIAEoCRIWCg5zY2hlbWFfcGF0",
+            "dGVybhgCIAEoCRIaChJ0YWJsZV9uYW1lX3BhdHRlcm4YAyABKAkSGwoTY29s",
+            "dW1uX25hbWVfcGF0dGVybhgEIAEoCRIVCg1jb25uZWN0aW9uX2lkGAUgASgJ",
+            "IigKD1R5cGVJbmZvUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJImsK",
+            "GFByZXBhcmVBbmRFeGVjdXRlUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEg",
+            "ASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMgASgEEhQKDHN0",
+            "YXRlbWVudF9pZBgEIAEoDSJLCg5QcmVwYXJlUmVxdWVzdBIVCg1jb25uZWN0",
+            "aW9uX2lkGAEgASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMg",
+            "ASgEImgKDEZldGNoUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJEhQK",
+            "DHN0YXRlbWVudF9pZBgCIAEoDRIOCgZvZmZzZXQYAyABKAQSGwoTZmV0Y2hf",
+            "bWF4X3Jvd19jb3VudBgEIAEoDSIvChZDcmVhdGVTdGF0ZW1lbnRSZXF1ZXN0",
+            "EhUKDWNvbm5lY3Rpb25faWQYASABKAkiRAoVQ2xvc2VTdGF0ZW1lbnRSZXF1",
+            "ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkSFAoMc3RhdGVtZW50X2lkGAIg",
+            "ASgNIosBChVPcGVuQ29ubmVjdGlvblJlcXVlc3QSFQoNY29ubmVjdGlvbl9p",
+            "ZBgBIAEoCRIuCgRpbmZvGAIgAygLMiAuT3BlbkNvbm5lY3Rpb25SZXF1ZXN0",
+            "LkluZm9FbnRyeRorCglJbmZvRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVl",
+            "GAIgASgJOgI4ASIvChZDbG9zZUNvbm5lY3Rpb25SZXF1ZXN0EhUKDWNvbm5l",
+            "Y3Rpb25faWQYASABKAkiWQoVQ29ubmVjdGlvblN5bmNSZXF1ZXN0EhUKDWNv",
+            "bm5lY3Rpb25faWQYASABKAkSKQoKY29ubl9wcm9wcxgCIAEoCzIVLkNvbm5l",
+            "Y3Rpb25Qcm9wZXJ0aWVzIpcBCg5FeGVjdXRlUmVxdWVzdBIpCg9zdGF0ZW1l",
+            "bnRIYW5kbGUYASABKAsyEC5TdGF0ZW1lbnRIYW5kbGUSJQoQcGFyYW1ldGVy",
+            "X3ZhbHVlcxgCIAMoCzILLlR5cGVkVmFsdWUSFQoNbWF4X3Jvd19jb3VudBgD",
+            "IAEoBBIcChRoYXNfcGFyYW1ldGVyX3ZhbHVlcxgEIAEoCCJtChJTeW5jUmVz",
+            "dWx0c1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1l",
+            "bnRfaWQYAiABKA0SGgoFc3RhdGUYAyABKAsyCy5RdWVyeVN0YXRlEg4KBm9m",
+            "ZnNldBgEIAEoBCImCg1Db21taXRSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQY",
+            "ASABKAkiKAoPUm9sbGJhY2tSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASAB",
+            "KAkiYgodUHJlcGFyZUFuZEV4ZWN1dGVCYXRjaFJlcXVlc3QSFQoNY29ubmVj",
+            "dGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFAoMc3FsX2Nv",
+            "bW1hbmRzGAMgAygJIjQKC1VwZGF0ZUJhdGNoEiUKEHBhcmFtZXRlcl92YWx1",
+            "ZXMYASADKAsyCy5UeXBlZFZhbHVlImEKE0V4ZWN1dGVCYXRjaFJlcXVlc3QS",
+            "FQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0S",
+            "HQoHdXBkYXRlcxgDIAMoCzIMLlVwZGF0ZUJhdGNoQhGqAg5BcGFjaGUuUGhv",
+            "ZW5peGIGcHJvdG8z"));
+      descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
+          new pbr::FileDescriptor[] { global::Apache.Phoenix.CommonReflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CatalogsRequest), global::Apache.Phoenix.CatalogsRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.DatabasePropertyRequest), global::Apache.Phoenix.DatabasePropertyRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.SchemasRequest), global::Apache.Phoenix.SchemasRequest.Parser, new[]{ "Catalog", "SchemaPattern", "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TablesRequest), global::Apache.Phoenix.TablesRequest.Parser, new[]{ "Catalog", "SchemaPattern", "TableNamePattern", "TypeList", "HasTypeList", "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TableTypesRequest), global::Apache.Phoenix.TableTypesRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ColumnsRequest), global::Apache.Phoenix.ColumnsRequest.Parser, new[]{ "Catalog", "SchemaPattern", "TableNamePattern", "ColumnNamePattern", "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TypeInfoRequest), global::Apache.Phoenix.TypeInfoRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteRequest), global::Apache.Phoenix.PrepareAndExecuteRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount", "StatementId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareRequest), global::Apache.Phoenix.PrepareRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.FetchRequest), global::Apache.Phoenix.FetchRequest.Parser, new[]{ "ConnectionId", "StatementId", "Offset", "FetchMaxRowCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CreateStatementRequest), global::Apache.Phoenix.CreateStatementRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CloseStatementRequest), global::Apache.Phoenix.CloseStatementRequest.Parser, new[]{ "ConnectionId", "StatementId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.OpenConnectionRequest), global::Apache.Phoenix.OpenConnectionRequest.Parser, new[]{ "ConnectionId", "Info" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CloseConnectionRequest), global::Apache.Phoenix.CloseConnectionRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ConnectionSyncRequest), global::Apache.Phoenix.ConnectionSyncRequest.Parser, new[]{ "ConnectionId", "ConnProps" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ExecuteRequest), global::Apache.Phoenix.ExecuteRequest.Parser, new[]{ "StatementHandle", "ParameterValues", "MaxRowCount", "HasParameterValues" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.SyncResultsRequest), global::Apache.Phoenix.SyncResultsRequest.Parser, new[]{ "ConnectionId", "StatementId", "State", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CommitRequest), global::Apache.Phoenix.CommitRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.RollbackRequest), global::Apache.Phoenix.RollbackRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteBatchRequest), global::Apache.Phoenix.PrepareAndExecuteBatchRequest.Parser, new[]{ "ConnectionId", "StatementId", "SqlCommands" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.UpdateBatch), global::Apache.Phoenix.UpdateBatch.Parser, new[]{ "ParameterValues" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ExecuteBatchRequest), global::Apache.Phoenix.ExecuteBatchRequest.Parser, new[]{ "ConnectionId", "StatementId", "Updates" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getCatalogs()
+  /// </summary>
   public sealed partial class CatalogsRequest : pb::IMessage<CatalogsRequest> {
     private static readonly pb::MessageParser<CatalogsRequest> _parser = new pb::MessageParser<CatalogsRequest>(() => new CatalogsRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<CatalogsRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[0]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[0]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CatalogsRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CatalogsRequest(CatalogsRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CatalogsRequest Clone() {
       return new CatalogsRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CatalogsRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(CatalogsRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -147,16 +159,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -164,6 +179,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -172,6 +188,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(CatalogsRequest other) {
       if (other == null) {
         return;
@@ -181,6 +198,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -198,46 +216,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getDatabaseProperties()
+  /// </summary>
   public sealed partial class DatabasePropertyRequest : pb::IMessage<DatabasePropertyRequest> {
     private static readonly pb::MessageParser<DatabasePropertyRequest> _parser = new pb::MessageParser<DatabasePropertyRequest>(() => new DatabasePropertyRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<DatabasePropertyRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[1]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[1]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DatabasePropertyRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DatabasePropertyRequest(DatabasePropertyRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DatabasePropertyRequest Clone() {
       return new DatabasePropertyRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as DatabasePropertyRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(DatabasePropertyRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -249,16 +279,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -266,6 +299,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -274,6 +308,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(DatabasePropertyRequest other) {
       if (other == null) {
         return;
@@ -283,6 +318,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -300,66 +336,82 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getSchemas(String, org.apache.calcite.avatica.Meta.Pat)}
+  /// </summary>
   public sealed partial class SchemasRequest : pb::IMessage<SchemasRequest> {
     private static readonly pb::MessageParser<SchemasRequest> _parser = new pb::MessageParser<SchemasRequest>(() => new SchemasRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SchemasRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[2]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[2]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SchemasRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SchemasRequest(SchemasRequest other) : this() {
       catalog_ = other.catalog_;
       schemaPattern_ = other.schemaPattern_;
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SchemasRequest Clone() {
       return new SchemasRequest(this);
     }
 
+    /// <summary>Field number for the "catalog" field.</summary>
     public const int CatalogFieldNumber = 1;
     private string catalog_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Catalog {
       get { return catalog_; }
       set {
-        catalog_ = pb::Preconditions.CheckNotNull(value, "value");
+        catalog_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "schema_pattern" field.</summary>
     public const int SchemaPatternFieldNumber = 2;
     private string schemaPattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string SchemaPattern {
       get { return schemaPattern_; }
       set {
-        schemaPattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        schemaPattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 3;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SchemasRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(SchemasRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -373,6 +425,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (Catalog.Length != 0) hash ^= Catalog.GetHashCode();
@@ -381,10 +434,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Catalog.Length != 0) {
         output.WriteRawTag(10);
@@ -400,6 +455,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (Catalog.Length != 0) {
@@ -414,6 +470,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(SchemasRequest other) {
       if (other == null) {
         return;
@@ -429,6 +486,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -454,25 +512,33 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Request for Meta#getTables(String, org.apache.calcite.avatica.Meta.Pat,
+  ///    org.apache.calcite.avatica.Meta.Pat, java.util.List)
+  /// </summary>
   public sealed partial class TablesRequest : pb::IMessage<TablesRequest> {
     private static readonly pb::MessageParser<TablesRequest> _parser = new pb::MessageParser<TablesRequest>(() => new TablesRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TablesRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[3]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[3]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TablesRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TablesRequest(TablesRequest other) : this() {
       catalog_ = other.catalog_;
       schemaPattern_ = other.schemaPattern_;
@@ -482,41 +548,50 @@ namespace Apache.Phoenix {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TablesRequest Clone() {
       return new TablesRequest(this);
     }
 
+    /// <summary>Field number for the "catalog" field.</summary>
     public const int CatalogFieldNumber = 1;
     private string catalog_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Catalog {
       get { return catalog_; }
       set {
-        catalog_ = pb::Preconditions.CheckNotNull(value, "value");
+        catalog_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "schema_pattern" field.</summary>
     public const int SchemaPatternFieldNumber = 2;
     private string schemaPattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string SchemaPattern {
       get { return schemaPattern_; }
       set {
-        schemaPattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        schemaPattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "table_name_pattern" field.</summary>
     public const int TableNamePatternFieldNumber = 3;
     private string tableNamePattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string TableNamePattern {
       get { return tableNamePattern_; }
       set {
-        tableNamePattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        tableNamePattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "type_list" field.</summary>
     public const int TypeListFieldNumber = 4;
     private static readonly pb::FieldCodec<string> _repeated_typeList_codec
         = pb::FieldCodec.ForString(34);
     private pbc::RepeatedField<string> typeList_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> TypeList {
       get { return typeList_; }
       set {
@@ -524,8 +599,13 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "has_type_list" field.</summary>
     public const int HasTypeListFieldNumber = 6;
     private bool hasTypeList_;
+    /// <summary>
+    ///  Having an empty type_list is distinct from a null type_list
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool HasTypeList {
       get { return hasTypeList_; }
       set {
@@ -533,19 +613,23 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 7;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TablesRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(TablesRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -562,6 +646,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (Catalog.Length != 0) hash ^= Catalog.GetHashCode();
@@ -573,10 +658,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Catalog.Length != 0) {
         output.WriteRawTag(10);
@@ -601,6 +688,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (Catalog.Length != 0) {
@@ -622,6 +710,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(TablesRequest other) {
       if (other == null) {
         return;
@@ -644,6 +733,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -681,46 +771,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getTableTypes()
+  /// </summary>
   public sealed partial class TableTypesRequest : pb::IMessage<TableTypesRequest> {
     private static readonly pb::MessageParser<TableTypesRequest> _parser = new pb::MessageParser<TableTypesRequest>(() => new TableTypesRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TableTypesRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[4]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[4]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TableTypesRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TableTypesRequest(TableTypesRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TableTypesRequest Clone() {
       return new TableTypesRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TableTypesRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(TableTypesRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -732,16 +834,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -749,6 +854,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -757,6 +863,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(TableTypesRequest other) {
       if (other == null) {
         return;
@@ -766,6 +873,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -783,25 +891,33 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getColumns(String, org.apache.calcite.avatica.Meta.Pat,
+  ///    org.apache.calcite.avatica.Meta.Pat, org.apache.calcite.avatica.Meta.Pat).
+  /// </summary>
   public sealed partial class ColumnsRequest : pb::IMessage<ColumnsRequest> {
     private static readonly pb::MessageParser<ColumnsRequest> _parser = new pb::MessageParser<ColumnsRequest>(() => new ColumnsRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ColumnsRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[5]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[5]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ColumnsRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ColumnsRequest(ColumnsRequest other) : this() {
       catalog_ = other.catalog_;
       schemaPattern_ = other.schemaPattern_;
@@ -810,59 +926,72 @@ namespace Apache.Phoenix {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ColumnsRequest Clone() {
       return new ColumnsRequest(this);
     }
 
+    /// <summary>Field number for the "catalog" field.</summary>
     public const int CatalogFieldNumber = 1;
     private string catalog_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Catalog {
       get { return catalog_; }
       set {
-        catalog_ = pb::Preconditions.CheckNotNull(value, "value");
+        catalog_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "schema_pattern" field.</summary>
     public const int SchemaPatternFieldNumber = 2;
     private string schemaPattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string SchemaPattern {
       get { return schemaPattern_; }
       set {
-        schemaPattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        schemaPattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "table_name_pattern" field.</summary>
     public const int TableNamePatternFieldNumber = 3;
     private string tableNamePattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string TableNamePattern {
       get { return tableNamePattern_; }
       set {
-        tableNamePattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        tableNamePattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "column_name_pattern" field.</summary>
     public const int ColumnNamePatternFieldNumber = 4;
     private string columnNamePattern_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ColumnNamePattern {
       get { return columnNamePattern_; }
       set {
-        columnNamePattern_ = pb::Preconditions.CheckNotNull(value, "value");
+        columnNamePattern_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 5;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ColumnsRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(ColumnsRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -878,6 +1007,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (Catalog.Length != 0) hash ^= Catalog.GetHashCode();
@@ -888,10 +1018,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Catalog.Length != 0) {
         output.WriteRawTag(10);
@@ -915,6 +1047,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (Catalog.Length != 0) {
@@ -935,6 +1068,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(ColumnsRequest other) {
       if (other == null) {
         return;
@@ -956,6 +1090,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -989,46 +1124,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#getTypeInfo()
+  /// </summary>
   public sealed partial class TypeInfoRequest : pb::IMessage<TypeInfoRequest> {
     private static readonly pb::MessageParser<TypeInfoRequest> _parser = new pb::MessageParser<TypeInfoRequest>(() => new TypeInfoRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TypeInfoRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[6]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[6]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TypeInfoRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TypeInfoRequest(TypeInfoRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TypeInfoRequest Clone() {
       return new TypeInfoRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TypeInfoRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(TypeInfoRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1040,16 +1187,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1057,6 +1207,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1065,6 +1216,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(TypeInfoRequest other) {
       if (other == null) {
         return;
@@ -1074,6 +1226,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1091,25 +1244,32 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#prepareAndExecute(Meta.StatementHandle, String, long, Meta.PrepareCallback)
+  /// </summary>
   public sealed partial class PrepareAndExecuteRequest : pb::IMessage<PrepareAndExecuteRequest> {
     private static readonly pb::MessageParser<PrepareAndExecuteRequest> _parser = new pb::MessageParser<PrepareAndExecuteRequest>(() => new PrepareAndExecuteRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<PrepareAndExecuteRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[7]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[7]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteRequest(PrepareAndExecuteRequest other) : this() {
       connectionId_ = other.connectionId_;
       sql_ = other.sql_;
@@ -1117,30 +1277,37 @@ namespace Apache.Phoenix {
       statementId_ = other.statementId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteRequest Clone() {
       return new PrepareAndExecuteRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "sql" field.</summary>
     public const int SqlFieldNumber = 2;
     private string sql_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Sql {
       get { return sql_; }
       set {
-        sql_ = pb::Preconditions.CheckNotNull(value, "value");
+        sql_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "max_row_count" field.</summary>
     public const int MaxRowCountFieldNumber = 3;
     private ulong maxRowCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong MaxRowCount {
       get { return maxRowCount_; }
       set {
@@ -1148,8 +1315,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 4;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -1157,10 +1326,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PrepareAndExecuteRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(PrepareAndExecuteRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1175,6 +1346,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -1184,10 +1356,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1207,6 +1381,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1224,6 +1399,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(PrepareAndExecuteRequest other) {
       if (other == null) {
         return;
@@ -1242,6 +1418,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1271,55 +1448,69 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta.prepare(Meta.ConnectionHandle, String, long)
+  /// </summary>
   public sealed partial class PrepareRequest : pb::IMessage<PrepareRequest> {
     private static readonly pb::MessageParser<PrepareRequest> _parser = new pb::MessageParser<PrepareRequest>(() => new PrepareRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<PrepareRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[8]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[8]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareRequest(PrepareRequest other) : this() {
       connectionId_ = other.connectionId_;
       sql_ = other.sql_;
       maxRowCount_ = other.maxRowCount_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareRequest Clone() {
       return new PrepareRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "sql" field.</summary>
     public const int SqlFieldNumber = 2;
     private string sql_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Sql {
       get { return sql_; }
       set {
-        sql_ = pb::Preconditions.CheckNotNull(value, "value");
+        sql_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "max_row_count" field.</summary>
     public const int MaxRowCountFieldNumber = 3;
     private ulong maxRowCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong MaxRowCount {
       get { return maxRowCount_; }
       set {
@@ -1327,10 +1518,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PrepareRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(PrepareRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1344,6 +1537,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -1352,10 +1546,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1371,6 +1567,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1385,6 +1582,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(PrepareRequest other) {
       if (other == null) {
         return;
@@ -1400,6 +1598,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1425,25 +1624,32 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#fetch(Meta.StatementHandle, List, long, int)
+  /// </summary>
   public sealed partial class FetchRequest : pb::IMessage<FetchRequest> {
     private static readonly pb::MessageParser<FetchRequest> _parser = new pb::MessageParser<FetchRequest>(() => new FetchRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<FetchRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[9]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[9]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public FetchRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public FetchRequest(FetchRequest other) : this() {
       connectionId_ = other.connectionId_;
       statementId_ = other.statementId_;
@@ -1451,21 +1657,26 @@ namespace Apache.Phoenix {
       fetchMaxRowCount_ = other.fetchMaxRowCount_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public FetchRequest Clone() {
       return new FetchRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 2;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -1473,8 +1684,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "offset" field.</summary>
     public const int OffsetFieldNumber = 3;
     private ulong offset_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong Offset {
       get { return offset_; }
       set {
@@ -1482,8 +1695,13 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "fetch_max_row_count" field.</summary>
     public const int FetchMaxRowCountFieldNumber = 4;
     private uint fetchMaxRowCount_;
+    /// <summary>
+    ///  Maximum number of rows to be returned in the frame. Negative means no limit.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint FetchMaxRowCount {
       get { return fetchMaxRowCount_; }
       set {
@@ -1491,10 +1709,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FetchRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(FetchRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1509,6 +1729,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -1518,10 +1739,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1541,6 +1764,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1558,6 +1782,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(FetchRequest other) {
       if (other == null) {
         return;
@@ -1576,6 +1801,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1605,46 +1831,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#createStatement(Meta.ConnectionHandle)
+  /// </summary>
   public sealed partial class CreateStatementRequest : pb::IMessage<CreateStatementRequest> {
     private static readonly pb::MessageParser<CreateStatementRequest> _parser = new pb::MessageParser<CreateStatementRequest>(() => new CreateStatementRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<CreateStatementRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[10]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[10]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CreateStatementRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CreateStatementRequest(CreateStatementRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CreateStatementRequest Clone() {
       return new CreateStatementRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CreateStatementRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(CreateStatementRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1656,16 +1894,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1673,6 +1914,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1681,6 +1923,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(CreateStatementRequest other) {
       if (other == null) {
         return;
@@ -1690,6 +1933,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1707,45 +1951,57 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#closeStatement(Meta.StatementHandle)
+  /// </summary>
   public sealed partial class CloseStatementRequest : pb::IMessage<CloseStatementRequest> {
     private static readonly pb::MessageParser<CloseStatementRequest> _parser = new pb::MessageParser<CloseStatementRequest>(() => new CloseStatementRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<CloseStatementRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[11]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[11]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseStatementRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseStatementRequest(CloseStatementRequest other) : this() {
       connectionId_ = other.connectionId_;
       statementId_ = other.statementId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseStatementRequest Clone() {
       return new CloseStatementRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 2;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -1753,10 +2009,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CloseStatementRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(CloseStatementRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1769,6 +2027,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -1776,10 +2035,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1791,6 +2052,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1802,6 +2064,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(CloseStatementRequest other) {
       if (other == null) {
         return;
@@ -1814,6 +2077,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1835,47 +2099,59 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#openConnection(Meta.ConnectionHandle, Map&lt;String, String>)
+  /// </summary>
   public sealed partial class OpenConnectionRequest : pb::IMessage<OpenConnectionRequest> {
     private static readonly pb::MessageParser<OpenConnectionRequest> _parser = new pb::MessageParser<OpenConnectionRequest>(() => new OpenConnectionRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<OpenConnectionRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[12]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[12]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public OpenConnectionRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public OpenConnectionRequest(OpenConnectionRequest other) : this() {
       connectionId_ = other.connectionId_;
       info_ = other.info_.Clone();
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public OpenConnectionRequest Clone() {
       return new OpenConnectionRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "info" field.</summary>
     public const int InfoFieldNumber = 2;
     private static readonly pbc::MapField<string, string>.Codec _map_info_codec
         = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 18);
     private pbc::MapField<string, string> info_ = new pbc::MapField<string, string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::MapField<string, string> Info {
       get { return info_; }
       set {
@@ -1883,10 +2159,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as OpenConnectionRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(OpenConnectionRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -1899,6 +2177,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -1906,10 +2185,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -1918,6 +2199,7 @@ namespace Apache.Phoenix {
       info_.WriteTo(output, _map_info_codec);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -1927,6 +2209,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(OpenConnectionRequest other) {
       if (other == null) {
         return;
@@ -1937,6 +2220,7 @@ namespace Apache.Phoenix {
       info_.Add(other.info_);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -1958,46 +2242,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#closeConnection(Meta.ConnectionHandle)
+  /// </summary>
   public sealed partial class CloseConnectionRequest : pb::IMessage<CloseConnectionRequest> {
     private static readonly pb::MessageParser<CloseConnectionRequest> _parser = new pb::MessageParser<CloseConnectionRequest>(() => new CloseConnectionRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<CloseConnectionRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[13]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[13]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseConnectionRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseConnectionRequest(CloseConnectionRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloseConnectionRequest Clone() {
       return new CloseConnectionRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CloseConnectionRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(CloseConnectionRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2009,16 +2305,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2026,6 +2325,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2034,6 +2334,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(CloseConnectionRequest other) {
       if (other == null) {
         return;
@@ -2043,6 +2344,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2060,45 +2362,54 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class ConnectionSyncRequest : pb::IMessage<ConnectionSyncRequest> {
     private static readonly pb::MessageParser<ConnectionSyncRequest> _parser = new pb::MessageParser<ConnectionSyncRequest>(() => new ConnectionSyncRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ConnectionSyncRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[14]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[14]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ConnectionSyncRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ConnectionSyncRequest(ConnectionSyncRequest other) : this() {
       connectionId_ = other.connectionId_;
       ConnProps = other.connProps_ != null ? other.ConnProps.Clone() : null;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ConnectionSyncRequest Clone() {
       return new ConnectionSyncRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "conn_props" field.</summary>
     public const int ConnPropsFieldNumber = 2;
     private global::Apache.Phoenix.ConnectionProperties connProps_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Apache.Phoenix.ConnectionProperties ConnProps {
       get { return connProps_; }
       set {
@@ -2106,10 +2417,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ConnectionSyncRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(ConnectionSyncRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2122,6 +2435,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -2129,10 +2443,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2144,6 +2460,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2155,6 +2472,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(ConnectionSyncRequest other) {
       if (other == null) {
         return;
@@ -2170,6 +2488,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2194,25 +2513,32 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request for Meta#execute(Meta.ConnectionHandle, list, long)
+  /// </summary>
   public sealed partial class ExecuteRequest : pb::IMessage<ExecuteRequest> {
     private static readonly pb::MessageParser<ExecuteRequest> _parser = new pb::MessageParser<ExecuteRequest>(() => new ExecuteRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ExecuteRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[15]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[15]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteRequest(ExecuteRequest other) : this() {
       StatementHandle = other.statementHandle_ != null ? other.StatementHandle.Clone() : null;
       parameterValues_ = other.parameterValues_.Clone();
@@ -2220,12 +2546,15 @@ namespace Apache.Phoenix {
       hasParameterValues_ = other.hasParameterValues_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteRequest Clone() {
       return new ExecuteRequest(this);
     }
 
+    /// <summary>Field number for the "statementHandle" field.</summary>
     public const int StatementHandleFieldNumber = 1;
     private global::Apache.Phoenix.StatementHandle statementHandle_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Apache.Phoenix.StatementHandle StatementHandle {
       get { return statementHandle_; }
       set {
@@ -2233,10 +2562,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "parameter_values" field.</summary>
     public const int ParameterValuesFieldNumber = 2;
     private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_parameterValues_codec
         = pb::FieldCodec.ForMessage(18, global::Apache.Phoenix.TypedValue.Parser);
     private pbc::RepeatedField<global::Apache.Phoenix.TypedValue> parameterValues_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ParameterValues {
       get { return parameterValues_; }
       set {
@@ -2244,8 +2575,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "max_row_count" field.</summary>
     public const int MaxRowCountFieldNumber = 3;
     private ulong maxRowCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong MaxRowCount {
       get { return maxRowCount_; }
       set {
@@ -2253,8 +2586,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "has_parameter_values" field.</summary>
     public const int HasParameterValuesFieldNumber = 4;
     private bool hasParameterValues_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool HasParameterValues {
       get { return hasParameterValues_; }
       set {
@@ -2262,10 +2597,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ExecuteRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(ExecuteRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2280,6 +2617,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (statementHandle_ != null) hash ^= StatementHandle.GetHashCode();
@@ -2289,10 +2627,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (statementHandle_ != null) {
         output.WriteRawTag(10);
@@ -2309,6 +2649,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (statementHandle_ != null) {
@@ -2324,6 +2665,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(ExecuteRequest other) {
       if (other == null) {
         return;
@@ -2343,6 +2685,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2375,25 +2718,29 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class SyncResultsRequest : pb::IMessage<SyncResultsRequest> {
     private static readonly pb::MessageParser<SyncResultsRequest> _parser = new pb::MessageParser<SyncResultsRequest>(() => new SyncResultsRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SyncResultsRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[16]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[16]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SyncResultsRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SyncResultsRequest(SyncResultsRequest other) : this() {
       connectionId_ = other.connectionId_;
       statementId_ = other.statementId_;
@@ -2401,21 +2748,26 @@ namespace Apache.Phoenix {
       offset_ = other.offset_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SyncResultsRequest Clone() {
       return new SyncResultsRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 2;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -2423,8 +2775,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "state" field.</summary>
     public const int StateFieldNumber = 3;
     private global::Apache.Phoenix.QueryState state_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Apache.Phoenix.QueryState State {
       get { return state_; }
       set {
@@ -2432,8 +2786,10 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "offset" field.</summary>
     public const int OffsetFieldNumber = 4;
     private ulong offset_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong Offset {
       get { return offset_; }
       set {
@@ -2441,10 +2797,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SyncResultsRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(SyncResultsRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2459,6 +2817,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -2468,10 +2827,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2491,6 +2852,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2508,6 +2870,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(SyncResultsRequest other) {
       if (other == null) {
         return;
@@ -2529,6 +2892,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2561,46 +2925,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request to invoke a commit on a Connection
+  /// </summary>
   public sealed partial class CommitRequest : pb::IMessage<CommitRequest> {
     private static readonly pb::MessageParser<CommitRequest> _parser = new pb::MessageParser<CommitRequest>(() => new CommitRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<CommitRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[17]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[17]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CommitRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CommitRequest(CommitRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CommitRequest Clone() {
       return new CommitRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CommitRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(CommitRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2612,16 +2988,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2629,6 +3008,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2637,6 +3017,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(CommitRequest other) {
       if (other == null) {
         return;
@@ -2646,6 +3027,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2663,46 +3045,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request to invoke rollback on a Connection
+  /// </summary>
   public sealed partial class RollbackRequest : pb::IMessage<RollbackRequest> {
     private static readonly pb::MessageParser<RollbackRequest> _parser = new pb::MessageParser<RollbackRequest>(() => new RollbackRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<RollbackRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[18]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[18]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RollbackRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RollbackRequest(RollbackRequest other) : this() {
       connectionId_ = other.connectionId_;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RollbackRequest Clone() {
       return new RollbackRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as RollbackRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(RollbackRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2714,16 +3108,19 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2731,6 +3128,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2739,6 +3137,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(RollbackRequest other) {
       if (other == null) {
         return;
@@ -2748,6 +3147,7 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2765,46 +3165,58 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Request to prepare and execute a collection of sql statements.
+  /// </summary>
   public sealed partial class PrepareAndExecuteBatchRequest : pb::IMessage<PrepareAndExecuteBatchRequest> {
     private static readonly pb::MessageParser<PrepareAndExecuteBatchRequest> _parser = new pb::MessageParser<PrepareAndExecuteBatchRequest>(() => new PrepareAndExecuteBatchRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<PrepareAndExecuteBatchRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[19]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[19]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteBatchRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteBatchRequest(PrepareAndExecuteBatchRequest other) : this() {
       connectionId_ = other.connectionId_;
       statementId_ = other.statementId_;
       sqlCommands_ = other.sqlCommands_.Clone();
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PrepareAndExecuteBatchRequest Clone() {
       return new PrepareAndExecuteBatchRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 2;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -2812,21 +3224,26 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "sql_commands" field.</summary>
     public const int SqlCommandsFieldNumber = 3;
     private static readonly pb::FieldCodec<string> _repeated_sqlCommands_codec
         = pb::FieldCodec.ForString(26);
     private pbc::RepeatedField<string> sqlCommands_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> SqlCommands {
       get { return sqlCommands_; }
-      set {
+      set
+      {
         sqlCommands_ = value;
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PrepareAndExecuteBatchRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(PrepareAndExecuteBatchRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2840,6 +3257,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -2848,10 +3266,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -2864,6 +3284,7 @@ namespace Apache.Phoenix {
       sqlCommands_.WriteTo(output, _repeated_sqlCommands_codec);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -2876,6 +3297,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(PrepareAndExecuteBatchRequest other) {
       if (other == null) {
         return;
@@ -2889,6 +3311,7 @@ namespace Apache.Phoenix {
       sqlCommands_.Add(other.sqlCommands_);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -2914,48 +3337,61 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  /// <summary>
+  ///  Each command is a list of TypedValues
+  /// </summary>
   public sealed partial class UpdateBatch : pb::IMessage<UpdateBatch> {
     private static readonly pb::MessageParser<UpdateBatch> _parser = new pb::MessageParser<UpdateBatch>(() => new UpdateBatch());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<UpdateBatch> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[20]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[20]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpdateBatch() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpdateBatch(UpdateBatch other) : this() {
       parameterValues_ = other.parameterValues_.Clone();
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpdateBatch Clone() {
       return new UpdateBatch(this);
     }
 
+    /// <summary>Field number for the "parameter_values" field.</summary>
     public const int ParameterValuesFieldNumber = 1;
     private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_parameterValues_codec
         = pb::FieldCodec.ForMessage(10, global::Apache.Phoenix.TypedValue.Parser);
     private pbc::RepeatedField<global::Apache.Phoenix.TypedValue> parameterValues_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ParameterValues {
       get { return parameterValues_; }
-      set {
+      set
+      {
         parameterValues_ = value;
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as UpdateBatch);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(UpdateBatch other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -2967,26 +3403,31 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       hash ^= parameterValues_.GetHashCode();
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       parameterValues_.WriteTo(output, _repeated_parameterValues_codec);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       size += parameterValues_.CalculateSize(_repeated_parameterValues_codec);
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(UpdateBatch other) {
       if (other == null) {
         return;
@@ -2994,6 +3435,7 @@ namespace Apache.Phoenix {
       parameterValues_.Add(other.parameterValues_);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
@@ -3011,46 +3453,55 @@ namespace Apache.Phoenix {
 
   }
 
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class ExecuteBatchRequest : pb::IMessage<ExecuteBatchRequest> {
     private static readonly pb::MessageParser<ExecuteBatchRequest> _parser = new pb::MessageParser<ExecuteBatchRequest>(() => new ExecuteBatchRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ExecuteBatchRequest> Parser { get { return _parser; } }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Apache.Phoenix.Requests.Descriptor.MessageTypes[21]; }
+      get { return global::Apache.Phoenix.RequestsReflection.Descriptor.MessageTypes[21]; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteBatchRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteBatchRequest(ExecuteBatchRequest other) : this() {
       connectionId_ = other.connectionId_;
       statementId_ = other.statementId_;
       updates_ = other.updates_.Clone();
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ExecuteBatchRequest Clone() {
       return new ExecuteBatchRequest(this);
     }
 
+    /// <summary>Field number for the "connection_id" field.</summary>
     public const int ConnectionIdFieldNumber = 1;
     private string connectionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ConnectionId {
       get { return connectionId_; }
       set {
-        connectionId_ = pb::Preconditions.CheckNotNull(value, "value");
+        connectionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "statement_id" field.</summary>
     public const int StatementIdFieldNumber = 2;
     private uint statementId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint StatementId {
       get { return statementId_; }
       set {
@@ -3058,10 +3509,15 @@ namespace Apache.Phoenix {
       }
     }
 
+    /// <summary>Field number for the "updates" field.</summary>
     public const int UpdatesFieldNumber = 3;
     private static readonly pb::FieldCodec<global::Apache.Phoenix.UpdateBatch> _repeated_updates_codec
         = pb::FieldCodec.ForMessage(26, global::Apache.Phoenix.UpdateBatch.Parser);
     private pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch> updates_ = new pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch>();
+    /// <summary>
+    ///  A batch of updates is a list&lt;list&lt;typevalue>>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Apache.Phoenix.UpdateBatch> Updates {
       get { return updates_; }
       set {
@@ -3069,10 +3525,12 @@ namespace Apache.Phoenix {
       }
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ExecuteBatchRequest);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(ExecuteBatchRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
@@ -3086,6 +3544,7 @@ namespace Apache.Phoenix {
       return true;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
@@ -3094,10 +3553,12 @@ namespace Apache.Phoenix {
       return hash;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
-      return pb::JsonFormatter.Default.Format(this);
+      return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (ConnectionId.Length != 0) {
         output.WriteRawTag(10);
@@ -3110,6 +3571,7 @@ namespace Apache.Phoenix {
       updates_.WriteTo(output, _repeated_updates_codec);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       if (ConnectionId.Length != 0) {
@@ -3122,6 +3584,7 @@ namespace Apache.Phoenix {
       return size;
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(ExecuteBatchRequest other) {
       if (other == null) {
         return;
@@ -3135,6 +3598,7 @@ namespace Apache.Phoenix {
       updates_.Add(other.updates_);
     }
 
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
