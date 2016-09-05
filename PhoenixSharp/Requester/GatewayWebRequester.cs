@@ -19,8 +19,10 @@ namespace PhoenixSharp.Requester
     using System.Diagnostics;
     using System.IO;
     using System.Net;
+    using System.Threading;
     using System.Threading.Tasks;
     using PhoenixSharp.Interfaces;
+    using PhoenixSharp.Internal.Helpers;
 
     /// <summary>
     /// 
@@ -83,35 +85,79 @@ namespace PhoenixSharp.Requester
                 }
             }
 
+            long remainingTime = options.TimeoutMillis;
+
             if (input != null)
             {
-                // seek to the beginning, so we copy everything in this buffer
-                input.Seek(0, SeekOrigin.Begin);
-                using (Stream req = httpWebRequest.GetRequestStream())
+                // expecting the caller to seek to the beginning or to the location where it needs to be copied from
+                Stream req = null;
+                try
                 {
-                    await input.CopyToAsync(req);
+                    req = await httpWebRequest.GetRequestStreamAsync().WithTimeout(
+                                                TimeSpan.FromMilliseconds(remainingTime),
+                                                "Waiting for RequestStream");
+
+                    remainingTime = options.TimeoutMillis - watch.ElapsedMilliseconds;
+                    if (remainingTime <= 0)
+                    {
+                        remainingTime = 0;
+                    }
+
+                    await input.CopyToAsync(req).WithTimeout(
+                                TimeSpan.FromMilliseconds(remainingTime),
+                                "Waiting for CopyToAsync",
+                                CancellationToken.None);
+                }
+                catch (TimeoutException)
+                {
+                    httpWebRequest.Abort();
+                    throw;
+                }
+                finally
+                {
+                    if (req != null)
+                    {
+                        req.Close();
+                    }
                 }
             }
 
             try
             {
-                var response = (await httpWebRequest.GetResponseAsync()) as HttpWebResponse;
+                remainingTime = options.TimeoutMillis - watch.ElapsedMilliseconds;
+                if (remainingTime <= 0)
+                {
+                    remainingTime = 0;
+                }
+
+                HttpWebResponse response = (HttpWebResponse)await httpWebRequest.GetResponseAsync().WithTimeout(
+                                                                TimeSpan.FromMilliseconds(remainingTime),
+                                                                "Waiting for GetResponseAsync");
                 return new Response()
                 {
                     WebResponse = response,
                     RequestLatency = watch.Elapsed
                 };
             }
-            catch (WebException we)
+            catch (Exception ex)
             {
-                var resp = we.Response as HttpWebResponse;
-                return new Response()
+                if (ex is WebException)
                 {
-                    WebResponse = resp,
-                    RequestLatency = watch.Elapsed
-                };
+                    WebException we = (WebException)ex;
+                    var resp = we.Response as HttpWebResponse;
+                    return new Response()
+                    {
+                        WebResponse = resp,
+                        RequestLatency = watch.Elapsed
+                    };
+                }
+                else
+                {
+                    httpWebRequest.Abort();
+                    throw;
+                }
             }
-}
+        }
 
         private void InitCache()
         {
