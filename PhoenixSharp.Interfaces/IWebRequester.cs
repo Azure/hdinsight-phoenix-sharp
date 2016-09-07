@@ -37,8 +37,7 @@ namespace PhoenixSharp.Interfaces
             {
                 PostRequestAction(this);
             }
-
-            if (null != WebResponse)
+            if (WebResponse != null)
             {
                 WebResponse.Dispose();
             }
