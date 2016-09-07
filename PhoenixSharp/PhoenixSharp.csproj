@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ClusterCredentials.cs" />
     <Compile Include="Internal\Extensions\StringExtensions.cs" />
+    <Compile Include="Internal\Helpers\TaskHelpers.cs" />
     <Compile Include="PhoenixClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requester\GatewayWebRequester.cs" />
