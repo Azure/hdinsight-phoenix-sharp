@@ -10,7 +10,7 @@ This is C# client library for Phoenix Query Server on Azure HDInsight. It curren
 ### Build
 Import the solution file into VS2013 and compile. Retrieve the resulting *.dll files.
 
-Here is the [nuget package](https://www.nuget.org/packages/Microsoft.Phoenix.Client/1.0.0-preview)
+Here is the [nuget package](https://www.nuget.org/packages/Microsoft.Phoenix.Client/1.1.0)
 
 More examples about how to use the SDK will be published on Azure websites soon. 
 
