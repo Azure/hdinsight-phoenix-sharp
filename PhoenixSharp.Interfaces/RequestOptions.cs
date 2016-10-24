@@ -16,7 +16,6 @@
 namespace PhoenixSharp.Interfaces
 {
     using System.Collections.Generic;
-    using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 
     public class RequestOptions
     {
