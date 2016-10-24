@@ -56,54 +56,56 @@ namespace Apache.Phoenix {
             "GAIgASgIEhIKBHJvd3MYAyADKAsyBC5Sb3ciIgoDUm93EhsKBXZhbHVlGAEg",
             "AygLMgwuQ29sdW1uVmFsdWUiMwoQRGF0YWJhc2VQcm9wZXJ0eRIMCgRuYW1l",
             "GAEgASgJEhEKCWZ1bmN0aW9ucxgCIAMoCSI0CgtXaXJlTWVzc2FnZRIMCgRu",
-            "YW1lGAEgASgJEhcKD3dyYXBwZWRfbWVzc2FnZRgCIAEoDCIpCgtDb2x1bW5W",
-            "YWx1ZRIaCgV2YWx1ZRgBIAMoCzILLlR5cGVkVmFsdWUimgEKClR5cGVkVmFs",
-            "dWUSEgoEdHlwZRgBIAEoDjIELlJlcBISCgpib29sX3ZhbHVlGAIgASgIEhQK",
-            "DHN0cmluZ192YWx1ZRgDIAEoCRIUCgxudW1iZXJfdmFsdWUYBCABKBISFAoM",
-            "Ynl0ZXNfdmFsdWVzGAUgASgMEhQKDGRvdWJsZV92YWx1ZRgGIAEoARIMCgRu",
-            "dWxsGAcgASgIIqYCChlNZXRhRGF0YU9wZXJhdGlvbkFyZ3VtZW50EhQKDHN0",
-            "cmluZ192YWx1ZRgBIAEoCRISCgpib29sX3ZhbHVlGAIgASgIEhEKCWludF92",
-            "YWx1ZRgDIAEoERIbChNzdHJpbmdfYXJyYXlfdmFsdWVzGAQgAygJEhgKEGlu",
-            "dF9hcnJheV92YWx1ZXMYBSADKBESNQoEdHlwZRgGIAEoDjInLk1ldGFEYXRh",
-            "T3BlcmF0aW9uQXJndW1lbnQuQXJndW1lbnRUeXBlIl4KDEFyZ3VtZW50VHlw",
-            "ZRIKCgZTVFJJTkcQABIICgRCT09MEAESBwoDSU5UEAISEwoPUkVQRUFURURf",
-            "U1RSSU5HEAMSEAoMUkVQRUFURURfSU5UEAQSCAoETlVMTBAFIrABCgpRdWVy",
-            "eVN0YXRlEhgKBHR5cGUYASABKA4yCi5TdGF0ZVR5cGUSCwoDc3FsGAIgASgJ",
-            "Eh4KAm9wGAMgASgOMhIuTWV0YURhdGFPcGVyYXRpb24SKAoEYXJncxgEIAMo",
-            "CzIaLk1ldGFEYXRhT3BlcmF0aW9uQXJndW1lbnQSEAoIaGFzX2FyZ3MYBSAB",
-            "KAgSDwoHaGFzX3NxbBgGIAEoCBIOCgZoYXNfb3AYByABKAgqnwEKDVN0YXRl",
-            "bWVudFR5cGUSCgoGU0VMRUNUEAASCgoGSU5TRVJUEAESCgoGVVBEQVRFEAIS",
-            "CgoGREVMRVRFEAMSCgoGVVBTRVJUEAQSCQoFTUVSR0UQBRINCglPVEhFUl9E",
-            "TUwQBhIKCgZDUkVBVEUQBxIICgREUk9QEAgSCQoFQUxURVIQCRINCglPVEhF",
-            "Ul9EREwQChIICgRDQUxMEAsq4gMKA1JlcBIVChFQUklNSVRJVkVfQk9PTEVB",
-            "ThAAEhIKDlBSSU1JVElWRV9CWVRFEAESEgoOUFJJTUlUSVZFX0NIQVIQAhIT",
-            "Cg9QUklNSVRJVkVfU0hPUlQQAxIRCg1QUklNSVRJVkVfSU5UEAQSEgoOUFJJ",
-            "TUlUSVZFX0xPTkcQBRITCg9QUklNSVRJVkVfRkxPQVQQBhIUChBQUklNSVRJ",
-            "VkVfRE9VQkxFEAcSCwoHQk9PTEVBThAIEggKBEJZVEUQCRINCglDSEFSQUNU",
-            "RVIQChIJCgVTSE9SVBALEgsKB0lOVEVHRVIQDBIICgRMT05HEA0SCQoFRkxP",
-            "QVQQDhIKCgZET1VCTEUQDxIPCgtCSUdfSU5URUdFUhAZEg8KC0JJR19ERUNJ",
-            "TUFMEBoSEQoNSkFWQV9TUUxfVElNRRAQEhYKEkpBVkFfU1FMX1RJTUVTVEFN",
-            "UBAREhEKDUpBVkFfU1FMX0RBVEUQEhISCg5KQVZBX1VUSUxfREFURRATEg8K",
-            "C0JZVEVfU1RSSU5HEBQSCgoGU1RSSU5HEBUSCgoGTlVNQkVSEBYSCgoGT0JK",
-            "RUNUEBcSCAoETlVMTBAYEgkKBUFSUkFZEBsSCgoGU1RSVUNUEBwSDAoITVVM",
-            "VElTRVQQHSpeCghTZXZlcml0eRIUChBVTktOT1dOX1NFVkVSSVRZEAASEgoO",
-            "RkFUQUxfU0VWRVJJVFkQARISCg5FUlJPUl9TRVZFUklUWRACEhQKEFdBUk5J",
-            "TkdfU0VWRVJJVFkQAyrXBAoRTWV0YURhdGFPcGVyYXRpb24SEgoOR0VUX0FU",
-            "VFJJQlVURVMQABIbChdHRVRfQkVTVF9ST1dfSURFTlRJRklFUhABEhAKDEdF",
-            "VF9DQVRBTE9HUxACEh4KGkdFVF9DTElFTlRfSU5GT19QUk9QRVJUSUVTEAMS",
-            "GQoVR0VUX0NPTFVNTl9QUklWSUxFR0VTEAQSDwoLR0VUX0NPTFVNTlMQBRIX",
-            "ChNHRVRfQ1JPU1NfUkVGRVJFTkNFEAYSFQoRR0VUX0VYUE9SVEVEX0tFWVMQ",
-            "BxIYChRHRVRfRlVOQ1RJT05fQ09MVU1OUxAIEhEKDUdFVF9GVU5DVElPTlMQ",
-            "CRIVChFHRVRfSU1QT1JURURfS0VZUxAKEhIKDkdFVF9JTkRFWF9JTkZPEAsS",
-            "FAoQR0VUX1BSSU1BUllfS0VZUxAMEhkKFUdFVF9QUk9DRURVUkVfQ09MVU1O",
-            "UxANEhIKDkdFVF9QUk9DRURVUkVTEA4SFgoSR0VUX1BTRVVET19DT0xVTU5T",
-            "EA8SDwoLR0VUX1NDSEVNQVMQEBIZChVHRVRfU0NIRU1BU19XSVRIX0FSR1MQ",
-            "ERIUChBHRVRfU1VQRVJfVEFCTEVTEBISEwoPR0VUX1NVUEVSX1RZUEVTEBMS",
-            "GAoUR0VUX1RBQkxFX1BSSVZJTEVHRVMQFBIOCgpHRVRfVEFCTEVTEBUSEwoP",
-            "R0VUX1RBQkxFX1RZUEVTEBYSEQoNR0VUX1RZUEVfSU5GTxAXEgwKCEdFVF9V",
-            "RFRTEBgSFwoTR0VUX1ZFUlNJT05fQ09MVU1OUxAZKiIKCVN0YXRlVHlwZRIH",
-            "CgNTUUwQABIMCghNRVRBREFUQRABQhGqAg5BcGFjaGUuUGhvZW5peGIGcHJv",
-            "dG8z"));
+            "YW1lGAEgASgJEhcKD3dyYXBwZWRfbWVzc2FnZRgCIAEoDCKHAQoLQ29sdW1u",
+            "VmFsdWUSGgoFdmFsdWUYASADKAsyCy5UeXBlZFZhbHVlEiAKC2FycmF5X3Zh",
+            "bHVlGAIgAygLMgsuVHlwZWRWYWx1ZRIXCg9oYXNfYXJyYXlfdmFsdWUYAyAB",
+            "KAgSIQoMc2NhbGFyX3ZhbHVlGAQgASgLMgsuVHlwZWRWYWx1ZSKZAQoKVHlw",
+            "ZWRWYWx1ZRISCgR0eXBlGAEgASgOMgQuUmVwEhIKCmJvb2xfdmFsdWUYAiAB",
+            "KAgSFAoMc3RyaW5nX3ZhbHVlGAMgASgJEhQKDG51bWJlcl92YWx1ZRgEIAEo",
+            "EhITCgtieXRlc192YWx1ZRgFIAEoDBIUCgxkb3VibGVfdmFsdWUYBiABKAES",
+            "DAoEbnVsbBgHIAEoCCKmAgoZTWV0YURhdGFPcGVyYXRpb25Bcmd1bWVudBIU",
+            "CgxzdHJpbmdfdmFsdWUYASABKAkSEgoKYm9vbF92YWx1ZRgCIAEoCBIRCglp",
+            "bnRfdmFsdWUYAyABKBESGwoTc3RyaW5nX2FycmF5X3ZhbHVlcxgEIAMoCRIY",
+            "ChBpbnRfYXJyYXlfdmFsdWVzGAUgAygREjUKBHR5cGUYBiABKA4yJy5NZXRh",
+            "RGF0YU9wZXJhdGlvbkFyZ3VtZW50LkFyZ3VtZW50VHlwZSJeCgxBcmd1bWVu",
+            "dFR5cGUSCgoGU1RSSU5HEAASCAoEQk9PTBABEgcKA0lOVBACEhMKD1JFUEVB",
+            "VEVEX1NUUklORxADEhAKDFJFUEVBVEVEX0lOVBAEEggKBE5VTEwQBSKwAQoK",
+            "UXVlcnlTdGF0ZRIYCgR0eXBlGAEgASgOMgouU3RhdGVUeXBlEgsKA3NxbBgC",
+            "IAEoCRIeCgJvcBgDIAEoDjISLk1ldGFEYXRhT3BlcmF0aW9uEigKBGFyZ3MY",
+            "BCADKAsyGi5NZXRhRGF0YU9wZXJhdGlvbkFyZ3VtZW50EhAKCGhhc19hcmdz",
+            "GAUgASgIEg8KB2hhc19zcWwYBiABKAgSDgoGaGFzX29wGAcgASgIKp8BCg1T",
+            "dGF0ZW1lbnRUeXBlEgoKBlNFTEVDVBAAEgoKBklOU0VSVBABEgoKBlVQREFU",
+            "RRACEgoKBkRFTEVURRADEgoKBlVQU0VSVBAEEgkKBU1FUkdFEAUSDQoJT1RI",
+            "RVJfRE1MEAYSCgoGQ1JFQVRFEAcSCAoERFJPUBAIEgkKBUFMVEVSEAkSDQoJ",
+            "T1RIRVJfRERMEAoSCAoEQ0FMTBALKuIDCgNSZXASFQoRUFJJTUlUSVZFX0JP",
+            "T0xFQU4QABISCg5QUklNSVRJVkVfQllURRABEhIKDlBSSU1JVElWRV9DSEFS",
+            "EAISEwoPUFJJTUlUSVZFX1NIT1JUEAMSEQoNUFJJTUlUSVZFX0lOVBAEEhIK",
+            "DlBSSU1JVElWRV9MT05HEAUSEwoPUFJJTUlUSVZFX0ZMT0FUEAYSFAoQUFJJ",
+            "TUlUSVZFX0RPVUJMRRAHEgsKB0JPT0xFQU4QCBIICgRCWVRFEAkSDQoJQ0hB",
+            "UkFDVEVSEAoSCQoFU0hPUlQQCxILCgdJTlRFR0VSEAwSCAoETE9ORxANEgkK",
+            "BUZMT0FUEA4SCgoGRE9VQkxFEA8SDwoLQklHX0lOVEVHRVIQGRIPCgtCSUdf",
+            "REVDSU1BTBAaEhEKDUpBVkFfU1FMX1RJTUUQEBIWChJKQVZBX1NRTF9USU1F",
+            "U1RBTVAQERIRCg1KQVZBX1NRTF9EQVRFEBISEgoOSkFWQV9VVElMX0RBVEUQ",
+            "ExIPCgtCWVRFX1NUUklORxAUEgoKBlNUUklORxAVEgoKBk5VTUJFUhAWEgoK",
+            "Bk9CSkVDVBAXEggKBE5VTEwQGBIJCgVBUlJBWRAbEgoKBlNUUlVDVBAcEgwK",
+            "CE1VTFRJU0VUEB0qXgoIU2V2ZXJpdHkSFAoQVU5LTk9XTl9TRVZFUklUWRAA",
+            "EhIKDkZBVEFMX1NFVkVSSVRZEAESEgoORVJST1JfU0VWRVJJVFkQAhIUChBX",
+            "QVJOSU5HX1NFVkVSSVRZEAMq1wQKEU1ldGFEYXRhT3BlcmF0aW9uEhIKDkdF",
+            "VF9BVFRSSUJVVEVTEAASGwoXR0VUX0JFU1RfUk9XX0lERU5USUZJRVIQARIQ",
+            "CgxHRVRfQ0FUQUxPR1MQAhIeChpHRVRfQ0xJRU5UX0lORk9fUFJPUEVSVElF",
+            "UxADEhkKFUdFVF9DT0xVTU5fUFJJVklMRUdFUxAEEg8KC0dFVF9DT0xVTU5T",
+            "EAUSFwoTR0VUX0NST1NTX1JFRkVSRU5DRRAGEhUKEUdFVF9FWFBPUlRFRF9L",
+            "RVlTEAcSGAoUR0VUX0ZVTkNUSU9OX0NPTFVNTlMQCBIRCg1HRVRfRlVOQ1RJ",
+            "T05TEAkSFQoRR0VUX0lNUE9SVEVEX0tFWVMQChISCg5HRVRfSU5ERVhfSU5G",
+            "TxALEhQKEEdFVF9QUklNQVJZX0tFWVMQDBIZChVHRVRfUFJPQ0VEVVJFX0NP",
+            "TFVNTlMQDRISCg5HRVRfUFJPQ0VEVVJFUxAOEhYKEkdFVF9QU0VVRE9fQ09M",
+            "VU1OUxAPEg8KC0dFVF9TQ0hFTUFTEBASGQoVR0VUX1NDSEVNQVNfV0lUSF9B",
+            "UkdTEBESFAoQR0VUX1NVUEVSX1RBQkxFUxASEhMKD0dFVF9TVVBFUl9UWVBF",
+            "UxATEhgKFEdFVF9UQUJMRV9QUklWSUxFR0VTEBQSDgoKR0VUX1RBQkxFUxAV",
+            "EhMKD0dFVF9UQUJMRV9UWVBFUxAWEhEKDUdFVF9UWVBFX0lORk8QFxIMCghH",
+            "RVRfVURUUxAYEhcKE0dFVF9WRVJTSU9OX0NPTFVNTlMQGSoiCglTdGF0ZVR5",
+            "cGUSBwoDU1FMEAASDAoITUVUQURBVEEQAUIRqgIOQXBhY2hlLlBob2VuaXhi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Apache.Phoenix.StatementType), typeof(global::Apache.Phoenix.Rep), typeof(global::Apache.Phoenix.Severity), typeof(global::Apache.Phoenix.MetaDataOperation), typeof(global::Apache.Phoenix.StateType), }, new pbr::GeneratedClrTypeInfo[] {
@@ -118,8 +120,8 @@ namespace Apache.Phoenix {
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.Row), global::Apache.Phoenix.Row.Parser, new[]{ "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.DatabaseProperty), global::Apache.Phoenix.DatabaseProperty.Parser, new[]{ "Name", "Functions" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.WireMessage), global::Apache.Phoenix.WireMessage.Parser, new[]{ "Name", "WrappedMessage" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ColumnValue), global::Apache.Phoenix.ColumnValue.Parser, new[]{ "Value" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TypedValue), global::Apache.Phoenix.TypedValue.Parser, new[]{ "Type", "BoolValue", "StringValue", "NumberValue", "BytesValues", "DoubleValue", "Null" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ColumnValue), global::Apache.Phoenix.ColumnValue.Parser, new[]{ "Value", "ArrayValue", "HasArrayValue", "ScalarValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TypedValue), global::Apache.Phoenix.TypedValue.Parser, new[]{ "Type", "BoolValue", "StringValue", "NumberValue", "BytesValue", "DoubleValue", "Null" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.MetaDataOperationArgument), global::Apache.Phoenix.MetaDataOperationArgument.Parser, new[]{ "StringValue", "BoolValue", "IntValue", "StringArrayValues", "IntArrayValues", "Type" }, null, new[]{ typeof(global::Apache.Phoenix.MetaDataOperationArgument.Types.ArgumentType) }, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.QueryState), global::Apache.Phoenix.QueryState.Parser, new[]{ "Type", "Sql", "Op", "Args", "HasArgs", "HasSql", "HasOp" }, null, null, null)
           }));
@@ -2915,6 +2917,9 @@ namespace Apache.Phoenix {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ColumnValue(ColumnValue other) : this() {
       value_ = other.value_.Clone();
+      arrayValue_ = other.arrayValue_.Clone();
+      hasArrayValue_ = other.hasArrayValue_;
+      ScalarValue = other.scalarValue_ != null ? other.ScalarValue.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2927,9 +2932,47 @@ namespace Apache.Phoenix {
     private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_value_codec
         = pb::FieldCodec.ForMessage(10, global::Apache.Phoenix.TypedValue.Parser);
     private readonly pbc::RepeatedField<global::Apache.Phoenix.TypedValue> value_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    /// <summary>
+    ///  deprecated, use array_value or scalar_value
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> Value {
       get { return value_; }
+    }
+
+    /// <summary>Field number for the "array_value" field.</summary>
+    public const int ArrayValueFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Apache.Phoenix.TypedValue> _repeated_arrayValue_codec
+        = pb::FieldCodec.ForMessage(18, global::Apache.Phoenix.TypedValue.Parser);
+    private readonly pbc::RepeatedField<global::Apache.Phoenix.TypedValue> arrayValue_ = new pbc::RepeatedField<global::Apache.Phoenix.TypedValue>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ArrayValue {
+      get { return arrayValue_; }
+    }
+
+    /// <summary>Field number for the "has_array_value" field.</summary>
+    public const int HasArrayValueFieldNumber = 3;
+    private bool hasArrayValue_;
+    /// <summary>
+    ///  Is an array value set?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool HasArrayValue {
+      get { return hasArrayValue_; }
+      set {
+        hasArrayValue_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "scalar_value" field.</summary>
+    public const int ScalarValueFieldNumber = 4;
+    private global::Apache.Phoenix.TypedValue scalarValue_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Apache.Phoenix.TypedValue ScalarValue {
+      get { return scalarValue_; }
+      set {
+        scalarValue_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2946,6 +2989,9 @@ namespace Apache.Phoenix {
         return true;
       }
       if(!value_.Equals(other.value_)) return false;
+      if(!arrayValue_.Equals(other.arrayValue_)) return false;
+      if (HasArrayValue != other.HasArrayValue) return false;
+      if (!object.Equals(ScalarValue, other.ScalarValue)) return false;
       return true;
     }
 
@@ -2953,6 +2999,9 @@ namespace Apache.Phoenix {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= value_.GetHashCode();
+      hash ^= arrayValue_.GetHashCode();
+      if (HasArrayValue != false) hash ^= HasArrayValue.GetHashCode();
+      if (scalarValue_ != null) hash ^= ScalarValue.GetHashCode();
       return hash;
     }
 
@@ -2964,12 +3013,28 @@ namespace Apache.Phoenix {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       value_.WriteTo(output, _repeated_value_codec);
+      arrayValue_.WriteTo(output, _repeated_arrayValue_codec);
+      if (HasArrayValue != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(HasArrayValue);
+      }
+      if (scalarValue_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ScalarValue);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       size += value_.CalculateSize(_repeated_value_codec);
+      size += arrayValue_.CalculateSize(_repeated_arrayValue_codec);
+      if (HasArrayValue != false) {
+        size += 1 + 1;
+      }
+      if (scalarValue_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ScalarValue);
+      }
       return size;
     }
 
@@ -2979,6 +3044,16 @@ namespace Apache.Phoenix {
         return;
       }
       value_.Add(other.value_);
+      arrayValue_.Add(other.arrayValue_);
+      if (other.HasArrayValue != false) {
+        HasArrayValue = other.HasArrayValue;
+      }
+      if (other.scalarValue_ != null) {
+        if (scalarValue_ == null) {
+          scalarValue_ = new global::Apache.Phoenix.TypedValue();
+        }
+        ScalarValue.MergeFrom(other.ScalarValue);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2991,6 +3066,21 @@ namespace Apache.Phoenix {
             break;
           case 10: {
             value_.AddEntriesFrom(input, _repeated_value_codec);
+            break;
+          }
+          case 18: {
+            arrayValue_.AddEntriesFrom(input, _repeated_arrayValue_codec);
+            break;
+          }
+          case 24: {
+            HasArrayValue = input.ReadBool();
+            break;
+          }
+          case 34: {
+            if (scalarValue_ == null) {
+              scalarValue_ = new global::Apache.Phoenix.TypedValue();
+            }
+            input.ReadMessage(scalarValue_);
             break;
           }
         }
@@ -3030,7 +3120,7 @@ namespace Apache.Phoenix {
       boolValue_ = other.boolValue_;
       stringValue_ = other.stringValue_;
       numberValue_ = other.numberValue_;
-      bytesValues_ = other.bytesValues_;
+      bytesValue_ = other.bytesValue_;
       doubleValue_ = other.doubleValue_;
       null_ = other.null_;
     }
@@ -3096,17 +3186,17 @@ namespace Apache.Phoenix {
       }
     }
 
-    /// <summary>Field number for the "bytes_values" field.</summary>
-    public const int BytesValuesFieldNumber = 5;
-    private pb::ByteString bytesValues_ = pb::ByteString.Empty;
+    /// <summary>Field number for the "bytes_value" field.</summary>
+    public const int BytesValueFieldNumber = 5;
+    private pb::ByteString bytesValue_ = pb::ByteString.Empty;
     /// <summary>
     ///  includes numeric types and date/time types.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString BytesValues {
-      get { return bytesValues_; }
+    public pb::ByteString BytesValue {
+      get { return bytesValue_; }
       set {
-        bytesValues_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        bytesValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -3155,7 +3245,7 @@ namespace Apache.Phoenix {
       if (BoolValue != other.BoolValue) return false;
       if (StringValue != other.StringValue) return false;
       if (NumberValue != other.NumberValue) return false;
-      if (BytesValues != other.BytesValues) return false;
+      if (BytesValue != other.BytesValue) return false;
       if (DoubleValue != other.DoubleValue) return false;
       if (Null != other.Null) return false;
       return true;
@@ -3168,7 +3258,7 @@ namespace Apache.Phoenix {
       if (BoolValue != false) hash ^= BoolValue.GetHashCode();
       if (StringValue.Length != 0) hash ^= StringValue.GetHashCode();
       if (NumberValue != 0L) hash ^= NumberValue.GetHashCode();
-      if (BytesValues.Length != 0) hash ^= BytesValues.GetHashCode();
+      if (BytesValue.Length != 0) hash ^= BytesValue.GetHashCode();
       if (DoubleValue != 0D) hash ^= DoubleValue.GetHashCode();
       if (Null != false) hash ^= Null.GetHashCode();
       return hash;
@@ -3197,9 +3287,9 @@ namespace Apache.Phoenix {
         output.WriteRawTag(32);
         output.WriteSInt64(NumberValue);
       }
-      if (BytesValues.Length != 0) {
+      if (BytesValue.Length != 0) {
         output.WriteRawTag(42);
-        output.WriteBytes(BytesValues);
+        output.WriteBytes(BytesValue);
       }
       if (DoubleValue != 0D) {
         output.WriteRawTag(49);
@@ -3226,8 +3316,8 @@ namespace Apache.Phoenix {
       if (NumberValue != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeSInt64Size(NumberValue);
       }
-      if (BytesValues.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(BytesValues);
+      if (BytesValue.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(BytesValue);
       }
       if (DoubleValue != 0D) {
         size += 1 + 8;
@@ -3255,8 +3345,8 @@ namespace Apache.Phoenix {
       if (other.NumberValue != 0L) {
         NumberValue = other.NumberValue;
       }
-      if (other.BytesValues.Length != 0) {
-        BytesValues = other.BytesValues;
+      if (other.BytesValue.Length != 0) {
+        BytesValue = other.BytesValue;
       }
       if (other.DoubleValue != 0D) {
         DoubleValue = other.DoubleValue;
@@ -3291,7 +3381,7 @@ namespace Apache.Phoenix {
             break;
           }
           case 42: {
-            BytesValues = input.ReadBytes();
+            BytesValue = input.ReadBytes();
             break;
           }
           case 49: {

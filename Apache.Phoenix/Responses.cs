@@ -58,7 +58,7 @@ namespace Apache.Phoenix {
             "ASABKAkiEAoOQ29tbWl0UmVzcG9uc2UiEgoQUm9sbGJhY2tSZXNwb25zZSKV",
             "AQoURXhlY3V0ZUJhdGNoUmVzcG9uc2USFQoNY29ubmVjdGlvbl9pZBgBIAEo",
             "CRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFQoNdXBkYXRlX2NvdW50cxgDIAMo",
-            "DRIZChFtaXNzaW5nX3N0YXRlbWVudBgEIAEoCBIeCghtZXRhZGF0YRgFIAEo",
+            "BBIZChFtaXNzaW5nX3N0YXRlbWVudBgEIAEoCBIeCghtZXRhZGF0YRgFIAEo",
             "CzIMLlJwY01ldGFkYXRhQhGqAg5BcGFjaGUuUGhvZW5peGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Apache.Phoenix.CommonReflection.Descriptor, },
@@ -2870,11 +2870,11 @@ namespace Apache.Phoenix {
 
     /// <summary>Field number for the "update_counts" field.</summary>
     public const int UpdateCountsFieldNumber = 3;
-    private static readonly pb::FieldCodec<uint> _repeated_updateCounts_codec
-        = pb::FieldCodec.ForUInt32(26);
-    private readonly pbc::RepeatedField<uint> updateCounts_ = new pbc::RepeatedField<uint>();
+    private static readonly pb::FieldCodec<ulong> _repeated_updateCounts_codec
+        = pb::FieldCodec.ForUInt64(26);
+    private readonly pbc::RepeatedField<ulong> updateCounts_ = new pbc::RepeatedField<ulong>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<uint> UpdateCounts {
+    public pbc::RepeatedField<ulong> UpdateCounts {
       get { return updateCounts_; }
     }
 

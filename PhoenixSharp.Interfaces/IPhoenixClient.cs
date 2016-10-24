@@ -21,7 +21,7 @@ namespace PhoenixSharp.Interfaces
 
     public interface IPhoenixClient
     {
-        Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options);
+        Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, uint statementId, long maxRowsTotal, int firstFrameMaxSize, RequestOptions options);
         Task<OpenConnectionResponse> OpenConnectionRequestAsync(string connectionId, pbc::MapField<string, string> info, RequestOptions options);
         Task<ConnectionSyncResponse> ConnectionSyncRequestAsync(string connectionId, ConnectionProperties props, RequestOptions options);
         Task<CreateStatementResponse> CreateStatementRequestAsync(string connectionId, RequestOptions options);
@@ -29,14 +29,14 @@ namespace PhoenixSharp.Interfaces
         Task<CloseConnectionResponse> CloseConnectionRequestAsync(string connectionId, RequestOptions options);
         Task<CommitResponse> CommitRequestAsync(string connectionId, RequestOptions options);
         Task<RollbackResponse> RollbackRequestAsync(string connectionId, RequestOptions options);
-        Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options);
-        Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options);
+        Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, long maxRowsTotal, RequestOptions options);
+        Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong firstFrameMaxSize, bool hasParameterValues, RequestOptions options);
         Task<ResultSetResponse> TablesRequestAsync(string catalog, string schemaPattern, string tableNamePattern, pbc::RepeatedField<string> typeList, bool hasTypeList, string connectionId, RequestOptions options);
         Task<ResultSetResponse> CatalogsRequestAsync(string connectionId, RequestOptions options);
         Task<ResultSetResponse> TableTypesRequestAsync(string connectionId, RequestOptions options);
         Task<ResultSetResponse> SchemasRequestAsync(string catalog, string schemaPattern, string connectionId, RequestOptions options);
         Task<ResultSetResponse> ColumnsRequestAsync(string catalog, string schemaPattern, string tableNamePattern, string columnNamePattern, string connectionId, RequestOptions options);
-        Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options);
+        Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, int frameMaxSize, RequestOptions options);
         Task<ExecuteBatchResponse> PrepareAndExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<string> sqlCommands, RequestOptions options);
         Task<ExecuteBatchResponse> ExecuteBatchRequestAsync(string connectionId, uint statementId, pbc::RepeatedField<UpdateBatch> updates, RequestOptions options);
     }

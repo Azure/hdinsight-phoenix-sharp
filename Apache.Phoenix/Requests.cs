@@ -34,37 +34,39 @@ namespace Apache.Phoenix {
             "Q29sdW1uc1JlcXVlc3QSDwoHY2F0YWxvZxgBIAEoCRIWCg5zY2hlbWFfcGF0",
             "dGVybhgCIAEoCRIaChJ0YWJsZV9uYW1lX3BhdHRlcm4YAyABKAkSGwoTY29s",
             "dW1uX25hbWVfcGF0dGVybhgEIAEoCRIVCg1jb25uZWN0aW9uX2lkGAUgASgJ",
-            "IigKD1R5cGVJbmZvUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJImsK",
-            "GFByZXBhcmVBbmRFeGVjdXRlUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEg",
-            "ASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMgASgEEhQKDHN0",
-            "YXRlbWVudF9pZBgEIAEoDSJLCg5QcmVwYXJlUmVxdWVzdBIVCg1jb25uZWN0",
-            "aW9uX2lkGAEgASgJEgsKA3NxbBgCIAEoCRIVCg1tYXhfcm93X2NvdW50GAMg",
-            "ASgEImgKDEZldGNoUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJEhQK",
-            "DHN0YXRlbWVudF9pZBgCIAEoDRIOCgZvZmZzZXQYAyABKAQSGwoTZmV0Y2hf",
-            "bWF4X3Jvd19jb3VudBgEIAEoDSIvChZDcmVhdGVTdGF0ZW1lbnRSZXF1ZXN0",
-            "EhUKDWNvbm5lY3Rpb25faWQYASABKAkiRAoVQ2xvc2VTdGF0ZW1lbnRSZXF1",
-            "ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkSFAoMc3RhdGVtZW50X2lkGAIg",
-            "ASgNIosBChVPcGVuQ29ubmVjdGlvblJlcXVlc3QSFQoNY29ubmVjdGlvbl9p",
-            "ZBgBIAEoCRIuCgRpbmZvGAIgAygLMiAuT3BlbkNvbm5lY3Rpb25SZXF1ZXN0",
-            "LkluZm9FbnRyeRorCglJbmZvRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVl",
-            "GAIgASgJOgI4ASIvChZDbG9zZUNvbm5lY3Rpb25SZXF1ZXN0EhUKDWNvbm5l",
-            "Y3Rpb25faWQYASABKAkiWQoVQ29ubmVjdGlvblN5bmNSZXF1ZXN0EhUKDWNv",
-            "bm5lY3Rpb25faWQYASABKAkSKQoKY29ubl9wcm9wcxgCIAEoCzIVLkNvbm5l",
-            "Y3Rpb25Qcm9wZXJ0aWVzIpcBCg5FeGVjdXRlUmVxdWVzdBIpCg9zdGF0ZW1l",
-            "bnRIYW5kbGUYASABKAsyEC5TdGF0ZW1lbnRIYW5kbGUSJQoQcGFyYW1ldGVy",
-            "X3ZhbHVlcxgCIAMoCzILLlR5cGVkVmFsdWUSFQoNbWF4X3Jvd19jb3VudBgD",
-            "IAEoBBIcChRoYXNfcGFyYW1ldGVyX3ZhbHVlcxgEIAEoCCJtChJTeW5jUmVz",
-            "dWx0c1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1l",
-            "bnRfaWQYAiABKA0SGgoFc3RhdGUYAyABKAsyCy5RdWVyeVN0YXRlEg4KBm9m",
-            "ZnNldBgEIAEoBCImCg1Db21taXRSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQY",
-            "ASABKAkiKAoPUm9sbGJhY2tSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASAB",
-            "KAkiYgodUHJlcGFyZUFuZEV4ZWN1dGVCYXRjaFJlcXVlc3QSFQoNY29ubmVj",
-            "dGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SFAoMc3FsX2Nv",
-            "bW1hbmRzGAMgAygJIjQKC1VwZGF0ZUJhdGNoEiUKEHBhcmFtZXRlcl92YWx1",
-            "ZXMYASADKAsyCy5UeXBlZFZhbHVlImEKE0V4ZWN1dGVCYXRjaFJlcXVlc3QS",
-            "FQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0S",
-            "HQoHdXBkYXRlcxgDIAMoCzIMLlVwZGF0ZUJhdGNoQhGqAg5BcGFjaGUuUGhv",
-            "ZW5peGIGcHJvdG8z"));
+            "IigKD1R5cGVJbmZvUmVxdWVzdBIVCg1jb25uZWN0aW9uX2lkGAEgASgJIqEB",
+            "ChhQcmVwYXJlQW5kRXhlY3V0ZVJlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgB",
+            "IAEoCRILCgNzcWwYAiABKAkSFQoNbWF4X3Jvd19jb3VudBgDIAEoBBIUCgxz",
+            "dGF0ZW1lbnRfaWQYBCABKA0SFgoObWF4X3Jvd3NfdG90YWwYBSABKAMSHAoU",
+            "Zmlyc3RfZnJhbWVfbWF4X3NpemUYBiABKAUiYwoOUHJlcGFyZVJlcXVlc3QS",
+            "FQoNY29ubmVjdGlvbl9pZBgBIAEoCRILCgNzcWwYAiABKAkSFQoNbWF4X3Jv",
+            "d19jb3VudBgDIAEoBBIWCg5tYXhfcm93c190b3RhbBgEIAEoAyKAAQoMRmV0",
+            "Y2hSZXF1ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkSFAoMc3RhdGVtZW50",
+            "X2lkGAIgASgNEg4KBm9mZnNldBgDIAEoBBIbChNmZXRjaF9tYXhfcm93X2Nv",
+            "dW50GAQgASgNEhYKDmZyYW1lX21heF9zaXplGAUgASgFIi8KFkNyZWF0ZVN0",
+            "YXRlbWVudFJlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCSJEChVDbG9z",
+            "ZVN0YXRlbWVudFJlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxz",
+            "dGF0ZW1lbnRfaWQYAiABKA0iiwEKFU9wZW5Db25uZWN0aW9uUmVxdWVzdBIV",
+            "Cg1jb25uZWN0aW9uX2lkGAEgASgJEi4KBGluZm8YAiADKAsyIC5PcGVuQ29u",
+            "bmVjdGlvblJlcXVlc3QuSW5mb0VudHJ5GisKCUluZm9FbnRyeRILCgNrZXkY",
+            "ASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIi8KFkNsb3NlQ29ubmVjdGlvblJl",
+            "cXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCSJZChVDb25uZWN0aW9uU3lu",
+            "Y1JlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIpCgpjb25uX3Byb3Bz",
+            "GAIgASgLMhUuQ29ubmVjdGlvblByb3BlcnRpZXMingEKDkV4ZWN1dGVSZXF1",
+            "ZXN0EikKD3N0YXRlbWVudEhhbmRsZRgBIAEoCzIQLlN0YXRlbWVudEhhbmRs",
+            "ZRIlChBwYXJhbWV0ZXJfdmFsdWVzGAIgAygLMgsuVHlwZWRWYWx1ZRIcChRm",
+            "aXJzdF9mcmFtZV9tYXhfc2l6ZRgDIAEoBBIcChRoYXNfcGFyYW1ldGVyX3Zh",
+            "bHVlcxgEIAEoCCJtChJTeW5jUmVzdWx0c1JlcXVlc3QSFQoNY29ubmVjdGlv",
+            "bl9pZBgBIAEoCRIUCgxzdGF0ZW1lbnRfaWQYAiABKA0SGgoFc3RhdGUYAyAB",
+            "KAsyCy5RdWVyeVN0YXRlEg4KBm9mZnNldBgEIAEoBCImCg1Db21taXRSZXF1",
+            "ZXN0EhUKDWNvbm5lY3Rpb25faWQYASABKAkiKAoPUm9sbGJhY2tSZXF1ZXN0",
+            "EhUKDWNvbm5lY3Rpb25faWQYASABKAkiYgodUHJlcGFyZUFuZEV4ZWN1dGVC",
+            "YXRjaFJlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIUCgxzdGF0ZW1l",
+            "bnRfaWQYAiABKA0SFAoMc3FsX2NvbW1hbmRzGAMgAygJIjQKC1VwZGF0ZUJh",
+            "dGNoEiUKEHBhcmFtZXRlcl92YWx1ZXMYASADKAsyCy5UeXBlZFZhbHVlImEK",
+            "E0V4ZWN1dGVCYXRjaFJlcXVlc3QSFQoNY29ubmVjdGlvbl9pZBgBIAEoCRIU",
+            "CgxzdGF0ZW1lbnRfaWQYAiABKA0SHQoHdXBkYXRlcxgDIAMoCzIMLlVwZGF0",
+            "ZUJhdGNoQhGqAg5BcGFjaGUuUGhvZW5peGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Apache.Phoenix.CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -75,15 +77,15 @@ namespace Apache.Phoenix {
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TableTypesRequest), global::Apache.Phoenix.TableTypesRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ColumnsRequest), global::Apache.Phoenix.ColumnsRequest.Parser, new[]{ "Catalog", "SchemaPattern", "TableNamePattern", "ColumnNamePattern", "ConnectionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.TypeInfoRequest), global::Apache.Phoenix.TypeInfoRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteRequest), global::Apache.Phoenix.PrepareAndExecuteRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount", "StatementId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareRequest), global::Apache.Phoenix.PrepareRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.FetchRequest), global::Apache.Phoenix.FetchRequest.Parser, new[]{ "ConnectionId", "StatementId", "Offset", "FetchMaxRowCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareAndExecuteRequest), global::Apache.Phoenix.PrepareAndExecuteRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount", "StatementId", "MaxRowsTotal", "FirstFrameMaxSize" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.PrepareRequest), global::Apache.Phoenix.PrepareRequest.Parser, new[]{ "ConnectionId", "Sql", "MaxRowCount", "MaxRowsTotal" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.FetchRequest), global::Apache.Phoenix.FetchRequest.Parser, new[]{ "ConnectionId", "StatementId", "Offset", "FetchMaxRowCount", "FrameMaxSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CreateStatementRequest), global::Apache.Phoenix.CreateStatementRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CloseStatementRequest), global::Apache.Phoenix.CloseStatementRequest.Parser, new[]{ "ConnectionId", "StatementId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.OpenConnectionRequest), global::Apache.Phoenix.OpenConnectionRequest.Parser, new[]{ "ConnectionId", "Info" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CloseConnectionRequest), global::Apache.Phoenix.CloseConnectionRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ConnectionSyncRequest), global::Apache.Phoenix.ConnectionSyncRequest.Parser, new[]{ "ConnectionId", "ConnProps" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ExecuteRequest), global::Apache.Phoenix.ExecuteRequest.Parser, new[]{ "StatementHandle", "ParameterValues", "MaxRowCount", "HasParameterValues" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.ExecuteRequest), global::Apache.Phoenix.ExecuteRequest.Parser, new[]{ "StatementHandle", "ParameterValues", "FirstFrameMaxSize", "HasParameterValues" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.SyncResultsRequest), global::Apache.Phoenix.SyncResultsRequest.Parser, new[]{ "ConnectionId", "StatementId", "State", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.CommitRequest), global::Apache.Phoenix.CommitRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Apache.Phoenix.RollbackRequest), global::Apache.Phoenix.RollbackRequest.Parser, new[]{ "ConnectionId" }, null, null, null),
@@ -1275,6 +1277,8 @@ namespace Apache.Phoenix {
       sql_ = other.sql_;
       maxRowCount_ = other.maxRowCount_;
       statementId_ = other.statementId_;
+      maxRowsTotal_ = other.maxRowsTotal_;
+      firstFrameMaxSize_ = other.firstFrameMaxSize_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1307,6 +1311,9 @@ namespace Apache.Phoenix {
     /// <summary>Field number for the "max_row_count" field.</summary>
     public const int MaxRowCountFieldNumber = 3;
     private ulong maxRowCount_;
+    /// <summary>
+    ///  Deprecated
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong MaxRowCount {
       get { return maxRowCount_; }
@@ -1323,6 +1330,34 @@ namespace Apache.Phoenix {
       get { return statementId_; }
       set {
         statementId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "max_rows_total" field.</summary>
+    public const int MaxRowsTotalFieldNumber = 5;
+    private long maxRowsTotal_;
+    /// <summary>
+    ///  The maximum number of rows that will be allowed for this query
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long MaxRowsTotal {
+      get { return maxRowsTotal_; }
+      set {
+        maxRowsTotal_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "first_frame_max_size" field.</summary>
+    public const int FirstFrameMaxSizeFieldNumber = 6;
+    private int firstFrameMaxSize_;
+    /// <summary>
+    ///  The maximum number of rows that will be returned in the
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int FirstFrameMaxSize {
+      get { return firstFrameMaxSize_; }
+      set {
+        firstFrameMaxSize_ = value;
       }
     }
 
@@ -1343,6 +1378,8 @@ namespace Apache.Phoenix {
       if (Sql != other.Sql) return false;
       if (MaxRowCount != other.MaxRowCount) return false;
       if (StatementId != other.StatementId) return false;
+      if (MaxRowsTotal != other.MaxRowsTotal) return false;
+      if (FirstFrameMaxSize != other.FirstFrameMaxSize) return false;
       return true;
     }
 
@@ -1353,6 +1390,8 @@ namespace Apache.Phoenix {
       if (Sql.Length != 0) hash ^= Sql.GetHashCode();
       if (MaxRowCount != 0UL) hash ^= MaxRowCount.GetHashCode();
       if (StatementId != 0) hash ^= StatementId.GetHashCode();
+      if (MaxRowsTotal != 0L) hash ^= MaxRowsTotal.GetHashCode();
+      if (FirstFrameMaxSize != 0) hash ^= FirstFrameMaxSize.GetHashCode();
       return hash;
     }
 
@@ -1379,6 +1418,14 @@ namespace Apache.Phoenix {
         output.WriteRawTag(32);
         output.WriteUInt32(StatementId);
       }
+      if (MaxRowsTotal != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(MaxRowsTotal);
+      }
+      if (FirstFrameMaxSize != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(FirstFrameMaxSize);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1395,6 +1442,12 @@ namespace Apache.Phoenix {
       }
       if (StatementId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StatementId);
+      }
+      if (MaxRowsTotal != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MaxRowsTotal);
+      }
+      if (FirstFrameMaxSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FirstFrameMaxSize);
       }
       return size;
     }
@@ -1415,6 +1468,12 @@ namespace Apache.Phoenix {
       }
       if (other.StatementId != 0) {
         StatementId = other.StatementId;
+      }
+      if (other.MaxRowsTotal != 0L) {
+        MaxRowsTotal = other.MaxRowsTotal;
+      }
+      if (other.FirstFrameMaxSize != 0) {
+        FirstFrameMaxSize = other.FirstFrameMaxSize;
       }
     }
 
@@ -1440,6 +1499,14 @@ namespace Apache.Phoenix {
           }
           case 32: {
             StatementId = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            MaxRowsTotal = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            FirstFrameMaxSize = input.ReadInt32();
             break;
           }
         }
@@ -1478,6 +1545,7 @@ namespace Apache.Phoenix {
       connectionId_ = other.connectionId_;
       sql_ = other.sql_;
       maxRowCount_ = other.maxRowCount_;
+      maxRowsTotal_ = other.maxRowsTotal_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1510,11 +1578,28 @@ namespace Apache.Phoenix {
     /// <summary>Field number for the "max_row_count" field.</summary>
     public const int MaxRowCountFieldNumber = 3;
     private ulong maxRowCount_;
+    /// <summary>
+    ///  Deprecated
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong MaxRowCount {
       get { return maxRowCount_; }
       set {
         maxRowCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "max_rows_total" field.</summary>
+    public const int MaxRowsTotalFieldNumber = 4;
+    private long maxRowsTotal_;
+    /// <summary>
+    ///  The maximum number of rows that will be allowed for this query
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long MaxRowsTotal {
+      get { return maxRowsTotal_; }
+      set {
+        maxRowsTotal_ = value;
       }
     }
 
@@ -1534,6 +1619,7 @@ namespace Apache.Phoenix {
       if (ConnectionId != other.ConnectionId) return false;
       if (Sql != other.Sql) return false;
       if (MaxRowCount != other.MaxRowCount) return false;
+      if (MaxRowsTotal != other.MaxRowsTotal) return false;
       return true;
     }
 
@@ -1543,6 +1629,7 @@ namespace Apache.Phoenix {
       if (ConnectionId.Length != 0) hash ^= ConnectionId.GetHashCode();
       if (Sql.Length != 0) hash ^= Sql.GetHashCode();
       if (MaxRowCount != 0UL) hash ^= MaxRowCount.GetHashCode();
+      if (MaxRowsTotal != 0L) hash ^= MaxRowsTotal.GetHashCode();
       return hash;
     }
 
@@ -1565,6 +1652,10 @@ namespace Apache.Phoenix {
         output.WriteRawTag(24);
         output.WriteUInt64(MaxRowCount);
       }
+      if (MaxRowsTotal != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(MaxRowsTotal);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1578,6 +1669,9 @@ namespace Apache.Phoenix {
       }
       if (MaxRowCount != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaxRowCount);
+      }
+      if (MaxRowsTotal != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MaxRowsTotal);
       }
       return size;
     }
@@ -1595,6 +1689,9 @@ namespace Apache.Phoenix {
       }
       if (other.MaxRowCount != 0UL) {
         MaxRowCount = other.MaxRowCount;
+      }
+      if (other.MaxRowsTotal != 0L) {
+        MaxRowsTotal = other.MaxRowsTotal;
       }
     }
 
@@ -1616,6 +1713,10 @@ namespace Apache.Phoenix {
           }
           case 24: {
             MaxRowCount = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            MaxRowsTotal = input.ReadInt64();
             break;
           }
         }
@@ -1655,6 +1756,7 @@ namespace Apache.Phoenix {
       statementId_ = other.statementId_;
       offset_ = other.offset_;
       fetchMaxRowCount_ = other.fetchMaxRowCount_;
+      frameMaxSize_ = other.frameMaxSize_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1699,13 +1801,24 @@ namespace Apache.Phoenix {
     public const int FetchMaxRowCountFieldNumber = 4;
     private uint fetchMaxRowCount_;
     /// <summary>
-    ///  Maximum number of rows to be returned in the frame. Negative means no limit.
+    ///  Maximum number of rows to be returned in the frame. Negative means no limit. Deprecated!
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint FetchMaxRowCount {
       get { return fetchMaxRowCount_; }
       set {
         fetchMaxRowCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "frame_max_size" field.</summary>
+    public const int FrameMaxSizeFieldNumber = 5;
+    private int frameMaxSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int FrameMaxSize {
+      get { return frameMaxSize_; }
+      set {
+        frameMaxSize_ = value;
       }
     }
 
@@ -1726,6 +1839,7 @@ namespace Apache.Phoenix {
       if (StatementId != other.StatementId) return false;
       if (Offset != other.Offset) return false;
       if (FetchMaxRowCount != other.FetchMaxRowCount) return false;
+      if (FrameMaxSize != other.FrameMaxSize) return false;
       return true;
     }
 
@@ -1736,6 +1850,7 @@ namespace Apache.Phoenix {
       if (StatementId != 0) hash ^= StatementId.GetHashCode();
       if (Offset != 0UL) hash ^= Offset.GetHashCode();
       if (FetchMaxRowCount != 0) hash ^= FetchMaxRowCount.GetHashCode();
+      if (FrameMaxSize != 0) hash ^= FrameMaxSize.GetHashCode();
       return hash;
     }
 
@@ -1762,6 +1877,10 @@ namespace Apache.Phoenix {
         output.WriteRawTag(32);
         output.WriteUInt32(FetchMaxRowCount);
       }
+      if (FrameMaxSize != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(FrameMaxSize);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1778,6 +1897,9 @@ namespace Apache.Phoenix {
       }
       if (FetchMaxRowCount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FetchMaxRowCount);
+      }
+      if (FrameMaxSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FrameMaxSize);
       }
       return size;
     }
@@ -1798,6 +1920,9 @@ namespace Apache.Phoenix {
       }
       if (other.FetchMaxRowCount != 0) {
         FetchMaxRowCount = other.FetchMaxRowCount;
+      }
+      if (other.FrameMaxSize != 0) {
+        FrameMaxSize = other.FrameMaxSize;
       }
     }
 
@@ -1823,6 +1948,10 @@ namespace Apache.Phoenix {
           }
           case 32: {
             FetchMaxRowCount = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            FrameMaxSize = input.ReadInt32();
             break;
           }
         }
@@ -2155,7 +2284,7 @@ namespace Apache.Phoenix {
     public pbc::MapField<string, string> Info {
       get { return info_; }
       set {
-            info_ = value;
+        info_ = value;
       }
     }
 
@@ -2542,7 +2671,7 @@ namespace Apache.Phoenix {
     public ExecuteRequest(ExecuteRequest other) : this() {
       StatementHandle = other.statementHandle_ != null ? other.StatementHandle.Clone() : null;
       parameterValues_ = other.parameterValues_.Clone();
-      maxRowCount_ = other.maxRowCount_;
+      firstFrameMaxSize_ = other.firstFrameMaxSize_;
       hasParameterValues_ = other.hasParameterValues_;
     }
 
@@ -2575,14 +2704,17 @@ namespace Apache.Phoenix {
       }
     }
 
-    /// <summary>Field number for the "max_row_count" field.</summary>
-    public const int MaxRowCountFieldNumber = 3;
-    private ulong maxRowCount_;
+    /// <summary>Field number for the "first_frame_max_size" field.</summary>
+    public const int FirstFrameMaxSizeFieldNumber = 3;
+    private ulong firstFrameMaxSize_;
+    /// <summary>
+    ///  The maximum number of rows to return in the first Frame
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ulong MaxRowCount {
-      get { return maxRowCount_; }
+    public ulong FirstFrameMaxSize {
+      get { return firstFrameMaxSize_; }
       set {
-        maxRowCount_ = value;
+        firstFrameMaxSize_ = value;
       }
     }
 
@@ -2612,7 +2744,7 @@ namespace Apache.Phoenix {
       }
       if (!object.Equals(StatementHandle, other.StatementHandle)) return false;
       if(!parameterValues_.Equals(other.parameterValues_)) return false;
-      if (MaxRowCount != other.MaxRowCount) return false;
+      if (FirstFrameMaxSize != other.FirstFrameMaxSize) return false;
       if (HasParameterValues != other.HasParameterValues) return false;
       return true;
     }
@@ -2622,7 +2754,7 @@ namespace Apache.Phoenix {
       int hash = 1;
       if (statementHandle_ != null) hash ^= StatementHandle.GetHashCode();
       hash ^= parameterValues_.GetHashCode();
-      if (MaxRowCount != 0UL) hash ^= MaxRowCount.GetHashCode();
+      if (FirstFrameMaxSize != 0UL) hash ^= FirstFrameMaxSize.GetHashCode();
       if (HasParameterValues != false) hash ^= HasParameterValues.GetHashCode();
       return hash;
     }
@@ -2639,9 +2771,9 @@ namespace Apache.Phoenix {
         output.WriteMessage(StatementHandle);
       }
       parameterValues_.WriteTo(output, _repeated_parameterValues_codec);
-      if (MaxRowCount != 0UL) {
+      if (FirstFrameMaxSize != 0UL) {
         output.WriteRawTag(24);
-        output.WriteUInt64(MaxRowCount);
+        output.WriteUInt64(FirstFrameMaxSize);
       }
       if (HasParameterValues != false) {
         output.WriteRawTag(32);
@@ -2656,8 +2788,8 @@ namespace Apache.Phoenix {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(StatementHandle);
       }
       size += parameterValues_.CalculateSize(_repeated_parameterValues_codec);
-      if (MaxRowCount != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaxRowCount);
+      if (FirstFrameMaxSize != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(FirstFrameMaxSize);
       }
       if (HasParameterValues != false) {
         size += 1 + 1;
@@ -2677,8 +2809,8 @@ namespace Apache.Phoenix {
         StatementHandle.MergeFrom(other.StatementHandle);
       }
       parameterValues_.Add(other.parameterValues_);
-      if (other.MaxRowCount != 0UL) {
-        MaxRowCount = other.MaxRowCount;
+      if (other.FirstFrameMaxSize != 0UL) {
+        FirstFrameMaxSize = other.FirstFrameMaxSize;
       }
       if (other.HasParameterValues != false) {
         HasParameterValues = other.HasParameterValues;
@@ -2705,7 +2837,7 @@ namespace Apache.Phoenix {
             break;
           }
           case 24: {
-            MaxRowCount = input.ReadUInt64();
+            FirstFrameMaxSize = input.ReadUInt64();
             break;
           }
           case 32: {
@@ -3232,8 +3364,7 @@ namespace Apache.Phoenix {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> SqlCommands {
       get { return sqlCommands_; }
-      set
-      {
+      set {
         sqlCommands_ = value;
       }
     }
@@ -3380,8 +3511,7 @@ namespace Apache.Phoenix {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Apache.Phoenix.TypedValue> ParameterValues {
       get { return parameterValues_; }
-      set
-      {
+      set {
         parameterValues_ = value;
       }
     }

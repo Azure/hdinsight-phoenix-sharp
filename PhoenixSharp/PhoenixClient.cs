@@ -49,14 +49,15 @@ namespace PhoenixSharp
         /// This request is used as a short-hand for create a Statement and fetching the first batch 
         /// of results in a single call without any parameter substitution.
         /// </summary>
-        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, ulong maxRowCount, uint statementId, RequestOptions options)
+        public async Task<ExecuteResponse> PrepareAndExecuteRequestAsync(string connectionId, string sql, uint statementId, long maxRowsTotal, int firstFrameMaxSize, RequestOptions options)
         {
             PrepareAndExecuteRequest req = new PrepareAndExecuteRequest
             {
                 Sql = sql,
                 ConnectionId = connectionId,
                 StatementId = statementId,
-                MaxRowCount = maxRowCount
+                MaxRowsTotal = maxRowsTotal,
+                FirstFrameMaxSize = firstFrameMaxSize
             };
 
             WireMessage msg = new WireMessage
@@ -359,13 +360,13 @@ namespace PhoenixSharp
         /// <summary>
         /// This request is used to create create a new Statement with the given query in the Phoenix query server.
         /// </summary>
-        public async Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, ulong maxRowCount, RequestOptions options)
+        public async Task<PrepareResponse> PrepareRequestAsync(string connectionId, string sql, long maxRowsTotal, RequestOptions options)
         {
             PrepareRequest req = new PrepareRequest
             {
                 ConnectionId = connectionId,
                 Sql = sql,
-                MaxRowCount = maxRowCount
+                MaxRowsTotal = maxRowsTotal
             };
 
             WireMessage msg = new WireMessage
@@ -399,13 +400,13 @@ namespace PhoenixSharp
         /// <summary>
         /// This request is used to execute a PreparedStatement, optionally with values to bind to the parameters in the Statement.
         /// </summary>
-        public async Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong maxRowCount, bool hasParameterValues, RequestOptions options)
+        public async Task<ExecuteResponse> ExecuteRequestAsync(StatementHandle statementHandle, pbc::RepeatedField<TypedValue> parameterValues, ulong firstFrameMaxSize, bool hasParameterValues, RequestOptions options)
         {
             ExecuteRequest req = new ExecuteRequest
             {
                 StatementHandle = statementHandle,
                 ParameterValues = parameterValues,
-                MaxRowCount = maxRowCount,
+                FirstFrameMaxSize = firstFrameMaxSize,
                 HasParameterValues = hasParameterValues
             };
 
@@ -641,14 +642,14 @@ namespace PhoenixSharp
         /// <summary>
         /// This request is used to fetch a batch of rows from a Statement previously created.
         /// </summary>
-        public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, uint fetchMaxRowCount, RequestOptions options)
+        public async Task<FetchResponse> FetchRequestAsync(string connectionId, uint statementId, ulong offset, int frameMaxSize, RequestOptions options)
         {
             FetchRequest req = new FetchRequest
             {
                 ConnectionId = connectionId,
                 StatementId = statementId,
                 Offset = offset,
-                FetchMaxRowCount = fetchMaxRowCount
+                FrameMaxSize = frameMaxSize
             };
 
             WireMessage msg = new WireMessage

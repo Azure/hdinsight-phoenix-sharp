@@ -125,21 +125,21 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Running query 2
                 string sql2 = "UPSERT INTO " + tableName + " VALUES ('d1','x1')";
-                client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql2, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Running query 3
                 string sql3 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
-                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(1, count);
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql4, createStatementResponse.StatementId, 100, 100, options).Wait();
             }
             catch (Exception ex)
             {
@@ -197,7 +197,7 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Result;
+                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Result;
 
                 // Commit statement 1
                 client.CommitRequestAsync(connId, options).Wait();
@@ -229,13 +229,13 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
-                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(10, count);
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql4, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Commit statement 4
                 client.CommitRequestAsync(connId, options).Wait();
@@ -296,7 +296,7 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Commit statement 1
                 client.CommitRequestAsync(connId, options).Wait();
@@ -329,12 +329,12 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select * from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, ulong.MaxValue, createStatementResponse.StatementId, options).Result;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, long.MaxValue, 300, options).Result;
                 pbc::RepeatedField<Row> rows = execResponse3.Results[0].FirstFrame.Rows;
                 for (int i = 0; i < rows.Count; i++)
                 {
                     Row row = rows[i];
-                    Debug.WriteLine(row.Value[0].Value[0].StringValue + " " + row.Value[1].Value[0].StringValue);
+                    Debug.WriteLine(row.Value[0].ScalarValue.StringValue + " " + row.Value[1].ScalarValue.StringValue);
                 }
                 // 100 is hard coded in server side as default firstframe size
                 // In order to get remaining rows, FetchRequestAsync is used
@@ -342,14 +342,14 @@ namespace PhoenixSharp.UnitTests
 
                 // Fetch remaining rows, offset is not used, simply set to 0
                 // if FetchResponse.Frame.Done = true, that means all the rows fetched
-                FetchResponse fetchResponse = client.FetchRequestAsync(connId, createStatementResponse.StatementId, 0, uint.MaxValue, options).Result;
+                FetchResponse fetchResponse = client.FetchRequestAsync(connId, createStatementResponse.StatementId, 0, 1000, options).Result;
                 Assert.AreEqual(200, fetchResponse.Frame.Rows.Count);
                 Assert.AreEqual(true, fetchResponse.Frame.Done);
 
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql4, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Commit statement 4
                 client.CommitRequestAsync(connId, options).Wait();
@@ -410,7 +410,7 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Commit statement 1
                 client.CommitRequestAsync(connId, options).Wait();
@@ -445,13 +445,13 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
-                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(0, count3);
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql4, createStatementResponse.StatementId, 100, 100, options).Wait();
 
                 // Commit statement 4
                 client.CommitRequestAsync(connId, options).Wait();
@@ -514,7 +514,7 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Result;
+                ExecuteResponse execResponse1 = client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Result;
 
                 // Running query 2
                 // Batching two sqls in a single HTTP request
@@ -525,8 +525,8 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
-                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count3 = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(2, count3);
 
                 // Running query 4
@@ -561,13 +561,13 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 5
                 string sql5 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse5 = client.PrepareAndExecuteRequestAsync(connId, sql5, 100, createStatementResponse.StatementId, options).Result;
-                long count5 = execResponse5.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse5 = client.PrepareAndExecuteRequestAsync(connId, sql5, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count5 = execResponse5.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(9, count5);
 
                 // Running query 5
                 string sql6 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql6, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql6, createStatementResponse.StatementId, 100, 100, options).Wait();
             }
             catch (Exception ex)
             {
@@ -632,7 +632,7 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 1
                 string sql1 = "CREATE TABLE " + tableName + " (LastName varchar(255) PRIMARY KEY,FirstName varchar(255))";
-                client.PrepareAndExecuteRequestAsync(connId, sql1, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql1, createStatementResponse.StatementId, 100, 100, options).Wait();
             }
             catch (Exception ex)
             {
@@ -678,7 +678,7 @@ namespace PhoenixSharp.UnitTests
                 createStatementResponse = client.CreateStatementRequestAsync(connId, options).Result;
                 // Running query 2
                 string sql2 = "UPSERT INTO " + tableName + " VALUES ('d1','x1')";
-                client.PrepareAndExecuteRequestAsync(connId, sql2, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql2, createStatementResponse.StatementId, 100, 100, options).Wait();
             }
             catch (Exception ex)
             {
@@ -725,13 +725,13 @@ namespace PhoenixSharp.UnitTests
 
                 // Running query 3
                 string sql3 = "select count(*) from " + tableName;
-                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, 100, createStatementResponse.StatementId, options).Result;
-                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].Value[0].NumberValue;
+                ExecuteResponse execResponse3 = client.PrepareAndExecuteRequestAsync(connId, sql3, createStatementResponse.StatementId, 100, 100, options).Result;
+                long count = execResponse3.Results[0].FirstFrame.Rows[0].Value[0].ScalarValue.NumberValue;
                 Assert.AreEqual(1, count);
 
                 // Running query 4
                 string sql4 = "DROP TABLE " + tableName;
-                client.PrepareAndExecuteRequestAsync(connId, sql4, 100, createStatementResponse.StatementId, options).Wait();
+                client.PrepareAndExecuteRequestAsync(connId, sql4, createStatementResponse.StatementId, 100, 100, options).Wait();
             }
             catch (Exception ex)
             {
