@@ -27,9 +27,12 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.Protobuf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.0.0\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.4.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.4.1\lib\net45\Google.Protobuf.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling">
+      <HintPath>..\..\..\Inetpub\Common\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
@@ -38,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClusterCredentialsFactory.cs" />
+    <Compile Include="ConnectionRetryTests.cs" />
     <Compile Include="PhoenixClientTests.cs" />
+    <Compile Include="TestErrorDetectionStrategy.cs" />
     <Compile Include="VNetTests.cs" />
   </ItemGroup>
   <ItemGroup>

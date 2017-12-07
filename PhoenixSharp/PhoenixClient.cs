@@ -775,7 +775,7 @@ namespace PhoenixSharp
         {
             using (var input = new MemoryStream(request))
             {
-                return await _requester.IssueWebRequestAsync(method: method, input: input, options: options);
+                return await options.RetryPolicy.ExecuteAsync(() => _requester.IssueWebRequestAsync(method: method, input: input, options: options));
             }
         }
 
