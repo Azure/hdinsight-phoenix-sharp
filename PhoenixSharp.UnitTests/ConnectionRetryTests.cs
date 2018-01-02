@@ -12,7 +12,6 @@ namespace PhoenixSharp.UnitTests
 {
     public class ConnectionRetryTests
     {
-        private const string TABLE_NAME = "TestTable";
         private RequestOptions _options;
         private PhoenixClient _client;
         private string _connId;
@@ -25,8 +24,6 @@ namespace PhoenixSharp.UnitTests
             _client = new PhoenixClient(null);
             _connId = Guid.NewGuid().ToString();
             _options = RequestOptions.GetVNetDefaultOptions();
-
-            OpenConnectionResponse openConnResponse = null;
             
             _retryCounter = 0;
             var retryCount = 5;
