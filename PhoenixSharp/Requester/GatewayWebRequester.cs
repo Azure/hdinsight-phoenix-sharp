@@ -74,6 +74,7 @@ namespace PhoenixSharp.Requester
             httpWebRequest.Method = method;
             httpWebRequest.Accept = _contentType;
             httpWebRequest.ContentType = _contentType;
+            httpWebRequest.Pipelined = options.Pipelined;
             // ignore certificates
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => { return true; };
 

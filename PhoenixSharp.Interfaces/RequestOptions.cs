@@ -29,6 +29,7 @@ namespace PhoenixSharp.Interfaces
         public int Port { get; set; }
         public Dictionary<string, string> AdditionalHeaders { get; set; }
         public string AlternativeHost { get; set; }
+        public bool Pipelined { get; set; }
 
         public void Validate()
         {
@@ -47,7 +48,8 @@ namespace PhoenixSharp.Interfaces
                 UseNagle = false,
                 AlternativeEndpoint = null,
                 Port = 443,
-                AlternativeHost = null
+                AlternativeHost = null,
+                Pipelined = false
             };
         }
 
@@ -63,7 +65,8 @@ namespace PhoenixSharp.Interfaces
                 UseNagle = false,
                 AlternativeEndpoint = null,
                 Port = 8765,
-                AlternativeHost = null
+                AlternativeHost = null,
+                Pipelined = false
             };
         }
     }

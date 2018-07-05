@@ -68,6 +68,7 @@ namespace PhoenixSharp.Requester
             httpWebRequest.Method = method;
             httpWebRequest.Accept = _contentType;
             httpWebRequest.ContentType = _contentType;
+            httpWebRequest.Pipelined = options.Pipelined;
 
             if (options.AdditionalHeaders != null)
             {
