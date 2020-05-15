@@ -27,7 +27,7 @@ namespace PhoenixSharp.UnitTests
     [TestFixture]
     public class PhoenixClientTests
     {
-        private ClusterCredentials _credentials;
+        protected ClusterCredentials _credentials;
 
         [SetUp]
         public void TestInitialize()
@@ -753,7 +753,7 @@ namespace PhoenixSharp.UnitTests
             }
         }
 
-        private string GenerateRandomConnId()
+        protected string GenerateRandomConnId()
         {
             const string hex_characters = "0123456789abcdef";
             var random = new Random();

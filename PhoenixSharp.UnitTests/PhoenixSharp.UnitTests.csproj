@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClusterCredentialsFactory.cs" />
+    <Compile Include="ConnectionRetryTests.cs" />
     <Compile Include="PhoenixClientTests.cs" />
     <Compile Include="VNetTests.cs" />
   </ItemGroup>
