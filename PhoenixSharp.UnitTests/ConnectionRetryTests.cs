@@ -62,6 +62,11 @@ namespace PhoenixSharp.UnitTests
                     }
                 }
             } while (attempts < 10);
+
+            if(attempts == 10)
+            {
+                Assert.Fail();
+            }
         }
     }
 }
